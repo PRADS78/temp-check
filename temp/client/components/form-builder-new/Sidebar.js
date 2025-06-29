@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDragAndDrop, createDragItem } from "../../hooks/useDragAndDrop";
 import { INPUT_FIELDS, UDF_FIELDS } from "../../lib/field-registry";
 import { FIELD_TYPES } from "../../lib/form-schema";
+import { DisprzSearchBar } from "../../../../src/remote";
 import styles from "./Sidebar.module.scss";
 
 const Sidebar = () => {
