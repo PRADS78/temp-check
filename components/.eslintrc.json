@@ -1,0 +1,85 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "react-hooks/rules-of-hooks": 2,
+    "react-hooks/exhaustive-deps": 2
+  },
+  "ignorePatterns": [
+    "**/src/AppButton/**/*.js",
+    "**/src/AppIcon/**/*.js",
+    "**/src/CascadingUserDefinedFieldSelector/**/*.js",
+    "**/src/CenterMessageDisplay/**/*.js",
+    "**/src/Checkbox/**/*.js",
+    "**/src/Datepicker/**/*.js",
+    "**/src/deprecatedStories/**/*.js",
+    "**/src/DialogControl/**/*.js",
+    "**/src/DropDown/**/*.js",
+    "**/src/EmptyDataView/**/*.js",
+    "**/src/InputTextField/**/*.js",
+    "**/src/LocalFileSelector/**/*.js",
+    "**/src/LocalizedOverlay/**/*.js",
+    "**/src/MultiSelectDropDown/**/*.js",
+    "**/src/Pagination/**/*.js",
+    "**/src/ProgressDisplayElement/**/*.js",
+    "**/src/ProgressToast/**/*.js",
+    "**/src/RadioButton/**/*.js",
+    "**/src/ReportWidget/**/*.js",
+    "**/src/RequiredField/**/*.js",
+    "**/src/SchedulingWidget/**/*.js",
+    "**/src/SearchWidget/**/*.js",
+    "**/src/ThemeProvider/**/*.js",
+    "**/src/TimeDurationDropDown/**/*.js",
+    "**/src/TimePicker/**/*.js",
+    "**/src/Toast/**/*.js",
+    "**/src/ToggleButton/**/*.js",
+    "**/src/ToggleSelect/**/*.js",
+    "**/src/UdfSelector/**/*.js",
+    "**/src/UserSearchFilter/**/*.js",
+    "**/src/UserSelectionWidget/**/*.js",
+    "**/src/stories/**/*.js"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test).[jt]s?(x)",
+        "jest.setup.js",
+        "test-utils.js"
+      ],
+      "extends": [
+        "plugin:jest-dom/recommended",
+        "plugin:testing-library/react"
+      ],
+      "env": {
+        "jest": true
+      }
+    },
+    {
+      "files": ["*.mdx", "*.md"],
+      "extends": ["plugin:mdx/recommended"]
+    }
+  ]
+}

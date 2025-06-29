@@ -1,0 +1,100 @@
+{
+    "extends": [
+        "stylelint-config-standard-scss",
+        "stylelint-config-prettier-scss"
+    ],
+    "plugins": [
+        "stylelint-declaration-strict-value",
+        "stylelint-use-logical"
+    ],
+    "rules": {
+        "color-hex-length": "long",
+        "no-invalid-position-at-import-rule": null,
+        "scss/double-slash-comment-whitespace-inside": "always",
+        "csstools/use-logical": [
+            "always",
+            {
+                "except": [
+                    "top",
+                    "bottom",
+                    "margin-top",
+                    "margin-bottom",
+                    "padding-top",
+                    "padding-bottom"
+                ]
+            }
+        ]
+    },
+    "ignoreFiles": [
+        "**/AppButton.scss",
+        "**/AppIcon.scss",
+        "**/CascadingUserDefinedFieldSelector.scss",
+        "**/Checkbox.scss",
+        "**/DatePicker.scss",
+        "**/DialogControl.scss",
+        "**/DropDown.scss",
+        "**/EmptyDataView.scss",
+        "**/Helpers.scss",
+        "**/InputTextField.scss",
+        "**/LocalFileSelector.scss",
+        "**/MultiSelectDropDown.scss",
+        "**/Pagination.scss",
+        "**/ProgressToast.scss",
+        "**/RadioButton.scss",
+        "**/ReportWidget.scss",
+        "**/RequiredField.scss",
+        "**/ScheduleWidget.scss",
+        "**/SearchWidget.scss",
+        "**/Styles/Base.scss",
+        "**/Styles/Common.scss",
+        "**/Styles/Direction.scss",
+        "**/Styles/Font.scss",
+        "*/Styles/ThemeColorDefinitions.scss",
+        "**/TimePicker.scss",
+        "**/Toast.scss",
+        "**/ToggelButton.scss",
+        "**/ToggleSelect.scss",
+        "**/UdfSelector.scss",
+        "**/UserSearchFilter.scss",
+        "**/UserSelectionWidget.scss",
+        "**/SchedulingWidget.scss",
+        "**/WobbleRotate.module.scss",
+        "**/CustomMultiSelectInput.module.scss",
+        "**/Stepper.module.scss",
+        "**/Slider.module.scss",
+        "**/Common.module.scss",
+        "**/Common.scss",
+        "**/slick.scss",
+        "**/slick-theme.scss",
+        "**/Multiple.module.scss",
+        "**/Keyword.module.scss",
+        "example/**/*.scss",
+        "example/**/*.css"
+    ],
+    "overrides": [
+        {
+            "files": [
+                "**/*.module.scss"
+            ],
+            "rules": {
+                "color-hex-length": "long",
+                "no-invalid-position-at-import-rule": null,
+                "scss/double-slash-comment-whitespace-inside": "always",
+                "selector-class-pattern": [
+                    "^[a-z][a-zA-Z0-9]+$",
+                    {
+                        "message": "Expected class selector to be camelCase"
+                    }
+                ],
+                "selector-pseudo-class-no-unknown": [
+                    true,
+                    {
+                        "ignorePseudoClasses": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
