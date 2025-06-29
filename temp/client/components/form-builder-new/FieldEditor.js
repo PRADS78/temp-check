@@ -350,28 +350,26 @@ const FieldEditor = ({
             />
           </div>
           <div className={styles.rightControls}>
-            <label className={styles.toggle}>
-              <span>Description</span>
-              <input
-                type="checkbox"
+            <div className={styles.toggleWrapper}>
+              <span className={styles.toggleLabel}>Description</span>
+              <DisprzToggleSwitch
+                uniqueId={`desc_toggle_${field.id}_${Date.now()}`}
                 checked={localField.showDescription}
-                onChange={(e) =>
-                  handleFieldChange("showDescription", e.target.checked)
+                onChange={(checked) =>
+                  handleFieldChange("showDescription", checked)
                 }
+                size={ToggleSwitchSize.SMALL}
               />
-              <span className={styles.toggleSlider}></span>
-            </label>
-            <label className={styles.toggle}>
-              <span>Required</span>
-              <input
-                type="checkbox"
+            </div>
+            <div className={styles.toggleWrapper}>
+              <span className={styles.toggleLabel}>Required</span>
+              <DisprzToggleSwitch
+                uniqueId={`req_toggle_${field.id}_${Date.now()}`}
                 checked={localField.required}
-                onChange={(e) =>
-                  handleFieldChange("required", e.target.checked)
-                }
+                onChange={(checked) => handleFieldChange("required", checked)}
+                size={ToggleSwitchSize.SMALL}
               />
-              <span className={styles.toggleSlider}></span>
-            </label>
+            </div>
           </div>
         </div>
       )}
