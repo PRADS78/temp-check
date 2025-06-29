@@ -1,4 +1,10 @@
 import { useState } from "react";
+import {
+  DisprzTextField,
+  DisprzTextArea,
+  PlainButton,
+} from "../../../../src/remote";
+import { TextFieldTypes } from "../../../../src/Enums";
 import styles from "./SectionEditor.module.scss";
 
 const SectionEditor = ({ section, onUpdate, onDelete }) => {
