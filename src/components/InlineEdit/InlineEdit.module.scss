@@ -1,0 +1,59 @@
+@use "../../Styles/Font.scss";
+@use "../../Styles/Spacing.module.scss";
+
+.inlineEdit {
+  height: 40px;
+  padding-inline: Spacing.$spacing-16;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border-radius: 8px;
+  cursor: default;
+  transition: background 250ms;
+
+  &.isEnabled {
+    cursor: pointer;
+
+    &:hover:not(.inlineEditActive) {
+      background: rgb(0 0 0 / 8%);
+    }
+  }
+
+  .label {
+    @include Font.fontNormal;
+  }
+
+  .editContainer {
+    display: none;
+  }
+
+  &.inlineEditActive {
+    transition: none;
+
+    .showEditOption {
+      display: flex;
+      gap: 8px;
+
+      .tickIcon {
+        svg {
+          fill: rgb(0 0 0 / 65%);
+          height: 18px;
+          width: 18px;
+        }
+      }
+
+      .cancelIcon {
+        svg {
+          fill: rgb(0 0 0 / 65%);
+          height: 16px;
+          width: 16px;
+        }
+      }
+    }
+  }
+
+  .inlineEditActiveLabel {
+    display: none;
+  }
+}

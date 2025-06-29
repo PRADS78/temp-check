@@ -1,0 +1,151 @@
+@use "../../Styles/Font.scss";
+@use "../../Styles/ZIndex.module.scss" as zindex;
+
+.coachMarkOverlay {
+  background: rgb(0 0 0 / 50%);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  inset-inline-start: 0;
+  z-index: zindex.get(zindex.$coach-mark, "overlay");
+}
+
+.coachMarkReferenceElement {
+  position: fixed;
+  background-color: #ffffff;
+  z-index: zindex.get(zindex.$coach-mark, "reference-highlight");
+  transition: all 0.3s ease-out;
+  display: none;
+}
+
+.coachMarkContainer {
+  width: 372px;
+  min-height: 351px;
+  padding: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 40px 55px -11px rgb(0 0 0 / 12%);
+  border-radius: 16px;
+  gap: 8px;
+
+  .closeButton {
+    align-items: center;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    height: 28px;
+    width: 28px;
+    justify-content: center;
+    margin: 0;
+    outline: none;
+    padding: 0;
+    position: absolute;
+    inset-inline-end: -33px;
+    background: linear-gradient(0deg, rgb(0 0 0 / 6%), rgb(0 0 0 / 6%)), #ffffff;
+    box-shadow: 0 40px 55px -11px rgb(0 0 0 / 12%);
+    overflow: hidden;
+    top: 0;
+
+    &::after {
+      background: linear-gradient(0deg, rgb(0 0 0 / 6%), rgb(0 0 0 / 6%)),
+        #ffffff;
+      border-radius: 50%;
+      content: "";
+      height: 100%;
+      opacity: 0;
+      position: absolute;
+      transition: opacity 240ms ease-in-out;
+      width: 100%;
+      z-index: 1;
+    }
+
+    &:hover {
+      &::after {
+        opacity: 1;
+      }
+    }
+
+    svg {
+      fill: rgb(0 0 0 / 100%);
+      height: 20px;
+      width: 20px;
+      z-index: 2;
+    }
+  }
+
+  .headerContainer {
+    width: 340px;
+    height: 147px;
+    background-color: rgb(248 248 248 / 100%);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: contain;
+  }
+
+  .contentContainer {
+    .title {
+      color: rgb(106 28 166 / 100%);
+      @include Font.fontBoldLarge;
+
+      line-height: 28px;
+      padding: 8px 0;
+    }
+
+    .description {
+      color: rgb(0 0 0 / 65%);
+      line-height: 20px;
+      @include Font.fontNormal;
+
+      margin-bottom: 13px;
+    }
+
+    .confirmation {
+      margin-bottom: 16px;
+
+      .label {
+        color: rgb(0 0 0 / 65%);
+      }
+    }
+  }
+
+  .navigationContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .progressIndicator {
+      display: flex;
+      gap: 3px;
+
+      .indicator {
+        width: 6px;
+        height: 6px;
+        padding: 1px;
+        background-color: rgb(106 28 166 / 10%);
+        border-radius: 50%;
+
+        &.filled {
+          background-color: #6a1ca6;
+        }
+      }
+    }
+
+    .actionContainer {
+      display: flex;
+      flex-direction: row;
+      gap: 6px;
+    }
+  }
+}
+
+// This class used in storybook Button element
+.btnCls {
+  z-index: 2;
+}
+
+.overRideRefElement {
+  z-index: zindex.get(zindex.$coach-mark, "active-reference");
+}

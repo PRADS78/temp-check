@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  background-color: white;
+  width: auto;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 1px 3px 1px rgb(0 0 0 / 15%);
+  border-radius: 16px;
+  padding: 16px;
+  gap: 16px;
+  flex-direction: column;
+
+  /* stylelint-disable-next-line selector-class-pattern */
+  :global(.react-datepicker.datePicker) {
+    box-shadow: none;
+    border: 1px solid rgb(0 0 0 / 12%);
+    width: 485px;
+  }
+}

@@ -1,0 +1,101 @@
+@use "../../Styles/Font.scss";
+@use "../../Styles/Base.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+.toggleSwitchContainer {
+  display: grid;
+  background-color: hsl(0deg 0% 94% / 100%);
+  padding: 4px;
+  border-radius: 8px;
+  gap: 4px;
+  position: relative;
+  grid-template-columns: repeat(2, minmax(100px, 1fr));
+
+  .toggleItemContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 auto;
+    height: 40px;
+    padding-inline: 24px;
+    padding-block: 10px;
+    color: hsl(0deg 0% 15% / 100%);
+    border-radius: 8px;
+    cursor: pointer;
+    @include Font.fontSemiboldNormal;
+
+    max-width: 250px;
+
+    &:hover {
+      color: hsl(274deg 71% 38% / 100%);
+    }
+
+    .label {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    &.active {
+      color: white;
+      transition: color 230ms 50ms ease-in-out;
+
+      .label {
+        z-index: 1;
+      }
+
+      &.disabled {
+        border: 1px solid Base.$border-color;
+        cursor: not-allowed;
+        background-color: Base.$disabled-bg-color;
+      }
+    }
+
+    &.disabled {
+      background-color: hsl(0deg 0% 94% / 100%);
+      cursor: not-allowed;
+      color: hsl(0deg 0% 70% / 100%);
+    }
+  }
+
+  .selectedState {
+    @include Base.make-dir-style-value(
+      background,
+      (
+        linear-gradient(270deg, var(--accentLight2) 0%, var(--accent) 100%),
+        #ffffff
+      ),
+      (
+        linear-gradient(-270deg, var(--accentLight2) 0%, var(--accent) 100%),
+        #ffffff
+      )
+    );
+
+    margin: 4px;
+    position: absolute;
+    z-index: 0;
+    border-radius: 8px;
+    height: 40px;
+    pointer-events: none;
+    transition: transform 230ms ease-in-out, width 230ms ease-in-out;
+  }
+
+  &.small {
+    .toggleItemContainer {
+      height: 32px;
+      padding-inline: 12px;
+      padding-block: 6px;
+    }
+
+    .selectedState {
+      height: 32px;
+    }
+  }
+
+  .toggleItemContainer.active.disabled ~ .selectedState {
+    background: unset;
+  }
+}

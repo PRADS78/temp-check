@@ -1,0 +1,111 @@
+@use "../../Styles/Font.scss";
+@use "../../Styles/Spacing.module.scss";
+@use "../../Styles/Base.scss";
+
+.chip {
+  align-items: center;
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: flex;
+  gap: 4px;
+  justify-content: flex-start;
+  padding: 4px 8px;
+  height: 24px;
+  background-color: rgb(0 0 0 / 5%);
+  cursor: pointer;
+
+  & .text {
+    color: rgb(0 0 0 / 65%);
+    height: 14px;
+    text-overflow: ellipsis;
+    @include Font.fontModerateSmall;
+    @include Base.make-line-clamp(1);
+
+    display: flex;
+    align-self: flex-end;
+  }
+
+  svg {
+    fill: rgb(0 0 0 / 65%);
+    height: 16px;
+    width: 16px;
+  }
+
+  &.large {
+    height: 30px;
+    padding: 8px;
+
+    & .text {
+      @include Font.fontModerateNormal;
+    }
+  }
+
+  &.disabled {
+    background-color: Base.$disabled-bg-color;
+    cursor: not-allowed;
+
+    & .text {
+      color: rgb(0 0 0 / 35%);
+    }
+
+    svg {
+      fill: rgb(0 0 0 / 35%);
+    }
+  }
+
+  &.selected {
+    /* stylelint-disable-next-line custom-property-pattern */
+    background-color: var(--accentMildLight);
+
+    svg {
+      fill: rgb(58 184 118 / 100%);
+    }
+
+    & .text {
+      color: var(--accent);
+    }
+  }
+
+  &.singleSelect {
+    border: 1px solid Base.$border-color;
+    background-color: rgb(255 255 255 / 5%);
+
+    &.selected {
+      background-color: rgb(106 28 166 / 6%);
+      border: 1px solid var(--accent);
+
+      & .text {
+        color: var(--accent);
+      }
+    }
+  }
+
+  &:hover {
+    background-color: rgb(0 0 0 / 8%);
+  }
+
+  &:focus {
+    background-color: rgb(0 0 0 / 12%);
+  }
+
+  & .avatarContainer {
+    align-items: center;
+    background-color: rgb(106 28 166 / 6%);
+    border-radius: 50%;
+    color: rgb(106 28 166);
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+    flex-grow: 0;
+    aspect-ratio: 1;
+    overflow: hidden;
+    width: 16px;
+    height: 16px;
+
+    & .avatar {
+      height: 16px;
+      width: 16px;
+    }
+  }
+}

@@ -1,0 +1,461 @@
+@import "../Styles/Font";
+@import "../Styles/Base";
+@import "../Styles/ThemeColorDefinitions";
+.user-search-control {
+  &.v2{
+  position: relative;
+  .advance-search-container {
+    transition: all 0.25s;
+    transform: scale3d(1, 0, 1);
+    opacity: 0;
+    position: absolute;
+    transform-origin: top;
+    background-color: #fff;
+    z-index: 1;
+    padding: 10px;
+    width: 100%;
+    height: 0;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    top: 0px;
+    @include make-dir-style-attribute(right, left, 0px);
+    .udf-scroll-container {
+      width: 100%;
+      .multi-select-container{
+        width: 100%;
+      }
+      .udf-filters-ctr {
+        width: 100%;
+        border-bottom: 1px solid #efefef;
+        overflow: auto;
+        padding-bottom: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        .type-selector {
+          .disprz-Select__menu {
+            left: initial;
+            top: initial;
+            .disprz-Select__option {
+              cursor: pointer;
+            }
+          }
+          .disprz-Select__control {
+            margin: 0;
+            padding: 0;
+            min-height: 35px;
+            .disprz-Select__indicator {
+              height: 33px;
+              cursor: pointer;
+            }
+            .disprz-Select__value-container {
+              min-height: 33px;
+              max-height: 72px;
+              overflow-y: auto;
+              .disprz-Select__placeholder {
+                transform: initial;
+                top: initial;
+                height: 100%;
+                display: flex;
+                align-items: center;
+              }
+              .disprz-Select__input {
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                input {
+                  height: 33px;
+                }
+              }
+              .disprz-Select__multi-value {
+                color: #fff;
+                @include themeColor(background, $accent);
+                display: flex;
+                flex-direction: row-reverse;
+                align-items: center;
+                padding: 4px 4px 4px 2px;
+                .disprz-Select__multi-value__label {
+                  color: #fff;
+                }
+                .disprz-Select__multi-value__remove {
+                  background: #fff;
+                  height: 18px;
+                  width: 18px;
+                  color: #000;
+                  border-radius: 100%;
+                  margin-left: 4px;
+                  cursor: pointer;
+                }
+              }
+            }
+            + div[class^="css-"] {
+              top: auto;
+              left: auto;
+            }
+          }
+          .disprz-Select__menu-portal {
+            top: auto;
+            left: auto;
+          }
+        }
+        .udf-option {
+          .string-type-input {
+            border: 1px solid #ccc;
+            height: 35px;
+            outline: none;
+            width: 100%;
+            border-radius: 3px;
+            padding: 0 10px;
+            box-sizing: border-box;
+          }
+        }
+      }
+    }
+
+    .udf-option {
+      padding: 5px 10px;
+      @include fontBoldSmall;
+      display: block;
+      width: 25%;
+      box-sizing: border-box;
+      input {
+        border: 1px solid #ccc;
+        height: 35px;
+        width: 100%;
+        border-radius: 5px;
+        padding: 0 10px;
+        @include fontSmall;
+        box-sizing: border-box;
+      }
+      .input-label-item {
+        padding-bottom: 5px;
+        @include make-dir-style-value(text-align, left, right);
+      }
+      .Select-control {
+        border-radius: 5px;
+        @include make-dir-style-value(text-align, left, right);
+        .Select-input {
+          input {
+            border: 0 none;
+            height: #{$app-button-height - 2}px;
+          }
+        }
+      }
+      &.default-filters {
+        padding: 5px 10px;
+        input {
+          width: 100%;
+          outline: none;
+        }
+      }
+    }
+    .text-left-align {
+      @include make-dir-style-value(text-align, left, right);
+    }
+    .btn-ctr {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      border-top: 1px solid #efefef;
+      .app-button {
+        margin: 15px 10px 5px;
+      }
+    }
+    .filter-container {
+      height: 60vh;
+      width: 100%;
+      .filter-with-scrollbar {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        .additional-filter {
+          .type-selector {
+            .disprz-Select__control {
+              margin-left: 0;
+              min-height: 35px;
+              + div[class^="css-"] {
+                top: auto;
+                left: auto;
+                .disprz-Select__menu {
+                  left: auto;
+                }
+              }
+              .disprz-Select__indicator {
+                height: 33px;
+                cursor: pointer;
+              }
+              .disprz-Select__input {
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                input {
+                  height: 33px;
+                }
+              }
+              .disprz-Select__value-container {
+                min-height: 33px;
+                max-height: 72px;
+                overflow-y: auto;
+                .disprz-Select__multi-value {
+                  color: #fff;
+                  @include themeColor(background, $accent);
+                  display: flex;
+                  flex-direction: row-reverse;
+                  align-items: center;
+                  padding: 4px 4px 4px 2px;
+                  .disprz-Select__multi-value__label {
+                    color: #fff;
+                  }
+                  .disprz-Select__multi-value__remove {
+                    background: #fff;
+                    height: 18px;
+                    width: 18px;
+                    color: #000;
+                    border-radius: 100%;
+                    margin-left: 4px;
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    &.show-advanced-search {
+      height: auto;
+      opacity: 1;
+      z-index: 1000;
+      border: 1px solid #efefef;
+      box-shadow: 0px 15px 48px -16px #adadad;
+      transform: scale3d(1, 1, 1);
+    }
+    .Select {
+      .Select-menu-outer {
+        width: calc(25% - 25px);
+        position: fixed;
+        top: initial;
+        @include make-dir-style-value(text-align, left, right);
+      }
+    }
+    .completion-time-period {
+      position: relative;
+      .rd-container-attachment {
+        bottom: auto;
+        top: 35px;
+        z-index: 1;
+        box-shadow: 0px 15px 25px -16px #adadad;
+      }
+    }
+    .tooltip-ctr {
+      width: 30px;
+      height: 30px;
+      position: relative;
+      @include hover-and-active("&") {
+        .tooltip-text {
+          display: block;
+        }
+      }
+      .tooltip-text {
+        position: absolute;
+        background: white;
+        z-index: 1;
+        border: 1px solid #ccc;
+        @include make-dir-style-value(text-align, left, right);
+        padding: 8px;
+        width: 380px;
+        top: 100%;
+        @include make-dir-style-attribute(left, right, 0);
+        display: none;
+        @include fontSmall;
+        box-shadow: 0px 16px 16px -16px #adadad;
+        border-radius: 5px;
+        white-space: pre;
+        @include themeColor(color, $accent);
+        strong {
+          @include fontBoldSmall;
+          display: block;
+          margin-bottom: 3px;
+        }
+      }
+    }
+  }
+  .center-align {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .search-form {
+    &.has-addition-filters {
+      .search-link-wrapper {
+        .search-form-wrapper {
+          width: 30px !important;
+        }
+      }
+      .additional-filters {
+        display: flex;
+        position: relative;
+        z-index: 3;
+        .dropdown {
+          min-width: 150px;
+        }
+        .default-filters {
+          margin-right: 10px;
+          > .input-label-item:first-child {
+            margin-bottom: 5px;
+          }
+          .disprz-Select__control {
+            margin-left: 0;
+            min-height: 35px;
+            + div[class^="css-"] {
+              top: auto;
+              left: auto;
+              .disprz-Select__menu {
+                left: auto;
+              }
+            }
+          }
+        }
+      }
+    }
+    .search-link-wrapper {
+      height: 38px;
+      padding: 0px;
+      display: flex;
+      @include make-dir-style-attribute(margin-right, margin-left, 10px);
+      align-items: flex-end;
+      .filter-button {
+        overflow: visible;
+        .app-icon {
+          height: 24px;
+          width: 24px;
+        }
+      }
+      .search-form-wrapper.active {
+        border: 1px solid #ccc;
+        border-radius: 6px;
+      }
+      .search-form-wrapper {
+        width: 30px !important;
+        position: relative;
+        transition: width 0.3s ease;
+       
+        .close-button {
+          position: absolute;
+          right: 1px;
+          top: 1px;
+          border: none;
+          width: 34px;
+          height: 34px;
+          svg {
+            // fill: $switch-black-color;
+            width: 12px;
+            height: 12px;
+          }
+        }
+
+        .search-container {
+          justify-content: flex-start;
+          width: 100%;
+          @include make-dir-style-attribute(padding-left, padding-right, 0px);
+          .search-button {
+            border: none;
+            width: 36px;
+            height: 36px;
+            position: absolute;
+            right: 1px;
+            top: 0px;
+            border-radius: 5px;
+            svg {
+              height: 16px;
+              width: 16px;
+            }
+          }
+        }
+        &.active {
+          width: 50% !important;
+          .search-container {
+            @include make-dir-style-attribute(padding-left, padding-right, 38px);
+            .search-button {
+              @include make-dir-style-attribute(margin-right, margin-left, -1px);
+              @include make-dir-style-attribute(right, left, 100%);
+              @include make-dir-style-value(transform, translateX(100%), translateX(0%));
+              // transform: translateX(100%);
+            }
+          }
+        }
+      }
+      .advance-search-link {
+        white-space: nowrap;
+        margin: 0 10px;
+      }
+      .app-button {
+        position: relative;
+        .filter-count {
+          position: absolute;
+          top: -8px;
+          z-index: 1;
+          @include make-dir-style-attribute(left, right, 20px);
+          color: $light-forecolor-1;
+          line-height: 24px;
+          min-width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          border: 1px solid;
+          @include themeColor(background, $accent);
+          @include themeColor(border-color, $accent);
+          @include fontSmall;
+        }
+      }
+    }
+    .search-container {
+      padding: 0;
+      @include make-dir-style-attribute(padding-left, padding-right, 0px);
+      border: solid 1px #d8dedf;
+      border-radius: 5px;
+      margin: 0;
+      @include make-dir-style-attribute(margin-right, margin-left, 10px);
+      input.search-input {
+        width: calc(100% - 37px);
+        height: 36px;
+        border: 0 none;
+        outline: none;
+        padding: 0px 0px 0px 0px;
+        background-color: transparent;
+      }
+      .app-button {
+        @include make-dir-style-attribute(border-left, border-right, 1px solid #d8dedf);
+        border-radius: 0;
+        cursor: pointer;
+        .app-icon {
+          height: 15px;
+        }
+        @include hover-and-active("&") {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+  .form-container {
+    .app-button {
+      &.user-search-clear {
+        @include make-dir-style-attribute(border-left, border-right, none);
+        position: absolute;
+        top: 10px;
+        @include make-dir-style-attribute(right, left, 8px);
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        .app-icon {
+          height: 10px;
+          width: 10px;
+          margin: 0 5px;
+        }
+      }
+    }
+  }
+}
+}

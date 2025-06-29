@@ -1,0 +1,108 @@
+@use "../../Styles/Font.scss";
+@use "../../Styles/Base.scss";
+@use "../../Styles/ThemeColorDefinitions.scss" as Theme;
+
+.radioButton {
+  box-sizing: border-box;
+  display: flex;
+  gap: 10px;
+
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
+
+  &.vertical {
+    flex-direction: column;
+  }
+
+  &.horizontal {
+    flex-direction: row;
+  }
+
+  .radioSphereSection {
+    height: 100%;
+
+    .radioSphere {
+      align-items: center;
+      border: 2px solid Base.$border-color;
+      border-radius: 50%;
+      display: flex;
+      height: 20px;
+      justify-content: center;
+      position: relative;
+      transition: border-color 230ms ease-in-out;
+      width: 20px;
+
+      &::after {
+        background-color: var(--accent);
+        border-radius: 50%;
+        content: "";
+        display: block;
+        height: 10px;
+        inset-inline-start: 50%;
+        position: absolute;
+        top: 50%;
+        @include Base.make-dir-style-value(
+          transform,
+          translate(-50%, -50%) scale(0),
+          translate(50%, -50%) scale(0)
+        );
+
+        transition: transform 230ms ease-in-out;
+        width: 10px;
+      }
+    }
+  }
+
+  .radioLabel {
+    @include Font.fontModerateNormal;
+
+    line-height: 20px;
+    user-select: none;
+  }
+
+  label {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    gap: 8px;
+    justify-content: flex-start;
+    position: relative;
+
+    &.radioDisabled {
+      cursor: not-allowed;
+
+      .radioLabel {
+        color: rgb(0 0 0 / 35%);
+      }
+    }
+
+    input[type="radio"] {
+      position: absolute;
+      visibility: hidden;
+
+      &:checked ~ .radioSphereSection > .radioSphere {
+        border-color: var(--accent);
+
+        &::after {
+          @include Base.make-dir-style-value(
+            transform,
+            translate(-50%, -50%) scale(1),
+            translate(50%, -50%) scale(1)
+          );
+        }
+      }
+
+      &:disabled ~ .radioSphereSection > .radioSphere {
+        border-color: Base.$border-color;
+        background-color: Base.$disabled-bg-color;
+
+        &::after {
+          background-color: Theme.$grey-radio-button-core;
+        }
+      }
+    }
+  }
+}

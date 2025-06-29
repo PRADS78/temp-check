@@ -1,0 +1,53 @@
+.cropperZoneContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  width: 300px;
+  height: 168px;
+  background-color: #f0f0f0;
+  padding: 4px;
+  border: 1px dashed hsl(0deg 0% 70% / 100%);
+
+  .cropper {
+    height: 100%;
+    width: 100%;
+    margin: 0 24px;
+  }
+
+  .loadingAnimation {
+    position: absolute;
+
+    img {
+      height: 100px;
+      width: auto;
+      z-index: 2;
+      position: static;
+    }
+  }
+
+  .buttonsContainer {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    top: 8px;
+    inset-inline-end: 4px;
+    height: calc(100% - 8px);
+
+    .withIcon {
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      margin-bottom: 8px;
+      background: rgb(255 255 255);
+      box-shadow: 0 4px 4px rgb(0 0 0 / 16%);
+
+      svg {
+        fill: hsl(0deg 0% 30% / 100%);
+        padding: 2px;
+      }
+    }
+  }
+}

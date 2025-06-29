@@ -1,0 +1,10 @@
+.accordion {
+  overflow: hidden;
+  position: relative;
+  transition: height 350ms ease-in-out, top 350ms ease-in-out;
+
+  &.disableDynamicHeight{
+    height: 200px;
+    overflow: auto;
+  }
+}

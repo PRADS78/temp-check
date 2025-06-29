@@ -1,0 +1,177 @@
+@use "../../Styles/Base.scss";
+@use "../../Styles/Font.scss";
+@use "../../Styles/ThemeColorDefinitions.scss" as Theme;
+@use "../../Styles/Spacing.module.scss";
+
+@mixin container-box-shadow {
+  box-shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 1px 3px 1px rgb(0 0 0 / 15%);
+  border-radius: 8px;
+}
+
+.inlineEditContainer {
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+}
+
+.inlineEditLabel {
+  @include Font.fontBoldMedium;
+
+  padding-inline-start: Spacing.$spacing-04;
+  padding-inline-end: Spacing.$spacing-04;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.accordion {
+  @include container-box-shadow;
+
+  display: inline-block;
+
+  .accordionHeader {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    flex-direction: row;
+    align-items: center;
+    height: 56px;
+    position: relative;
+    box-sizing: border-box;
+    padding: 0 16px;
+
+    &.fillHeader {
+      background: #ffffff;
+      border-start-start-radius: 8px;
+      border-start-end-radius: 8px;
+    }
+
+    &.fillHeaderClose {
+      border-end-end-radius: 8px;
+      border-end-start-radius: 8px;
+    }
+
+    .headerTitle {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      align-items: center;
+      @include Font.fontBoldMedium;
+
+      &.fillHeaderTitle {
+        color: rgb(0 0 0 / 90%);
+      }
+
+      &.isClickable {
+        cursor: pointer;
+      }
+
+      svg {
+        fill: rgb(0 0 0 / 65%);
+      }
+    }
+
+    .headerCollapsibleIcon {
+      svg {
+        fill: rgb(0 0 0 / 65%);
+      }
+    }
+
+    .customActionContainer {
+      display: flex;
+      flex-direction: row;
+
+      // overflow-x: hidden;
+      // overflow-y: visible;
+      margin-inline-start: 16px;
+      justify-self: flex-end;
+    }
+
+    .accordionRightSideOptions {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      height: 100%;
+      margin-inline-start: 12px;
+    }
+
+    .actionsContainer {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      height: 100%;
+
+      .buttonCls {
+        background-color: transparent;
+      }
+    }
+
+    .buttonContainer {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 8px;
+    }
+
+    .menuContainer {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      height: 100%;
+
+      svg {
+        fill: rgb(0 0 0 / 65%);
+      }
+    }
+  }
+
+  .accordionBody {
+    overflow: hidden;
+    background-color: rgb(255 255 255 / 100%);
+    border-end-start-radius: 8px;
+    border-end-end-radius: 8px;
+    color: rgb(0 0 0 / 65%);
+    border-block-start: 1px solid Base.$border-color;
+
+    &.fillbody {
+      background-color: rgb(255 255 255 / 100%);
+    }
+
+    .wrappingContainer {
+      padding: 16px;
+    }
+  }
+}
+
+.accordionContainer {
+  background-color: white;
+  opacity: 1;
+  transition: transform 1s;
+
+  .dndItem {
+    transition: transform 150ms ease-in-out;
+    border-radius: 8px;
+
+    /* stylelint-disable-next-line selector-class-pattern */
+    :global .app-icon-ctr {
+      cursor: move;
+    }
+
+    &.isDragged {
+      opacity: 0.9;
+      background-color: #ffffff;
+    }
+
+    &.isDropping {
+      background-color: #ffffff;
+    }
+
+    &.isDragOver {
+      transform: scale(1.01);
+    }
+  }
+}

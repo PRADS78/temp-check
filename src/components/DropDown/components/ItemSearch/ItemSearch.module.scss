@@ -1,0 +1,26 @@
+@use "../../../../Styles/Font.scss";
+@use "../Common.scss";
+
+.itemSearch {
+  display: flex;
+  gap: 6px;
+
+  .iconContainer {
+    align-items: center;
+    display: flex;
+
+    svg {
+      stroke: rgb(0 0 0 / 65%);
+      fill: none;
+    }
+  }
+
+  input {
+    @include Font.fontModerateNormal;
+
+    color: rgb(0 0 0 / 90%);
+    border: none;
+    outline: none;
+    width: 100%;
+  }
+}

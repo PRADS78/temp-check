@@ -1,0 +1,163 @@
+@use "../../Styles/Base.scss";
+@use "../../Styles/Font.scss";
+@use "../../Styles/ThemeColorDefinitions.scss" as Theme;
+
+$spacing-01: 4px; // 0.25em
+$spacing-02: 6px; // 0.375em
+$spacing-03: 8px; // 0.5em
+$spacing-04: 12px; // 0.75em
+$spacing-05: 16px; // 1em
+$spacing-06: 24px; // 1.5em
+$spacing-07: 32px; // 2em
+
+.stepper {
+  .contentPane {
+    box-sizing: border-box;
+    width: 100;
+    overflow: hidden;
+    user-select: none;
+
+    .panelsContainer {
+      align-items: flex-start;
+      display: flex;
+      inset-block-start: 0;
+      position: relative;
+      transition: inset-inline-start 330ms ease-in-out, height 330ms ease-in-out;
+
+      .panel {
+        box-sizing: border-box;
+        flex: 1 0 100%;
+        padding: $spacing-04;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.steps {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+
+  .stepItem {
+    align-items: center;
+    cursor: not-allowed;
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+
+    &.traversed,
+    &.active {
+      cursor: pointer;
+
+      .number {
+        background-color: var(--accent);
+        color: #ffffff;
+        border: none;
+        outline: 2px solid rgba(106, 28, 166, 0.24);
+      }
+
+      .label {
+        @include Font.fontModerateMedium;
+
+        color: var(--accent);
+      }
+    }
+
+    &.done {
+      cursor: pointer;
+
+      .number,
+      .doneIcon {
+        background-color: Theme.$action-color;
+        color: #ffffff;
+        // padding: 5px;
+      }
+    }
+
+    &.unlocked {
+      cursor: pointer;
+    }
+
+    &.locked {
+      cursor: block;
+    }
+
+    &.default {
+      cursor: default;
+      button {
+        cursor: default;
+      }
+    }
+
+    .number,
+    .doneIcon {
+      align-items: center;
+      background-color: transparent;
+      border: 1px solid Base.$border-color;
+      border-radius: 6px;
+      box-sizing: border-box;
+      color: rgb(0 0 0 / 35%);
+      display: flex;
+      justify-content: center;
+      height: 24px;
+      transition: color 230ms ease-in-out, background-color 230ms ease-in-out;
+      user-select: none;
+      width: 24px;
+    }
+
+    .doneIcon {
+      border: none;
+
+      svg {
+        fill: #ffffff;
+        height: 24px;
+        width: 24px;
+      }
+
+      &::before {
+        content: unset;
+      }
+    }
+
+    .label {
+      @include Font.fontModerateMedium;
+
+      color: rgb(0 0 0 / 65%);
+      transition: color 230ms ease-in-out;
+      user-select: none;
+    }
+  }
+
+  .separator {
+    background-color: Base.$border-color;;
+    border-radius: 2px;
+    height: 2px;
+    position: relative;
+    width: 80px;
+
+    &::after {
+      background-color: var(--accent);
+      content: "";
+      height: inherit;
+      position: absolute;
+      inset-inline-start: 0;
+      top: 0;
+      transition: width 230ms ease-in-out;
+      width: 0;
+    }
+
+    &.traversed {
+      &::after {
+        width: 100%;
+      }
+    }
+
+    &.stepDone {
+      &::after {
+        background-color: rgb(0 0 0 / 24%);
+      }
+    }
+  }
+}

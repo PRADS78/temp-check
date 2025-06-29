@@ -1,0 +1,205 @@
+@use "../../Styles/Font.scss";
+@use "../../Styles/Base.scss";
+@use "../../Styles/ThemeColorDefinitions.scss" as Theme;
+@use "../../Styles/ZIndex.module.scss" as zindex;
+
+@keyframes shrink-background-color {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(0);
+    border-radius: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes scale-ease-in-elastic {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  4% {
+    transform: scale(1.37);
+    opacity: 1.37;
+  }
+
+  8% {
+    transform: scale(0.87);
+    opacity: 0.87;
+  }
+
+  14% {
+    transform: scale(1.04);
+    opacity: 1.04;
+  }
+
+  18% {
+    transform: scale(1.05);
+    opacity: 1.05;
+  }
+
+  26% {
+    transform: scale(0.98);
+    opacity: 0.98;
+  }
+
+  28% {
+    transform: scale(0.98);
+    opacity: 0.98;
+  }
+
+  40% {
+    transform: scale(1.01);
+    opacity: 1.01;
+  }
+
+  42% {
+    transform: scale(1.01);
+    opacity: 1.01;
+  }
+
+  56% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  58% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  72% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  86% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes hide-icon-for-seconds {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.checkbox {
+  align-items: center;
+  cursor: pointer;
+  display: inline-flex;
+  gap: 8px;
+  justify-content: center;
+  position: relative;
+  background-color: transparent;
+
+  .box {
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid Base.$border-color;
+    border-radius: 4px;
+    display: flex;
+    height: 18px;
+    width: 18px;
+    justify-content: center;
+    position: relative;
+    transition: border-color 230ms ease-in-out;
+    box-sizing: border-box;
+
+    .tickedIcon {     
+      svg {
+        height: 16px;
+        position: relative;
+        width: 16px;
+        fill: none;
+      }
+    }
+
+    &::before {
+      content: "";
+      border-radius: 3px;
+      background-color: rgb(255 255 255);
+      position: absolute;
+      height: 18px;
+      width: 18px;
+      z-index: zindex.get(zindex.$checkbox,'box');
+      opacity: 0;
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    color: rgb(0 0 0 / 35%);
+  }
+
+  &.enabled {
+    &:hover {
+      .hoverBackgroundChange {
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgb(0 0 0 / 6%);
+      }
+    }
+  }
+
+  &:hover {
+    .box {
+      border-color: var(--accent);
+      background: transparent;
+    }
+  }
+
+  input {
+    position: absolute;
+    visibility: hidden;
+    z-index: zindex.get(zindex.$checkbox, 'input');
+    inset-inline-start: 0;
+
+    &:checked ~ .box {
+      background-color: var(--accent);
+      border: unset;
+
+      &::before {
+        animation-name: shrink-background-color;
+        animation-duration: 300ms;
+      }
+
+      .tickedIcon {
+        animation-name: scale-ease-in-elastic;
+        animation-duration: 500ms;
+        animation-delay: 150ms;
+      }
+
+      svg {
+        fill: white;
+        animation-name: hide-icon-for-seconds;
+        animation-duration: 150ms;
+      }
+    }
+
+    &:disabled ~ .box {
+      background-color: Base.$disabled-bg-color;
+      border-color: Base.$border-color;
+    }
+  }
+
+  .text {
+    @include Font.fontModerateNormal;
+  }
+}

@@ -1,0 +1,43 @@
+@use "../../../Styles/Base.scss";
+@use "../Common.module.scss";
+
+.customInput {
+  min-width: 256px;
+  width: 100%;
+
+  .inputGroup {
+    @include Common.input-group;
+
+    .iconContainer {
+      svg {
+        fill: rgb(0 0 0 / 65%);
+      }
+    }
+  }
+
+  &.calendarVisible .inputGroup {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgb(106 28 166 / 8%), 0 2px 2px -2px rgb(0 0 0 / 12%);
+  }
+
+  .inputGroup:has(input:disabled) {
+    border-color: Base.$border-color;
+    background-color: Base.$disabled-bg-color;
+    cursor: not-allowed;
+
+    .iconContainer {
+      svg {
+        fill: hsl(0deg 0% 70% / 100%);
+      }
+    }
+
+    input {
+      background-color: hsl(0deg 0% 94% / 100%);
+      color: hsl(0deg 0% 70% / 100%);
+    }
+  }
+
+  .inputGroup:hover .iconContainer::before {
+    opacity: 1;
+  }
+}

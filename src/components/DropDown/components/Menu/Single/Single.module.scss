@@ -1,0 +1,82 @@
+@use "../../../../../Styles/Font.scss";
+@use "../../../../../Styles/Base.scss";
+@use "../../../../../Styles/ThemeColorDefinitions" as Theme;
+@use "../../Common.scss";
+
+.single {
+  @include Font.fontModerateNormal;
+
+  color: inherit;
+  list-style: none;
+
+  li {
+    align-items: center;
+    box-sizing: border-box;
+    color: Common.$text-color;
+    display: flex;
+    gap: 6px;
+    height: 40px;
+    justify-content: space-between;
+    padding: 10px 12px;
+    position: relative;
+    margin-bottom: 4px;
+
+    &.hovered, &.highlightedItem {
+      color: rgb(0 0 0 / 90%);
+      background-color: rgb(0 0 0 / 4%);
+      border-radius: 6px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &.selected {
+      /* stylelint-disable-next-line custom-property-pattern */
+      background-color: var(--accentLight4);
+      color: rgb(0 0 0 / 90%);
+      border-radius: 6px;
+    }
+
+    &:first-of-type.selected::before {
+      border-start-start-radius: Base.$border-radius-button;
+    }
+
+    &:last-of-type.selected::before {
+      border-end-start-radius: Base.$border-radius-button;
+    }
+
+    &.disabled{
+      cursor: not-allowed;
+    }
+
+    .text {
+      display: block;
+      overflow: hidden;
+      position: relative;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      z-index: 5;
+      width: 100%;
+
+      &.disabled{
+        color: Base.$disabled-color;
+      }
+    }
+
+    .iconContainer {
+      padding: 5px 3px;
+
+      svg {
+        fill: Theme.$success;
+      }
+    }
+  }
+
+  .noItemsNotice {
+    border-block-end: 1px solid #dddddd;
+    color: Common.$text-color;
+    padding: Common.$padding;
+    text-align: center;
+  }
+}

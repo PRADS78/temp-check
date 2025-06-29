@@ -1,0 +1,121 @@
+@use "../../Styles/Base.scss";
+
+.wobbleRotateAppearActive {
+  @include Base.make-dir-style-value(
+    animation,
+    rotateUp 0ms forwards,
+    rtlRotateUp 0ms forwards
+  );
+}
+
+.wobbleRotateEnter {
+  @include Base.make-dir-style-value(
+    animation,
+    rotateUp 400ms forwards,
+    rtlRotateUp 400ms forwards
+  );
+}
+
+.wobbleRotateEnterDone {
+  @include Base.make-dir-style-value(
+    transform,
+    rotate(-180deg),
+    rotate(180deg)
+  );
+}
+
+.wobbleRotateExit {
+  @include Base.make-dir-style-value(
+    animation,
+    rotateDown 400ms forwards,
+    rtlRotatedDown 400ms forwards
+  );
+}
+
+.wobbleRotateExitDone {
+  transform: rotate(0deg);
+}
+
+@keyframes rotateUp {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(-45deg);
+  }
+  40% {
+    transform: rotate(-90deg);
+  }
+  60% {
+    transform: rotate(-195deg);
+  }
+  80% {
+    transform: rotate(-165deg);
+  }
+  100% {
+    transform: rotate(-180deg);
+  }
+}
+
+@keyframes rtlRotateUp {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(45deg);
+  }
+  40% {
+    transform: rotate(90deg);
+  }
+  60% {
+    transform: rotate(195deg);
+  }
+  80% {
+    transform: rotate(165deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes rotateDown {
+  0% {
+    transform: rotate(-180deg);
+  }
+  20% {
+    transform: rotate(-135deg);
+  }
+  40% {
+    transform: rotate(-90deg);
+  }
+  60% {
+    transform: rotate(15deg);
+  }
+  80% {
+    transform: rotate(-15deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes rtlRotateDown {
+  0% {
+    transform: rotate(180deg);
+  }
+  20% {
+    transform: rotate(135deg);
+  }
+  40% {
+    transform: rotate(90deg);
+  }
+  60% {
+    transform: rotate(-15deg);
+  }
+  80% {
+    transform: rotate(15deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}

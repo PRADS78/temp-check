@@ -1,0 +1,95 @@
+@use "../../Styles/Font.scss";
+@use "../../Styles/Base.scss";
+@use "../../Styles/ThemeColorDefinitions" as Theme;
+@use "../../Styles/Spacing.module.scss" as Spacing;
+@import "./BaseButton.module";
+
+.floatingAction {
+  &.iconOnly {
+    @include button-disabled;
+    @include Theme.themeColor(color, Theme.$accent);
+    @include Base.make-dir-style-value(background,
+      (linear-gradient(0deg, var(--accentVeryMildLight), var(--accentVeryMildLight)),
+        #ffffff),
+      (linear-gradient(0deg, var(--accentVeryMildLight), var(--accentVeryMildLight)),
+        #ffffff));
+
+    border: 2px solid transparent;
+    border-radius: Base.$border-radius-floating-action;
+    filter: none;
+    transition: background-color 240ms ease-in-out,
+      border-color 240ms ease-in-out, transform 230ms ease-in-out;
+    height: 48px;
+    width: 48px;
+    min-width: 48px;
+    padding: 12px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--accent);
+      backface-visibility: hidden;
+      transition: transform 230ms ease-in-out, fill 240ms ease-in-out, stroke 240ms ease-in-out;
+      transform-origin: center;
+    }
+
+    .iconContainer {
+      backface-visibility: hidden;
+      height: 25px;
+      width: 25px;
+      transform-origin: center;
+      transition: transform 230ms ease-in-out;
+    }
+
+    // pseudo classes
+    &:disabled {
+      svg {
+        fill: rgb(0 0 0 / 35%);
+      }
+
+      &.outlined {
+        svg {
+          fill: none;
+          stroke: rgb(0 0 0 / 35%);
+        }
+      }
+    }
+
+        
+    &:hover:not(:disabled),
+    &:focus:not(:disabled),
+    &:active:not(:disabled) {
+      @include Theme.themeColor(background-color, Theme.$accent);
+
+      svg {
+        @include Theme.themeColor(fill, Base.$white-color);
+      }
+    }
+
+    &.outlined:not(:disabled) {
+      svg {
+        fill: none;
+        stroke: var(--accent);
+      }
+
+      &:hover:not(:disabled),
+      &:focus:not(:disabled),
+      &:active:not(:disabled) {
+        svg {
+          fill: none;
+          stroke: Base.$white-color;
+        }
+      }
+    }
+
+    &::after {
+      background: none;
+    }
+
+    &:hover:not(:disabled)::after,
+    &:focus:not(:disabled)::after,
+    &:active:not(:disabled)::after {
+      background: none;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+@use "../../Styles/ThemeColorDefinitions.scss" as Theme;
+@use "../../Styles/Font.scss" as Font;
+
+.wrapper {
+  position: relative;
+
+  .badge {
+    position: absolute;
+    top: 0;
+    inset-inline-end: 0;
+    transform: translate(50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+
+    @include Theme.themeColor(background-color, Theme.$accent);
+
+    &.numbered {
+      height: 16px;
+      min-width: 16px;
+      width: fit-content;
+      color: white;
+      padding-inline: 4px;
+      border-radius: 8px;
+      box-sizing: border-box;
+      @include Font.fontTiny;
+    }
+
+    &.inline {
+      position: relative;
+      transform: unset;
+      top: unset;
+      inset-inline-end: unset;
+      height: 20px;
+      min-width: 20px;
+      width: fit-content;
+      border-radius: 10px;
+    }
+  }
+}

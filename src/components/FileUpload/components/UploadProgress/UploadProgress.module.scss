@@ -1,0 +1,100 @@
+@use "../../../../Styles/Font.scss";
+
+.container {
+  border: 1px solid rgb(0 0 0 / 24%);
+  border-radius: 8px;
+  height: 64px;
+  display: flex;
+  margin-top: 24px;
+  padding: 8px;
+  position: relative;
+  width: 388px;
+  cursor: default;
+  z-index: 2;
+
+  .progressContainer {
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block: 0;
+    height: 64px;
+    background: linear-gradient(
+      90deg,
+      rgb(72 185 45 / 12%) 0%,
+      rgb(72 185 45 / 4%) 100%
+    );
+    transition: 1s ease;
+
+    &.errorProgress {
+      width: 100%;
+      background: linear-gradient(
+        90deg,
+        rgb(218 56 50 / 12%) 0%,
+        rgb(218 56 50 / 4%) 100%
+      );
+      border-radius: 8px;
+    }
+  }
+
+  .innerContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+
+    .fileIconContainer {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      /* stylelint-disable-next-line selector-class-pattern */
+      :global(.image_svg__image-bg),  :global(.audio_svg__audio-bg),  :global(.video_svg__video-bg),  :global(.document_svg__document-bg) {
+        fill: rgb(0 0 0 / 65%);
+      }
+
+      /* stylelint-disable-next-line selector-class-pattern */
+      :global(.image_svg__image-topFold),  :global(.audio_svg__audio-topFold),:global(.video_svg__video-topFold),  :global(.document_svg__document-topFold) {
+        fill: rgb(152 152 152 / 100%);
+      }
+    }
+
+    .contentContainer {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      margin-inline: 12px;
+
+      .fileName {
+        @include Font.fontBoldNormal;
+
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 256px;
+      }
+
+      .progress {
+        @include Font.fontSmall;
+
+        margin-top: 4px;
+      }
+    }
+
+    .closeIconContainer {
+      svg {
+        fill: rgb(0 0 0 / 65%);
+      }
+    }
+  }
+}
+
+.errorText{
+  display: flex;
+  align-self: flex-start;
+  margin-inline-start: 16px;
+  line-height: 19px;
+  color: #DA3832;
+}
+

@@ -1,0 +1,101 @@
+@use "../../../Styles/Base.scss";
+@use "../../../Styles/Font.scss";
+
+.container {
+  width: 300px;
+  max-height: 300px;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 1px 3px 1px rgb(0 0 0 / 15%);
+  border-radius: 8px;
+  padding: 8px;
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+
+  .localizedBanner {
+    transition: transform 250ms ease-in, opacity 150ms ease-in;
+    transform: translateY(50px);
+    opacity: 0;
+    pointer-events: none;
+
+    &.active {
+      transform: translateY(0);
+      transition: transform 250ms ease-out, opacity 150ms ease-out;
+      pointer-events: auto;
+      opacity: 1;
+    }
+  }
+
+  .loader {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .loading {
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.open {
+    visibility: visible;
+    pointer-events: auto;
+    opacity: 1;
+  }
+
+  .searchBar {
+    margin-bottom: 8px;
+  }
+
+  .itemsContainer {
+    height: calc(100% - 40px - 32px - 8px - 8px);
+    overflow-y: auto;
+    margin-bottom: 8px;
+    gap: 4px;
+    display: flex;
+    flex-direction: column;
+
+    .radioBtn {
+      gap:12px;
+
+      label{
+        padding: 5px 12px;
+      }
+    }
+  }
+
+  .item {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding-inline: 12px;
+    border-radius: 6px;
+    flex-shrink: 0;
+
+    .checkbox {
+      width: 100%;
+      justify-content: flex-start;
+      height: 100%;
+    }
+
+    &.isSelected {
+      /* stylelint-disable-next-line custom-property-pattern */
+      background-color: var(--accentLight4);
+    }
+
+    &:not(.disabled):hover {
+      // TODO: Move this to separate component and use it in Dropdown
+      background-color: rgb(0 0 0 / 4%);
+    }
+
+    span {
+      // color: rgb(0 0 0 / 65%);
+      @include Base.make-line-clamp(2);
+    }
+  }
+}

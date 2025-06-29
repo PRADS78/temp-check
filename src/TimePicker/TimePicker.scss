@@ -1,0 +1,160 @@
+@import "../Styles/Font";
+@import "../Styles/Base";
+@import "../Styles/ThemeColorDefinitions";
+
+.time-keeper-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 206px;
+  position: relative;
+  * {
+    box-sizing: border-box;
+    font-family: $font-family-regular;
+  }
+  .time-input {
+    position: relative;
+    label {
+      display: inline-block;
+      @include fontModerateNormal;
+      padding-bottom: 10px;
+    }
+    input {
+      border-radius: 3.5px;
+      box-sizing: border-box;
+      color: $text-box-text-color;
+      display: block;
+      @include fontNormal;
+      width: 100%;
+      height: 34px;
+      background: $white-color;
+      border: solid 1px $text-box-border-color;
+      margin-bottom: 2px;
+      padding: 10px;
+      @include make-dir-style-attribute(padding-right, padding-left, 30px);
+      &:focus {
+        @include themeColor(border-color, $accent);
+        outline: none;
+      }
+    }
+
+    .timepicker-img {
+      bottom: 3px;
+      cursor: pointer;
+      height: 34px;
+      position: absolute;
+      @include make-dir-style-attribute(right, left, 0px);
+      width: 34px;
+      padding: 6px;
+      z-index: 1;
+    }
+  }
+
+  .react-timekeeper {
+    font-family: $font-family-regular;
+    @include make-dir-style-attribute(left, right, 0px);
+    position: absolute;
+    top: 68px;
+    &__clock-wrapper {
+      background-color: $white-color;
+      & > div:last-child {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 14px;
+        right: -2px;
+        margin: 0px 15px 0px 0px;
+        padding: 0px 15px;
+        button {
+          border: solid 1px $clock-ash-color;
+          border-radius: 5px;
+          height: 35px;
+          font-size: 12px;
+          line-height: 1;
+          width: 35px;
+          &:first-child {
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+          }
+          &:last-child {
+            border-top-right-radius: 0px;
+            border-top-left-radius: 0px;
+            border-top: none;
+          }
+          &.react-timekeeper__meridiem--active {
+            @include themeColor(background-color, $accentVeryLight);
+            @include themeColor(color, $accent);
+          }
+        }
+      }
+    }
+
+    &__clock {
+      background-color: $clock-ash-color;
+      &-hand {
+        @include themeColor(stroke, $accent);
+      }
+    }
+    &__hand-circle-center,
+    &__hand-intermediate-circle {
+      @include themeColor(fill, $accent);
+    }
+    &__hand-circle-outer {
+      @include themeColor(fill, $accentVeryLight);
+    }
+    &__clock-hours,
+    &__clock-minutes {
+      span {
+        color: $black-text-color;
+      }
+    }
+    &__top-bar {
+      padding: 14px 60px 14px 14px;
+      text-align: center;
+      .react-timekeeper-button-reset {
+        display: none;
+      }
+      & > div {
+        width: auto;
+        margin-left: 0px;
+        & > span {
+          background-color: $clock-ash-color;
+          border-radius: 5px;
+          color: $black-text-color;
+          font-size: 38px;
+          padding: 10px;
+        }
+      }
+    }
+    &__tb-hour,
+    &__tb-minute {
+      &--active {
+        @include themeColor(background-color, $accentVeryLight);
+        @include themeColor(color, $accent);
+      }
+    }
+    &__dropdown-number {
+      color: $black-text-color;
+      padding: 10px 5px;
+      text-align: center;
+      &--active,
+      &:hover {
+        @include themeColor(background-color, $accentVeryLight);
+      }
+    }
+    &__time-dropdown {
+      left: 0;
+      min-width: 66px;
+      width: 100%;
+    }
+  }
+  .time-submit {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+html[dir="rtl"] .time-keeper-wrap .react-timekeeper {
+  .react-timekeeper__clock > div {
+    left: 32px;
+  }
+}

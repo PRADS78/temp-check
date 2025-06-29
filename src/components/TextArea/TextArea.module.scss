@@ -1,0 +1,90 @@
+@use "../../Styles/Base.scss";
+@use "../../Styles/Font.scss";
+@use "../../Styles/ThemeColorDefinitions.scss" as Theme;
+
+.textArea {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .title {
+    @include Font.fontModerateNormal;
+  }
+
+  textarea {
+    @include Font.fontModerateNormal;
+
+    background-color: #ffffff;
+    border: 1px solid Base.$border-color;
+    border-radius: Base.$border-radius-button;
+    box-shadow: none;
+    box-sizing: border-box;
+    outline: none;
+    overflow: hidden;
+    padding: 8px 12px;
+    resize: none;
+    transition: border-color 230ms ease-in-out, box-shadow 230ms ease-in-out;
+    width: 100%;
+    color: Base.$password-visibility-color;
+
+    &:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgb(106 28 166 / 8%),
+        0 2px 2px -2px rgb(0 0 0 / 12%);
+    }
+
+    &::placeholder {
+      color: Theme.$placeholder-color;
+    }
+
+    &.isDisabled {
+      background-color: Base.$disabled-bg-color;
+    }
+
+    &.maxLength {
+      padding-bottom: 24px;
+    }
+
+    &.withError:focus {
+      border-color: #da3832;
+      box-shadow: 0 2px 2px -2px rgb(0 0 0 / 12%), 0 0 0 2px rgb(106 28 166 / 8%);
+    }
+  }
+
+  .lengthContainer {
+    position: relative;
+
+    .lengthIndicator {
+      @include Font.fontModerateSmall;
+
+      display: flex;
+      justify-content: flex-end;
+      position: absolute;
+      text-align: end;
+      inset-inline-end: 8px;
+      color: hsl(0deg 0% 15% / 100%);
+      bottom: 8px;
+      background-color: #ffffff;
+      padding: 2px 5px;
+
+      .maxLength {
+        color: hsl(0deg 0% 55% / 100%);
+      }
+
+      &.isDisabled {
+        color: rgb(0 0 0 / 35%);
+        background-color: Base.$disabled-bg-color;
+      }
+    }
+  }
+
+  .errorMessage {
+    @include Font.fontModerateSmall;
+
+    box-sizing: border-box;
+    color: #da3832;
+    display: block;
+    margin-top: 2px;
+    padding-inline-start: 7px;
+  }
+}

@@ -1,0 +1,26 @@
+// Based on the idea presented here:
+// https://hacks.mozilla.org/2015/09/building-rtl-aware-web-apps-and-websites-part-1/
+@mixin dir-ltr {
+  html[dir="ltr"] & {
+    @content;
+  }
+}
+
+@mixin dir-rtl {
+  html[dir="rtl"] & {
+    @content;
+  }
+}
+
+@mixin make-dir-style-value(
+  $styleAttribute,
+  $ltrAttributeValue,
+  $rtlAttributeValue
+) {
+  @include dir-ltr {
+    #{$styleAttribute}: #{$ltrAttributeValue};
+  }
+  @include dir-rtl {
+    #{$styleAttribute}: #{$rtlAttributeValue};
+  }
+}

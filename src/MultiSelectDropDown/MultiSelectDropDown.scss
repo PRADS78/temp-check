@@ -1,0 +1,69 @@
+@import "../Styles/Font";
+@import "../Styles/Base";
+@import "../Styles/ThemeColorDefinitions";
+
+
+.multi-select-container {
+    display: flex;
+    height: 38px;
+    width: 180px;
+
+    .dropdown-container {
+        width: 100%;
+         &:focus-within:focus-within{
+            border-color: var(--accent);
+            /* stylelint-disable-next-line custom-property-pattern */
+            box-shadow: 0 0 0 2px var(--accentHoverLight), 0 2px 2px -2px var(--accentMildLight);
+        }
+    }
+
+    .dropdown-heading:active {
+        background-color: var(--accent);
+    }
+}
+
+.rmsc {
+    --rmsc-main: #b7b7b7;
+    @include themeColor(--rmsc-hover, $accentSuperLight);
+    @include themeColor(--rmsc-selected, $accentSuperLight);
+    --rmsc-border: #b7b7b7;
+    --rmsc-gray: #b7b7b7;
+    --rmsc-bg: ;
+    --rmsc-p: 10px; /* Spacing */
+    --rmsc-radius: 4px; /* Radius */
+    --rmsc-h: 38px; /* Height */
+    .gray {
+        fill: none;
+    }
+}
+
+.dropdown-content {
+    position: absolute;
+    z-index: 100;
+    top: 100%;
+    width: 100%;
+    padding-top: 8px;
+}
+  
+.select-panel {
+    position: absolute; //fixed
+    width: 100%;
+    z-index: 100;
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 0 0 1px $border-grey-color;
+}
+
+.dropdown-heading-value {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+    height: 15px;
+}
+
+.dropdown-heading-value:active {
+    color: white;
+}

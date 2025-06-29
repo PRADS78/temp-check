@@ -1,0 +1,291 @@
+@use "../../Styles/Font.scss";
+@use "../../Styles/Base.scss";
+@use "./Common.modules.scss" as Common;
+@use "../../Styles/ZIndex.module.scss" as zindex;
+
+@mixin selected-row {
+  &.selected {
+    background-color: rgb(0 0 0 / 6%);
+
+    .rowSelection {
+      position: relative;
+
+      &::before {
+        background-color: var(--accent);
+        position: absolute;
+        block-size: 100%;
+        inline-size: 4px;
+        content: "";
+        top: 0;
+        inset-inline-start: 0;
+      }
+    }
+  }
+}
+
+.tableCtr {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px 1px rgb(0 0 0 / 15%);
+  inline-size: 100%;
+  block-size: 100%;
+  box-sizing: border-box;
+  position: relative;
+  padding: 16px 18.5px; // 16px padding is used in pagination also
+  min-block-size: 410px;
+  display: flex;
+  flex-direction: column;
+
+  &.withScrollBar {
+    padding-bottom: 0;
+    margin-bottom: 16px;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  .tableInnerCtr {
+    overflow: auto;
+    min-block-size: 200px;
+    flex: 1;
+    padding-bottom: Common.$pagination-height;
+
+    &.withScrollBar {
+      padding-bottom: 0;
+    }
+
+    table {
+      @include Font.fontModerateNormal;
+
+      border-collapse: collapse;
+      inline-size: 100%;
+
+      &.unloadedState {
+        min-block-size: 100%;
+      }
+
+      th,
+      td {
+        text-align: start;
+        min-inline-size: 150px;
+        word-wrap: break-word;
+      }
+
+      td {
+        color: rgb(0 0 0 / 90%);
+        min-block-size: 52px;
+        block-size: 52px; // Set because td min-height won't work
+        padding: 8px 16px;
+
+        .clickableCell {
+          min-inline-size: unset;
+          transition: 250ms;
+          padding: 0;
+          inline-size: min-content;
+          max-inline-size: 100%;
+          text-align: start;
+        }
+      }
+
+      tr {
+        .rowSelection {
+          inline-size: 80px;
+          max-inline-size: 80px;
+          min-inline-size: 80px;
+          position: relative;
+
+          .checkbox {
+            margin: 0;
+            z-index: zindex.get(zindex.$table, 'table','row-checkbox');;
+            block-size: 24px;
+            inline-size: 24px;
+          }
+        }
+
+        .rowExpansion {
+          inline-size: 80px;
+          max-inline-size: 80px;
+          min-inline-size: 80px;
+
+          .rowExpandContainer {
+            display: flex;
+            justify-content: flex-end;
+
+            .iconExpand {
+              svg {
+                fill: rgb(0 0 0 / 65%);
+              }
+            }
+          }
+        }
+      }
+
+      thead {
+        /* stylelint-disable-next-line custom-property-pattern */
+        background-color: var(--accentHoverLight);
+        position: sticky;
+        top: 0;
+        inset-inline-start: 0;
+        z-index: zindex.get(zindex.$table,'table','thead');;
+        transition: box-shadow 0.5s;
+        box-shadow: none;
+
+        &.headerShadow {
+          box-shadow: 0 2px 2px rgb(0 0 0 / 16%);
+        }
+
+        th[colspan]:not([colspan="1"]) {
+          text-align: center;
+        }
+
+        th {
+          color: rgba(0 0 0 / 65%);
+          block-size: 54px;
+          padding: 15px 16px;
+          max-block-size: 54px;
+          @include Font.fontSemiboldNormal;
+
+          &.rowSelection {
+            .headerSelectionCtr {
+              display: flex;
+              position: relative;
+
+              .downArrow {
+                /* stylelint-disable-next-line selector-class-pattern */
+                :global(.app-icon) {
+                  fill: rgb(0 0 0 / 35%);
+                }
+              }
+
+              .tableButtonDropdown {
+                inset-inline-start: 24px;
+              }
+            }
+          }
+
+          .tableHeadingActions {
+            align-items: center;
+            display: flex;
+            gap: 8px;
+
+            &:first-child span {
+              @include Base.make-line-clamp(1);
+            }
+
+            .tableSort {
+              block-size: 24px;
+              inline-size: 24px;
+              stroke: rgb(0 0 0 / 35%);
+
+              /* stylelint-disable-next-line selector-class-pattern */
+              &.descending :global(.sort_svg__path-2) {
+                stroke: var(--accent);
+              }
+
+              /* stylelint-disable-next-line selector-class-pattern */
+              &.ascending :global(.sort_svg__path-1) {
+                stroke: var(--accent);
+              }
+            }
+
+            .tableFilterContainer {
+              flex: 1;
+              justify-content: flex-end;
+              display: flex;
+
+              .tableFilter {
+                stroke: hsl(0deg 0% 0% / 65%);
+              }
+            }
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          transition: background-color 230ms ease-in-out;
+
+          td .withAvatar {
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+          }
+
+          td.nonLoadedContainer {
+            text-align: center;
+            padding: 0;
+
+            &.emptyContainer {
+              .emptyInnerContainer {
+                position: sticky;
+                inset-inline-start: 0;
+                overflow: hidden;
+
+                .primaryText {
+                  @include Font.fontBoldLarge;
+
+                  line-height: 24px;
+                  color: #262626;
+                  margin-bottom: 8px;
+                }
+
+                .actionContainer {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin-top: 12px;
+                }
+              }
+            }
+          }
+
+          &:not(:last-of-type) {
+            border-block-end: 1px solid rgba(0 0 0 / 6%);
+          }
+
+          &.isFullRowSelectable {
+            @include selected-row;
+
+            &:hover {
+              background-color: rgb(0 0 0 / 6%);
+              cursor: pointer;
+            }
+
+            &:not(.selected):hover:has(.clickableCell:hover) {
+              background-color: white;
+              cursor: default;
+            }
+          }
+
+          &.isCheckBoxOnlySelectable {
+            @include selected-row;
+          }
+
+          &.clickableRow {
+            &:hover {
+              background-color: rgb(0 0 0 / 6%);
+              cursor: pointer;
+            }
+          }
+
+          &.expanded {
+            border: none;
+          }
+
+          &.subrow {
+            td {
+              padding: 0;
+            }
+          }
+        }
+
+        position: relative;
+        z-index: zindex.get(zindex.$table, 'table','tbody');
+      }
+    }
+  }
+}

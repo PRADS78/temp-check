@@ -1,0 +1,55 @@
+@use "../../Styles/Font.scss";
+@use "../../Styles/Base.scss";
+
+.popperContainer {
+  background-color: hsl(0deg 0% 15% / 100%);
+  padding: 8px 16px;
+  border-radius: 8px;
+  position: relative;
+  height: clamp(74px, 100%, 500px);
+  width: max-content;
+  min-width: 74px;
+  max-width: 280px;
+
+  .container {
+    text-align: center;
+    word-break: break-word;
+
+    .message {
+      line-height: 18px;
+      color: #ffffff;
+      @include Font.fontNormal;
+    }
+
+    &.withTitle {
+      flex-direction: column;
+      text-align: start;
+      display: flex;
+
+      .title {
+        color: white;
+        @include Font.fontNormal;
+      }
+
+      .message {
+        color: hsl(0deg 0% 100% / 65%);
+        @include Font.fontSmall;
+      }
+    }
+  }
+
+  &.progressType {
+    height: clamp(26px, 26px, 26px);
+    width: clamp(40px, 100%, 40px);
+    padding: 6px 4px;
+    border-radius: 6px;
+
+    .container {
+      .message {
+        line-height: 14.4px;
+        @include Font.fontSmall;
+        @include Base.make-line-clamp(1);
+      }
+    }
+  }
+}

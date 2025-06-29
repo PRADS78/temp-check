@@ -1,0 +1,45 @@
+@use "../../Styles/Base.scss";
+@use "../../Styles/Font.scss";
+
+.udfSelector {
+  display: flex;
+  flex-direction: column;
+  margin: 0 5px;
+  gap: 8px;
+
+  .udfSelectorRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+
+    .udfSelectorSingleDropdown {
+      width: 280px;
+    }
+
+    .udfSelectorMultiDropdown {
+      width: 320px;
+    }
+  }
+
+  .plus {
+    /* stylelint-disable-next-line selector-class-pattern */
+    :global svg.app-icon {
+      fill: rgb(0 0 0 / 65%);
+    }
+  }
+
+  .minus {
+    &.removeIcon {
+      visibility: visible;
+    }
+
+    &.removeIconHidden {
+      visibility: hidden;
+    }
+    /* stylelint-disable-next-line selector-class-pattern */
+    :global svg.app-icon {
+      fill: rgb(0 0 0 / 65%);
+    }
+  }
+}

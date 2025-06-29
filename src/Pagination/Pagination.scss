@@ -1,0 +1,152 @@
+
+@import "../Styles/Font";
+@import "../Styles/Base";
+@import "../Styles/ThemeColorDefinitions";
+ .paginator-ctr {
+     
+    @include make-dir-style-attribute(
+      border-left,
+      border-right,
+      1.5px solid #efefef
+    );
+    display: flex;
+    margin-top: 0;
+    justify-content: center;
+    align-items: center;
+    @include make-dir-style-attribute(margin-right, margin-left, 0px);
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.08);
+    &-block {
+      display: flex;
+      align-items: center;
+      padding: 0px 15px 0px 0px;
+      p {
+        padding: 0px;
+      }
+    }
+    .dropdown {
+      width: 80px;
+      .disprz-Select__control {
+        border: none;
+        .disprz-Select__indicator-separator {
+          display: none;
+        }
+      }
+    }
+    .paginator-btns {
+      box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.08);
+      padding: 10px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      color: #424242;
+      @include fontNormal;
+      transition: all 0.15s;
+      &.disabled {
+        cursor: not-allowed;
+        color: #d4d4d4 !important;
+        background-color: #fff !important;
+      }
+    }
+    .paginator-cell {
+      transition: all 0.15s;
+      height: calc(100% - 4px);
+      margin: 2px 0;
+      border-radius: 3px;
+      padding: 6px 10px;
+      cursor: pointer;
+      @include fontNormal;
+      &.active {
+        @include themeColor(background, $accent);
+        color: white;
+      }
+    }
+  }
+  .numbered-pagination-ctr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    @include make-dir-style-value(text-align, left, right);
+    .paginator-button-block {
+      border-left: 1.5px solid #efefef;
+      padding: 12px;
+    }
+    .icon-next,
+    .icon-prev {
+      @include themeColor(background-color, $accent);
+      border-radius: 12px;
+      height: 24px;
+      min-height: 24px;
+      padding: 4px;
+      text-align: center;
+      width: 24px;
+      @include make-dir-style-value(transform, scaleX(1), scaleX(-1));
+      svg {
+        float: none;
+        margin: 0px;
+        width: 8px;
+        height: 12px;
+      }
+      &.btn-disabled {
+        background-color: rgba(0, 0, 0, 0.1) !important;
+        svg path {
+          stroke: #000000 !important;
+        }
+      }
+    }
+    .icon-prev {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+    .pagination-count-ctr {
+      @include make-dir-style-attribute(
+        border-right,
+        border-left,
+        1.5px solid #efefef
+      );
+      display: flex;
+      align-items: center;
+      @include make-dir-style-value(
+        padding,
+        0px 15px 0px 0px,
+        0px 0px 0px 15px
+      );
+      @include fontNormal;
+      padding-left: 12px;
+      .pagination-items-select {
+        display: flex;
+        align-items: center;
+        @include make-dir-style-attribute(
+          border-right,
+          border-left,
+          1.5px solid #efefef
+        );
+        @include make-dir-style-value(
+          padding,
+          0px 5px 0px 15px,
+          0px 15px 0px 5px
+        );
+        @include make-dir-style-attribute(margin-right, margin-left, 10px);
+        .dropdown {
+          width: 80px;
+          .disprz-Select__control {
+            border: none;
+            .disprz-Select__indicator-separator {
+              display: none;
+            }
+          }
+        }
+      }
+      .clear-selection {
+        @include fontSmall;
+        margin: 0 10px;
+        text-decoration: underline;
+        transition: color 0.25s;
+        cursor: pointer;
+        @include hover-and-active("&") {
+          color: #999;
+        }
+      }
+    }
+   
+  }

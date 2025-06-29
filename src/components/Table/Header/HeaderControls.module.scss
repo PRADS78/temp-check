@@ -1,0 +1,75 @@
+@use "../../../Styles/Font.scss";
+@use "../Common.modules.scss" as Common;
+
+.controls {
+  display: flex;
+  flex-direction: column;
+
+  .priorityControls {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    height: Common.$header-height;
+    background-color: white;
+    padding: 0 5.5px;
+    align-items: center;
+    inset-inline-start: 0;
+    margin-bottom: 2px;
+
+    .title {
+      display: flex;
+      @include Font.fontSemiboldMedium;
+
+      color: rgb(0 0 0 / 90%);
+    }
+
+    .filterSearchControls {
+      display: flex;
+      flex-direction: row;
+
+      .searchBar {
+        width: 280px;
+      }
+
+      .globalFilterTrigger {
+        margin-inline-start: 12px;
+      }
+    }
+
+    .selectionControls {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      margin-inline-start: 12px;
+
+      .actionButtonCtr {
+        flex-shrink: 0;
+
+        /* stylelint-disable-next-line selector-class-pattern */
+        :global(.app-icon) {
+          height: 24px;
+          width: 24px;
+        }
+      }
+
+      .dropdownButtonCtr {
+        flex-shrink: 0;
+
+        span:nth-child(1) {
+          padding-inline-end: 8px;
+        }
+      }
+
+      .iconDropDownPopper {
+        z-index: 3;
+      }
+    }
+
+    .filterIcon {
+      stroke: hsl(0deg 0% 0% / 65%);
+      height: 22px;
+      width: 22px;
+    }
+  }
+}

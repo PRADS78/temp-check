@@ -1,0 +1,79 @@
+@use "../../Styles/Font.scss";
+@use "../../Styles/Base.scss";
+@use "../../Styles/ThemeColorDefinitions" as Theme;
+@use "../../Styles/Spacing.module.scss" as Spacing;
+
+* {
+  box-sizing: border-box;
+}
+
+.sort {
+  .sortButton {
+    color: rgb(0 0 0 / 65%);
+
+    svg {
+      stroke: rgb(0 0 0 / 65%);
+    }
+  }
+}
+
+.dropdownContainer {
+  width: 213px;
+  flex-direction: column;
+  overflow-y: auto;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 2px 6px 2px rgb(0 0 0 / 15%);
+  inset-inline-start: 0;
+  background: #ffffff;
+  box-sizing: border-box;
+  padding-top: 8px;
+  max-height: 350px;
+
+  .dropdownItem {
+    border-radius: 6px;
+    color: rgb(0 0 0 / 90%);
+    text-align: start;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: background-color 230ms ease-in-out;
+    cursor: pointer;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10px 10px 15px;
+    margin-bottom: 8px;
+    margin-inline-start: 8px;
+    margin-inline-end: 8px;
+    align-items: center;
+  
+    &.header {
+      @include Font.fontSemiboldNormal;
+  
+      cursor: default;
+      /* stylelint-disable-next-line custom-property-pattern */
+      background: var(--accentVeryMildLight);
+      border-radius: 0;
+      padding: 12px 16px;
+      margin: 0;
+      margin-bottom: 8px;
+  
+      &:hover {
+        /* stylelint-disable-next-line custom-property-pattern */
+        background: var(--accentVeryMildLight);
+      }
+    }
+  
+    &:hover {
+      background: rgb(0 0 0 / 4%);
+    }
+  
+    &.selected {
+      /* stylelint-disable-next-line custom-property-pattern */
+      background: var(--accentVeryMildLight);
+    }
+  
+    .tickIcon {
+      fill: rgb(58 184 118 / 100%)
+    }
+  }
+}

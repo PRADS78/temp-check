@@ -1,0 +1,88 @@
+@use "../../../../Styles/Font";
+@use "../../../../Styles/Base.scss";
+@use "../../../../Styles/ThemeColorDefinitions" as Theme;
+@use "../../../../Styles/ZIndex.module.scss" as zindex;
+
+.menuPopper {
+  border-radius: 8px;
+  z-index: zindex.get(zindex.$menu-popper, 'base');
+
+  .menuPopperInnerCtr {
+    box-shadow: Base.$menu-box-shadow;
+    border-radius: 8px;
+    height: inherit;
+    max-height: inherit;
+
+    .menu {
+      @include Font.fontModerateNormal;
+
+      background-color: #ffffff;
+      padding: 8px;
+      border-radius: 8px;
+      overflow-y: auto;
+      height: inherit;
+      max-height: inherit;
+      cursor: pointer;
+
+      &.groupedMenu {
+        padding: 0;
+      }
+
+      &.padded {
+        padding-bottom: 0;
+      }
+
+      ul.list {
+        color: inherit;
+        list-style: none;
+
+        li {
+          color: rgb(0 0 0 / 65%);
+          overflow: hidden;
+          padding: 8px 15px;
+          position: relative;
+          text-align: start;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+
+          &:hover {
+            @include Theme.themeColor(
+              background-color,
+              Theme.$accentVeryMildLight
+            );
+
+            color: Theme.$text-box-text-color;
+            border-radius: 6px;
+          }
+
+          &:not(:last-of-type) {
+            border-block-end: solid 1px Theme.$border-ash-D-color;
+          }
+
+          &.selected {
+            background-color: rgb(106 28 166 / 4%);
+            color: rgb(0 0 0 / 90%);
+
+            &::before {
+              background-color: var(--accent);
+              content: "";
+              height: 100%;
+              inset-inline-start: 0;
+              position: absolute;
+              top: 0;
+              width: 2px;
+            }
+          }
+
+          &:first-of-type.selected::before {
+            border-start-start-radius: 8px;
+          }
+
+          &:last-of-type.selected::before {
+            border-end-start-radius: 8px;
+          }
+        }
+      }
+    }
+  }
+}

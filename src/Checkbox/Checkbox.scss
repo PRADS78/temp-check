@@ -1,0 +1,144 @@
+@import "../Styles/Font";
+@import "../Styles/Base";
+@import "../Styles/ThemeColorDefinitions";
+
+.checkbox-ctr {
+  &.v2{
+    display: inline-flex;
+    cursor: pointer;
+    margin-right: 20px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    &.checkbox-readonly {
+      pointer-events: none;
+      opacity: 0.4;
+    }
+  
+    input {
+      cursor: pointer;
+      position: absolute;
+      @include make-dir-style-attribute(left, right, 0px);
+      top: 0px;
+      height: 100%;
+      width: 100%;
+      opacity: 0;
+      margin: 0px;
+      padding: 0px;
+    }
+  
+    .checkbox-btn {
+      box-sizing: border-box;
+      min-height: 20px;
+      min-width: 20px;
+      border: 2px solid $input-ash-color;
+      border-radius: 3px;
+      position: relative;
+  
+      &:after {
+        content: "";
+        @include themeColor(background-color, $accent);
+        border-radius: 3px;
+        position: absolute;
+        height: 20px;
+        width: 20px;
+        top: -2px;
+        @include make-dir-style-attribute(right, left, -2px);
+        z-index: 0;
+        opacity: 0;
+        transition: all 0.2s ease;
+      }
+  
+      .app-icon {
+        border-radius: 3px;
+        position: absolute;
+        top: 3px;
+        @include make-dir-style-attribute(right, left, 3px);
+        right: 3px;
+        height: 10px;
+        width: 10px;
+        z-index: 1;
+        @include themeColor(fill, $accent);
+      }
+    }
+  
+    &.active {
+      .checkbox-btn {
+        @include themeColor(border-color, $accent);
+        &:after {
+          opacity: 1;
+        }
+      }
+    }
+    .checkbox-label {
+      @include fontNormal;
+      cursor: pointer;
+      // user-select: none;
+      word-break: break-word;
+      @include make-dir-style-attribute(margin-left, margin-right, 10px);
+      max-width: 180px;
+    }
+  
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 48px;
+      height: 48px;
+      margin-top: -15px;
+      @include make-dir-style-attribute(margin-left, margin-right, -15px);
+      @include themeColor(background-color, $accent);
+      border-radius: 100%;
+      opacity: 0.6;
+  
+      transform: scale(0);
+    }
+  
+    &:not(:active):before {
+      animation: rippleCheckBox 0.6s ease-out;
+    }
+  
+    &:before {
+      visibility: hidden;
+    }
+  
+    &:focus-within:before {
+      visibility: visible;
+    }
+  
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+  
+      100% {
+        opacity: 1;
+      }
+    }
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+      }
+  
+      100% {
+        opacity: 0;
+      }
+    }
+  }
+ 
+}
+
+@keyframes rippleCheckBox {
+  0% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}

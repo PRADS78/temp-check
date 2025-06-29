@@ -1,0 +1,18 @@
+export default Object.freeze({
+  ADD_CHECKED_ITEM: "add-checked-item",
+  ADD_MULTIPLE_CHECKED_ITEMS: "add-multiple-checked-items",
+  CLEAR_ALL: "clear-all",
+  HIDE_DROP_DOWN: "hide-drop-down",
+  NOTIFY_COLLAPSIBLE_ACTION: "notify-collapsible-action",
+  REMOVE_CHECKED_ITEM: "remove-checked-item",
+  REMOVE_MULTIPLE_CHECKED_ITEMS: "remove-multiple-checked-items",
+  SELECT_ALL: "select-all",
+  SET_FILTERED_ITEMS: "set-filtered-items",
+  SET_MULTIPLE_SELECTED_ITEMS: "set-multiple-selected-items",
+  SET_OPTION_GROUP_EXPANDED: "set-option-group-expanded",
+  SET_SELECTED_ITEM: "set-selected-item",
+  SHOW_DROP_DOWN: "show-drop-down",
+  UPDATE_SEARCH_TEXT: "update-search-text",
+  SET_HIGHLIGHTED_ITEM: "set-highlighted-item",
+  SET_INTERACTION_TYPE: "set-interaction-type",
+});

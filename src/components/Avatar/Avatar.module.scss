@@ -1,0 +1,20 @@
+@use "../../Styles/Font.scss";
+
+.avatar {
+	*, *::before, *::after {
+		box-sizing: border-box;
+	}
+	@include Font.fontSemiboldSmall;
+
+	align-items: center;
+    /* stylelint-disable-next-line custom-property-pattern */
+	background-color: var(--accentVeryMildLight);
+	border-radius: 50%;
+	color: var(--accent);
+	display: flex;
+	justify-content: center;
+	flex-shrink: 0;
+	flex-grow: 0;
+	aspect-ratio: 1;
+	overflow: hidden;
+}

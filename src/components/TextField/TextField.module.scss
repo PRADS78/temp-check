@@ -1,0 +1,27 @@
+@use "../../Styles/Base.scss";
+@use "../../Styles/Font.scss";
+
+.textField {
+  box-sizing: border-box;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .title {
+    @include Font.fontModerateNormal;
+
+    color: rgb(0 0 0 / 90%);
+    margin-bottom: 2px;
+  }
+
+  &:global(:has(.isError)) {
+    label {
+      &:focus-within {
+        box-shadow: 0 0 0 2px rgb(218 56 50 / 8%),
+          0 2px 2px -2px rgb(0 0 0 / 12%);
+        border: 1px solid rgb(218 56 50 / 100%);
+      }
+    }
+  }
+}

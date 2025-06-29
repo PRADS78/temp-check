@@ -1,0 +1,65 @@
+import {
+  Meta,
+  Title,
+  Description,
+  Subtitle,
+  ArgsTable,
+} from "@storybook/addon-docs";
+import Bar from "./Bar";
+
+<Meta
+  title="Disprz/DisprzCharts/Documentation"
+  parameters={{
+    showToolbar: true,
+    toolbar: {
+      title: { hidden: true },
+      zoom: { hidden: true },
+      eject: { hidden: true },
+      copy: { hidden: true },
+      fullscreen: { hidden: true },
+      enableShortcuts: { hidden: true },
+    },
+  }}
+/>
+
+<Title>Documetation for DisprzCharts</Title>
+
+<Description>
+  DisprzCharts uses [Nivo Charts](https://nivo.rocks/). Please refer the
+  documentation/[storybook](https://nivo.rocks/storybook/?path=/story/bar--stacked)
+  of the Nivo Charts Library for more information. Currently we support both SVG
+  and Canvas based charts. All charts are responsive.
+</Description>
+
+<ul>
+  Different Types of Charts supported are
+  <li>Bar</li>
+  <li>Line</li>
+  <li>Pie & Doughnut</li>
+  <li>Funnel</li>
+  <li>ScatterPlot</li>
+</ul>
+
+<Subtitle>Common props for all the Charts</Subtitle>
+
+<ArgsTable of={Bar} />
+
+<Subtitle>Example:</Subtitle>
+
+```js
+import { DisprzCharts } from "@disprz/components";
+function RenderButton() {
+  return (
+    <DisprzCharts.Bar uniqueId={1673514599729} isCanvas={false} ctrCls={styles.chartContainer}/>;
+  );
+}
+```
+
+<p>Chart names available as React Component </p>
+<ul>
+  <li>DisprzCharts.Bar for Bar</li>
+  <li>DisprzCharts.Line for Line</li>
+  <li>DisprzCharts.Pie for Pie & Doughnut</li>
+  <li>DisprzCharts.Funnel for Funnel</li>
+  <li>DisprzCharts.ScatterPlot for ScatterPlot</li>
+</ul>

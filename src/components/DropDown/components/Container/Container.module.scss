@@ -1,0 +1,17 @@
+@use "../../../../Styles/Base.scss";
+
+.active {
+  border-color: var(--accent);
+  /* stylelint-disable-next-line custom-property-pattern */
+  box-shadow: 0 0 0 2px var(--accentHoverLight), 0 2px 2px -2px var(--accentMildLight);
+}
+
+.disabled {
+  background: Base.$disabled-bg-color;
+  border: 1px solid Base.$border-color;
+  cursor: not-allowed;
+}
+
+.padded {
+  padding-inline-start: 8px;
+}

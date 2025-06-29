@@ -1,0 +1,87 @@
+@use "../../Styles/Base.scss";
+@use "../../Styles/ThemeColorDefinitions.scss" as Theme;
+
+$icon-width: 24px;
+$icon-height: 24px;
+
+.searchBar {
+  align-items: center;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  border: 1px solid Base.$border-color;;
+  border-radius: Base.$border-radius-input;
+  display: flex;
+  gap: 6px;
+  height: 36px;
+  justify-content: space-between;
+  padding: 8px;
+  transition: border-color 230ms ease-in;
+  min-height: 40px;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  &:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgb(106 28 166 / 8%), 0 2px 2px -2px rgb(0 0 0 / 12%);
+  }
+
+  .iconContainer {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    width: 24px;
+    height: 24px;
+    justify-content: center;
+
+    svg {
+      stroke: rgb(0 0 0 / 65%);
+      height: $icon-height;
+      width: $icon-width;
+      fill: none;
+    }
+  }
+
+  &.isDisabled {
+    background-color: #f0f0f0;
+
+    svg {
+      stroke: rgb(179 179 179 / 100%);
+    }
+  }
+
+  input {
+    border: none;
+    color: rgb(0 0 0 / 90%);
+    flex: 1 1 auto;
+    outline: none;
+    min-width: 0;
+    text-overflow: ellipsis;
+
+    &:focus::placeholder {
+      visibility: hidden;
+    }
+  }
+
+  .clearButton {
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    flex: 0 1 20px;
+    height: $icon-height;
+    justify-content: center;
+    outline: none;
+    padding: 0;
+    width: $icon-width;
+
+    svg {
+      fill: rgb(0 0 0 / 65%);
+      height: $icon-height;
+      width: $icon-height;
+    }
+  }
+}

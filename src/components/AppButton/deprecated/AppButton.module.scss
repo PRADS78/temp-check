@@ -1,0 +1,551 @@
+/* stylelint-disable custom-property-pattern */
+/* stylelint-disable no-descending-specificity */
+/* stylelint-disable selector-class-pattern */
+
+@use "../../../Styles/Font.scss";
+@use "../../../Styles/Base.scss";
+@use "../../../Styles/ThemeColorDefinitions" as Theme;
+@use "../../../Styles/Spacing.module.scss" as Spacing;
+
+@mixin button-disabled {
+  &:disabled {
+    @include Base.make-dir-style-value(background,Base.$disabled-bg-color, Base.$disabled-bg-color);
+
+    color: rgb(0 0 0 / 35%);
+    cursor: not-allowed;
+    filter: none;
+
+    svg.app-icon {
+      fill: #9b9b9b;
+    }
+  }
+}
+
+@mixin with-icon {
+  &.withIcon {
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    padding-inline-start: 12px;
+    padding-inline-end: 16px;
+    min-width: unset;
+
+    :global(.app-icon) {
+      height: 20px;
+      width: 20px;
+      margin-inline-end: 2px;
+
+      &:global(.fill) {
+        fill: var(--accent);
+        stroke: none;
+      }
+
+      &:global(.stroke) {
+        stroke: var(--accent);
+        fill: none;
+      }
+    }
+  }
+
+  &:disabled {
+    svg:global(.app-icon) {
+      &:global(.fill) {
+        fill: rgb(0 0 0 / 35%);
+        stroke: none;
+      }
+
+      &:global(.stroke) {
+        stroke: rgb(0 0 0 / 35%);
+        fill: none;
+      }
+    }
+  }
+}
+
+.appButton {
+  @include Font.fontSemiboldNormal;
+
+  align-items: center;
+  @include Base.make-dir-style-value(
+    background,
+    (linear-gradient(270deg, var(--accentLight2) 0%, var(--accent) 100%),
+    #ffffff),
+    (linear-gradient(-270deg, var(--accentLight2) 0%, var(--accent) 100%),
+    #ffffff)
+  );
+
+  border-radius: Base.$border-radius-button;
+  border: none;
+  color: #ffffff;
+  display: flex;
+  filter: drop-shadow(0 4px 8px rgb(0 0 0 / 16%));
+  height: 40px;
+  justify-content: center;
+  line-height: 17px;
+  max-width: 300px;
+  min-width: 76px;
+  outline: none;
+  padding: Spacing.$spacing-08 Spacing.$spacing-24;
+  position: relative;
+  transition: transform 250ms ease-in-out;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  z-index: 1;
+  backface-visibility: hidden;
+  overflow: hidden;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  .label {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    text-overflow: ellipsis;
+    transition: transform 230ms ease-in-out;
+    z-index: 10;
+    @include Base.make-line-clamp(1);
+  }
+
+  .iconContainer {
+    display: block;
+    width: 40px;
+    height: 40px;
+
+    svg {
+      @include Theme.themeColor(fill, Theme.$accent);
+    }
+  }
+
+  .divider {
+    background-color: rgb(255 255 255 / 12%);
+    height: 80%;
+    position: absolute;
+    inset-inline-end: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    z-index: 10;
+  }
+
+  @include button-disabled;
+
+  &:focus {
+    outline: 1px solid rgb(106 28 166 / 24%);
+  }
+
+  &::after {
+    background: linear-gradient(
+        270deg,
+        var(--accentLight2) 0%,
+        var(--accent) 100%
+      ),
+      #ffffff;
+    content: "";
+    height: 100%;
+    inset-inline-start: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 240ms ease-in-out, background 1s;
+    width: 100%;
+    z-index: -1;
+    background-position: right;
+    background-size: 100% 100%;
+  }
+
+  &:hover:not(:disabled)::after {
+    background-position: left;
+    background-size: 200% 200%;
+  }
+
+  &:hover:not(:disabled)::after,
+  &:focus:not(:disabled)::after,
+  &:active:not(:disabled)::after {
+    opacity: 1;
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  &.small {
+    height: 32px;
+    padding: Spacing.$spacing-06 Spacing.$spacing-16;
+    line-height: 20px;
+
+    .label {
+      align-items: center;
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      @include Base.make-line-clamp(1);
+    }
+  }
+
+  &.end-to-end {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  @include with-icon;
+
+  &.withIcon {
+    :global(.app-icon.fill) {
+      fill: white;
+      stroke: none;
+    }
+
+    :global(.app-icon.stroke) {
+      stroke: white;
+      fill: none;
+    }
+  }
+
+  .appIconContainer {
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-inline-end: 2px;
+
+    svg.app-icon {
+      fill: Base.$white-color;
+      transition: transform 240ms ease-in-out;
+      width: 14px;
+      height: 14px;
+
+      &.rotated {
+        transform: rotate(-180deg);
+      }
+    }
+  }
+
+  &.icon-only {
+    border: solid 0 lightgray;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.outlined {
+      border-width: 1px;
+      border-style: solid;
+      @include Theme.themeColor(border-color, Theme.$accent);
+    }
+
+    .app-icon {
+      margin: 0 !important;
+      float: none;
+      height: 24px;
+      width: 24px;
+    }
+  }
+}
+
+.outlined {
+ @include Base.make-dir-style-value(background,Base.$white-color,Base.$white-color);
+
+  border: 1px solid Base.$border-color;
+  @include Theme.themeColor(background-color, Base.$white-color);
+  @include Theme.themeColor(color, Theme.$accent);
+
+  filter: drop-shadow(0 4px 8px rgb(0 0 0 / 4%));
+  transition: border-color 230ms ease-in-out, color 230ms ease-in-out,
+    transform 230ms ease-in-out;
+
+  &:disabled {
+    background: Base.$disabled-bg-color;
+    border-color: Base.$border-color;
+    color: rgb(0 0 0 / 35%);
+    cursor: not-allowed;
+    filter: none;
+  }
+
+  &::after {
+    background: var(--accentHoverLight);
+  }
+
+  &:focus:not(:disabled),
+  &:active:not(:disabled) {
+    border-color: var(--accent);
+    opacity: 1;
+    outline: unset;
+    background: var(--accentHoverLight);
+  }
+
+  &:active:not(:disabled)::after {
+    background: #ffffff;
+  }
+
+  &:focus:not(:disabled)::after {
+    background: none;
+  }
+
+  &:not(:disabled) {
+    border-color: Base.$border-color;
+  }
+
+  @include with-icon;
+}
+
+.plain {
+  @include Base.make-dir-style-value(background, #ffffff, #ffffff );
+
+  border: 1px solid transparent;
+  filter: none;
+  overflow: hidden;
+  padding: Spacing.$spacing-08 Spacing.$spacing-12;
+  transition: background-color 240ms ease-in-out, border-color 240ms ease-in-out,
+    color 230ms ease-in-out, transform 230ms ease-in-out;
+  @include Theme.themeColor(color, Theme.$accent);
+
+  .hoverElement {
+    background: linear-gradient(
+        0deg,
+      var(--accentHoverLight)
+      var(--accentHoverLight)
+      ),
+      #ffffff;
+    opacity: 0.6;
+  }
+
+  &:disabled {
+    background-color: transparent;
+    
+  }
+
+  &:focus:not(:disabled),
+  &:active:not(:disabled) {
+    border-color: var(--accent);
+  }
+
+  &::after {
+    background: none;
+  }
+
+  &:hover:not(:disabled)::after,
+  &:focus:not(:disabled)::after,
+  &:active:not(:disabled)::after {
+    background: linear-gradient(
+        0deg,
+        var(--accentHoverLight),
+        var(--accentHoverLight)
+      ),
+      #ffffff;
+    border-color: Base.$border-color;
+  }
+
+  svg.app-icon {
+    @include Theme.themeColor(fill, Theme.$accent);
+  }
+
+  @include with-icon;
+
+  &.withIcon {
+    :global(.app-icon) {
+      stroke: var(--accent);
+    }
+  }
+}
+
+.icon-only {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.outlined {
+    border-width: 1px;
+    border-style: solid;
+    @include Theme.themeColor(border-color, Theme.$accent);
+  }
+
+  svg.app-icon {
+    margin: 0;
+    float: none;
+  }
+}
+
+.floating-action {
+  &.icon-only {
+    @include button-disabled;
+
+    background: linear-gradient(
+        0deg,
+        rgb(106 28 166 / 6%),
+        rgb(106 28 166 / 6%)
+      ),
+      #ffffff;
+    border: 2px solid transparent;
+    border-radius: Base.$border-radius-floating-action;
+    filter: none;
+    height: 40px;
+    transition: background-color 240ms ease-in-out,
+      border-color 240ms ease-in-out, transform 230ms ease-in-out;
+    width: 40px;
+
+    .hoverElement {
+      @include Theme.themeColor(background-color, Theme.$accentHoverLight);
+
+      opacity: 0.2;
+    }
+
+    .iconContainer {
+      backface-visibility: hidden;
+      height: 25px;
+      width: 25px;
+      transform-origin: center;
+      transition: transform 230ms ease-in-out;
+
+      svg {
+        backface-visibility: hidden;
+        transition: transform 230ms ease-in-out;
+        transform-origin: center;
+      }
+    }
+
+    // pseudo classes
+    &:hover:not(:disabled),
+    &:active:not(:disabled) {
+      @include Theme.themeColor(background-color, Theme.$accentHoverLight);
+    }
+
+    &:focus:not(:disabled) {
+      @include Theme.themeColor(background-color, Theme.$accentMildLight);
+    }
+
+    &::after {
+      background: none;
+    }
+
+    &:hover:not(:disabled)::after,
+    &:focus:not(:disabled)::after,
+    &:active:not(:disabled)::after {
+      background: none;
+    }
+
+    &:disabled {
+      .iconContainer svg {
+        fill: rgb(0 0 0 / 35%);
+      }
+    }
+
+    svg.app-icon {
+      @include Theme.themeColor(fill, Theme.$accent); // TODO
+    }
+  }
+}
+
+.drop-down {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  min-width: 110px;
+  padding-block-start: Spacing.$spacing-08;
+  padding-block-end: Spacing.$spacing-08;
+  padding-inline-start: Spacing.$spacing-24;
+  padding-inline-end: 0;
+  overflow: unset;
+
+  .iconContainer {
+    align-items: center;
+    display: flex;
+    z-index: 10;
+    padding: Spacing.$spacing-06 Spacing.$spacing-08;
+
+    svg {
+      fill: #ffffff;
+    }
+  }
+
+  &::after {
+    border-radius: inherit;
+  }
+
+  &:disabled {
+    .iconContainer {
+      svg {
+        fill: rgb(0 0 0 / 35%);
+      }
+    }
+  }
+
+  .label {
+    padding-inline-end: Spacing.$spacing-08;
+    @include Base.make-line-clamp(1);
+  }
+
+  svg.app-icon {
+    float: none;
+    height: 25px;
+    margin-inline-end: 0 !important;
+    order: -1;
+    position: relative;
+    inset-inline-end: -8px;
+    width: 25px;
+    z-index: 5;
+  }
+}
+
+.hyperlink {
+  @include Base.make-dir-style-value(background, transparent, transparent);
+
+  border-radius: Base.$border-radius-button;
+  padding: Spacing.$spacing-08 Spacing.$spacing-12;
+  color: #2d92c0;
+  filter: none;
+
+  .label {
+    line-height: 20px;
+    position: relative;
+    @include Base.make-line-clamp(1);
+
+    &::before {
+      background-color: #2d92c0;
+      bottom: 0;
+      content: "";
+      height: 1px;
+      position: absolute;
+      transform: scaleX(0);
+      transition: transform 230ms ease-in-out;
+      width: 100%;
+    }
+  }
+
+  &:disabled {
+    background-color: transparent;
+  }
+
+  &:hover:not(:disabled) {
+    .label::before {
+      transform: scaleX(1);
+    }
+  }
+
+  &:focus:not(:disabled),
+  &:active:not(:disabled) {
+    background: rgb(45 146 192 / 8%);
+    outline: unset;
+  }
+
+  &:hover:not(:disabled)::after,
+  &:focus:not(:disabled)::after,
+  &:active:not(:disabled)::after {
+    background: none;
+  }
+
+  &::after {
+    background: none;
+  }
+
+  .hoverElement {
+    background-color: rgb(45 146 192 / 8%);
+    opacity: 0.6;
+  }
+}

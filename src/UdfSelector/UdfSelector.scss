@@ -1,0 +1,94 @@
+@import "../Styles/Font";
+@import "../Styles/Base";
+@import "../Styles/ThemeColorDefinitions";
+
+.sb-show-main {
+    @include fontNormal;
+    .udf-container {
+      height: calc(100vh - 50px);
+      width: calc(100vw - 50px);
+    }
+  }
+.udf-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 5px;
+    gap: 10px;
+
+    .udf-selector-container {
+        display: flex;
+        flex-direction: row;
+        height: 38px;        
+        align-items: center;
+        gap: 10px;
+
+        .udf-selector {
+            display: flex;
+            width: 30%;
+
+            .udf-dropdown {
+                width: 100%;
+            }
+        }
+
+        .udf-value-selector{
+            display: flex;
+            width: 50%;
+
+            .udf-value-dropdown {
+                width: 100%;
+                background-color: white;
+            }
+            .rmsc{
+                .clear-selected-button{
+                    display:none;
+                }
+                &:hover{
+                    .clear-selected-button{
+                        display: flex;
+                    }
+                }
+            }
+            
+        }
+
+        .action-fields {
+            display: flex;
+            position: relative;
+            align-items: center;
+            color: #6A1CA6;
+            cursor: pointer;
+            @include fontBoldMedium;
+        }
+
+        .pos-button {
+            left: 51%;
+        }
+    }
+}
+
+.loading-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    @include fontNormal;
+
+    .animated-spinner-2{
+        width: 25px;
+        height: 25px;
+        margin: 0 auto;
+        background-color: #999;
+        border-radius: 100%;
+        -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+        animation: sk-scaleout 1.0s infinite ease-in-out;
+    }
+}
+
+.overriding-label::before {
+    display: flex;
+    align-items: center;
+    border: none !important;
+    padding: 0 !important;
+}

@@ -1,0 +1,196 @@
+@use "../../../Styles/Base.scss";
+@use "../../../Styles/Font.scss";
+@use "../../../Styles/ThemeColorDefinitions.scss" as Theme;
+
+$padding: 14px 16px;
+$text-color: rgb(0 0 0 / 65%);
+
+@mixin absolute-expandable {
+  background-color: rgb(0 0 0 / 4%);
+  content: "";
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+@mixin collapsible-trigger {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  @include title;
+
+  span {
+    @include Font.fontSemiboldNormal;
+
+    color: rgb(0 0 0 / 90%);
+  }
+
+  .iconContainer {
+    align-items: center;
+    display: flex;
+
+    svg {
+      fill: rgb(0 0 0 / 65%);
+      height: 24px;
+      width: 24px;
+    }
+  }
+}
+
+@mixin check-label {
+  label {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    gap: 10px;
+    height: 40px;
+    overflow: hidden;
+    padding: 10px 14px;
+    position: relative;
+    width: 100%;
+    z-index: 10;
+    margin: 0;
+    justify-content: flex-start;
+
+    input {
+      position: absolute;
+      left: -20px;
+      visibility: hidden;
+
+      &:checked ~ div.box {
+        @include Theme.themeColor(background-color, Theme.$accent);
+        @include Theme.themeColor(border-color, Theme.$accent);
+        svg {
+          fill: #ffffff;
+        }
+      }
+
+      &:checked ~ span {
+        color: rgba(0, 0, 0, 0.9);
+      }
+    }
+
+    div.box {
+      border: 1px solid Base.$border-color;
+      border-radius: 2px;
+      align-items: center;
+      display: flex;
+      flex: 0 0 14px;
+      height: 14px;
+      justify-content: center;
+      position: static;
+      width: 14px;
+
+      svg {
+        fill: transparent;
+        position: relative;
+        height: 10px;
+        width: 10px;
+      }
+    }
+
+    span {
+      display: block;
+      overflow: hidden;
+      user-select: none;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
+
+@mixin expand-absolute-expandable {
+  transform: scaleX(1);
+}
+
+@mixin icon-container {
+  .iconContainer {
+    padding: 5px 3px;
+    svg {
+      fill: Theme.$success;
+    }
+  }
+}
+
+@mixin titled-options {
+  @include Font.fontModerateNormal;
+
+  list-style: none;
+
+  li.titledOptionItem {
+    display: block;
+    padding: 0;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
+
+@mixin title {
+  @include Font.fontSemiboldNormal;
+
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.06) 0%,
+    rgba(0, 0, 0, 0.02) 100%
+  );
+  border: none;
+  color: rgb(0 0 0 / 65%);
+  padding: $padding;
+  text-align: left;
+  text-transform: capitalize;
+  width: 100%;
+}
+
+@mixin titled-options-list {
+  @include Font.fontModerateNormal;
+
+  color: rgb(0 0 0 / 65%);
+  list-style: none;
+  overflow: hidden;
+  transition: height 240ms ease-in-out;
+  padding: 0 8px;
+
+  li.titledOptionsListItem {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    height: 40px;
+    justify-content: space-between;
+    padding: 10px 12px;
+    position: relative;
+    margin-bottom: 4px;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+      border-radius: 6px;
+      color: rgba(0, 0, 0, 0.9);
+    }
+
+    .label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
+
+      &.disabled{
+        color: Base.$disabled-color;
+      }
+    }
+
+    &.disabled{
+      cursor: not-allowed;
+    }
+
+    &.selected {
+      background-color: rgba(106, 28, 166, 0.04);
+      color: rgba(0, 0, 0, 0.9);
+      border-radius: 6px;
+    }
+
+    @include icon-container;
+  }
+}

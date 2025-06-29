@@ -1,0 +1,68 @@
+/* stylelint-disable custom-property-pattern */
+/* stylelint-disable no-descending-specificity */
+/* stylelint-disable selector-class-pattern */
+
+@use "../../Styles/Font.scss";
+@use "../../Styles/Base.scss";
+@use "../../Styles/ThemeColorDefinitions" as Theme;
+@use "../../Styles/Spacing.module.scss" as Spacing;
+@import "./BaseButton.module";
+
+.plain {
+  @include Base.make-dir-style-value(background, transparent, transparent);
+
+  border: 1px solid transparent;
+  filter: none;
+  overflow: hidden;
+  padding: Spacing.$spacing-08 Spacing.$spacing-12;
+  transition: background-color 240ms ease-in-out, border-color 240ms ease-in-out,
+    color 230ms ease-in-out, transform 230ms ease-in-out;
+  @include Theme.themeColor(color, Theme.$accent);
+
+  .hoverElement {
+    background: linear-gradient(
+      0deg,
+      var(--accentHoverLight),
+      var(--accentHoverLight)
+    ),
+      #ffffff;
+    opacity: 0.6;
+  }
+
+  &:disabled {
+    @include Base.make-dir-style-value(background, transparent, transparent);
+  }
+
+  &:focus:not(:disabled),
+  &:active:not(:disabled) {
+    border-color: var(--accent);
+  }
+
+  &::after {
+    background: none;
+  }
+
+  &:hover:not(:disabled)::after,
+  &:focus:not(:disabled)::after,
+  &:active:not(:disabled)::after {
+    background: linear-gradient(
+      0deg,
+      var(--accentHoverLight),
+      var(--accentHoverLight)
+    ),
+      #ffffff;
+    border-color: rgb(0 0 0 / 6%);
+  }
+
+  svg.app-icon {
+    @include Theme.themeColor(fill, Theme.$accent);
+  }
+
+  @include with-icon;
+
+  &.withIcon {
+    :global(.app-icon) {
+      stroke: var(--accent);
+    }
+  }
+}

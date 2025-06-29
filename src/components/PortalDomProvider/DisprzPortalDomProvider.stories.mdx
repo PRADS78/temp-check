@@ -1,0 +1,54 @@
+import PortalDomProvider from "./PortalDomProvider";
+import { Meta, Canvas, Title, Description } from "@storybook/addon-docs/blocks";
+
+<Meta
+  title="Disprz/DisprzPortalDomProvider"
+  parameters={{
+    showToolbar: true,
+    toolbar: {
+      title: { hidden: true },
+      zoom: { hidden: true },
+      eject: { hidden: true },
+      copy: { hidden: true },
+      fullscreen: { hidden: true },
+      enableShortcuts: { hidden: true },
+    },
+  }}
+/>
+
+<Title>DisprzPortalDomProvider</Title>
+
+<Description>
+  This component provides way for Disprz Components to render the popup's
+  outside the React root DOM. This resolves the z-indices issue for multiple
+  components. Render this component to the root component of your application.
+  All the popup's are added in div element with an id named `disprz-popper`
+  under the body tag.
+</Description>
+
+<h3>Usage</h3>
+
+```jsx
+import { DisprzPortalDomProvider } from "@disprz/components";
+function App() {
+  return (
+    <DisprzPortalDomProvider>
+      {/* Your App goes here  */}
+    </DisprzPortalDomProvider>
+  );
+}
+```
+
+<h3>Props for PortalDomProvider</h3>
+<ul>
+  <li>children (Mandatory)</li>
+  <li>ctrCls</li>
+</ul>
+
+<h3>Canvas</h3>
+
+<Canvas>
+  <PortalDomProvider>
+    <div>Some content wrapping PortalDomProvider</div>
+  </PortalDomProvider>
+</Canvas>

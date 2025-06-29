@@ -1,0 +1,155 @@
+{
+    "common": {
+        "all": "All",
+        "ok": "Ok",
+        "of":"of",
+        "close": "Close",
+        "expand": "Expand",
+        "collapse": "Collapse",
+        "cancel": "Cancel",
+        "save": "Save",
+        "previous": "Previous",
+        "next": "Next",
+        "done": "Done",
+        "search": "Search",
+        "clear": "Clear",
+        "noItemsFound": "No items found",
+        "completed": "Completed",
+        "browse": "Browse",
+        "apply": "Apply",
+        "option": "option",
+        "options": "options",
+        "filter": "filter",
+        "filters": "filters",
+        "min": "Min",
+        "max": "Max",
+        "more": "More",
+        "and": "and",
+        "dismiss": "Dismiss",
+        "warning": "Warning",
+        "success": "Success",
+        "sort": "Sort",
+        "loading": "Loading...",
+        "export": "Export",
+        "show": "Show",
+        "items": "items",
+        "select": "Select",
+        "selectAll": "Select all",
+        "deselectAll": "Deselect all",
+        "selectTop": "select top",
+        "selected": "selected",
+        "hide":"Hide",
+        "error": {
+            "label": "Error",
+            "500": "Something went wrong"
+        }
+    },
+    "coachMark": {
+        "checkboxLabel": "Don’t show these coachmark again."
+    },
+    "datePicker": {
+        "today": "Today",
+        "last24Hrs": "Last 24 hours",
+        "thisWeek": "This week",
+        "last7": "Last 7 days",
+        "last14": "Last 14 days",
+        "last15": "Last 15 days",
+        "last30": "Last 30 days",
+        "currentMonth": "Current month",
+        "lastMonth": "Last month",
+        "currentQuarter": "Current quarter",
+        "lastQuarter": "Last quarter",
+        "last3months": "3 months",
+        "customPeriod": "Custom period",
+        "selectDateWarning": "Select the date first",
+        "selectDuration": "Select Duration",
+        "quarterTilldate": "{{quarter}} to date"
+    },
+    "filePicker": {
+        "addFiles": "add files",
+        "dropFilesHere": "Drop files here or ",
+        "supportedFiles": "Supported files:",
+        "maxFileSize": "max file size"
+    },
+    "filter": {
+        "maxSelectionBannerText": "Please narrow down your search by selecting up to",
+        "minSelectionBannerText": {
+            "part1": "Please select at least",
+            "part2": "to proceed."
+        },
+        "range": {
+            "mintext": "Min is",
+            "maxtext": "Max is",
+            "currentmax": "Current max is",
+            "currentmin": "Current min is",
+            "invalidnumber": "Invalid number"
+        },
+        "mandatoryItemWarningMsg": "Please select this required filter to proceed",
+        "rangeExceededTooltipMsg": {
+            "full": "You have the flexibility to choose up to 5 options per filter",
+            "part1": "You have the flexibility to choose up to",
+            "part2": "and 5 options per filter"
+        }
+    },
+    "imageSelector": {
+        "unsplashDisclaimer": "By using images from Unsplash, you agree to their",
+        "licence": "licence",
+        "terms": "Terms of Service"
+    },
+    "stepper": {
+        "doneTemplateLabel": "done-template"
+    },
+    "reportWidget": {
+        "processing": "Processing Request",
+        "exporting": "Exporting report...",
+        "inprogress": "Export in progress...",
+        "errorMsg": "Error on downloading report."
+    },
+    "userSelectionWidget": {
+        "userName": "User Name",
+        "userId": "User ID",
+        "email": "Email",
+        "createdOn": "Created On",
+        "emptyData": "No Users here",
+        "fetching": "Fetching User List",
+        "fetching_n": "Fetching Users List",
+        "userSelectedMsg": "Users are selected",
+        "currentPageUsersSelectedMsg": "Users on this page are selected",
+        "deselectMsg": "(Deselect All)",
+        "noUserMatchMsg": "No Users matching the provided Criteria"
+    },
+    "table": {
+        "errorMsg": "Something went wrong, please try again",
+        "filterLabel": "Filter",
+        "pages":"pages",
+        "itemsPerPage": "Items per page"
+    },
+    "userSearchFilter":{
+        "fetchingSearchListLbl": "Fetching Search List",
+        "advancedSearch":"{{prefix}}Advanced Search",
+        "searchPlaceholder":"Search User",
+        "defaultFilters":{
+            "firstNameLbl":"First Name",
+            "firstNamePlaceholder":"Enter your first name",
+            "lastNameLbl":"Last Name",
+            "lastNamePlaceholder":"Enter your last name",
+            "userIdLbl":"User ID",
+            "userIdPlaceholder":"Enter your user Id",
+            "emailLbl":"Email",
+            "emailPlaceholder":"Enter your email"
+        },
+        "timeFilter":{
+            "fromTimePeriodLabel" : "Created After",
+            "toTimePeriodLabel" : "Created Before",
+            "tooltip":{
+                "title":"Time period filters include the following",
+                "description":"- {term_learner_n} who have enrolled within this period\n- {term_learner_n} who have accessed the {term_module_1} within this period\n- {term_learner_n} who have completed a {term_module_1} within this period"
+            }
+        }
+    },
+    "cascadingUserDefinedFieldSelector":{
+        "addButtonLbl" : "+ Add",
+        "searchPlaceholder":"Enter {{fieldName}}"
+    },
+    "message": "Hello World!"
+}

@@ -1,0 +1,314 @@
+/* stylelint-disable custom-property-pattern */
+@use "../../Styles/Font.scss";
+@use "../../Styles/Base.scss";
+@use "../../Styles/ThemeColorDefinitions" as Theme;
+@use "../../Styles/Spacing.module.scss" as Spacing;
+@use "../../Styles/ZIndex.module.scss" as zindex;
+
+@mixin button-disabled {
+  &:disabled {
+    @include Base.make-dir-style-value(
+      background,
+      Base.$disabled-bg-color,
+      Base.$disabled-bg-color
+    );
+
+    color: rgb(0 0 0 / 35%);
+    cursor: not-allowed;
+    filter: none;
+
+    /* stylelint-disable-next-line selector-class-pattern */
+    svg.app-icon {
+      fill: #9b9b9b;
+    }
+  }
+}
+
+@mixin icon-disabled {
+  &:disabled {
+    /* stylelint-disable-next-line selector-class-pattern */
+    svg:global(.app-icon) {
+      &:global(.fill) {
+        fill: rgb(0 0 0 / 35%);
+        stroke: none;
+      }
+
+      &:global(.stroke) {
+        stroke: rgb(0 0 0 / 35%);
+        fill: none;
+      }
+    }
+  }
+}
+
+@mixin with-icon {
+  &.primary {
+    &.withIcon {
+      /* stylelint-disable-next-line selector-class-pattern */
+      :global(.app-icon.fill) {
+        fill: white;
+        stroke: none;
+      }
+
+      /* stylelint-disable-next-line selector-class-pattern */
+      :global(.app-icon.stroke) {
+        stroke: white;
+        fill: none;
+      }
+    }
+    @include icon-disabled;
+  }
+
+  &.withIcon {
+    justify-content: space-between;
+    flex-direction: row;
+    padding-inline-start: 12px;
+    padding-inline-end: 16px;
+    min-width: unset;
+
+    /* stylelint-disable-next-line selector-class-pattern */
+    :global(.app-icon) {
+      height: 20px;
+      width: 20px;
+      margin-inline-end: 2px;
+
+      &:global(.fill) {
+        fill: var(--accent);
+        stroke: none;
+      }
+
+      &:global(.stroke) {
+        stroke: var(--accent);
+        fill: none;
+      }
+    }
+  }
+
+  @include icon-disabled;
+}
+
+.appButton {
+  @include Font.fontSemiboldNormal;
+
+  align-items: center;
+  @include Base.make-dir-style-value(
+    background,
+    (
+      linear-gradient(270deg, var(--accentLight2) 0%, var(--accent) 100%),
+      #ffffff
+    ),
+    (
+      linear-gradient(-270deg, var(--accentLight2) 0%, var(--accent) 100%),
+      #ffffff
+    )
+  );
+
+  border-radius: Base.$border-radius-button;
+  border: none;
+  color: #ffffff;
+  display: flex;
+  filter: drop-shadow(0 4px 8px rgb(0 0 0 / 16%));
+  height: 40px;
+  justify-content: center;
+  line-height: 17px;
+  max-width: 300px;
+  min-width: 76px;
+  outline: none;
+  padding: Spacing.$spacing-08 Spacing.$spacing-24;
+  position: relative;
+  transition: transform 250ms ease-in-out;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  z-index: zindex.get(zindex.$app-button,'base');
+  backface-visibility: hidden;
+  overflow: hidden;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  .label {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    text-overflow: ellipsis;
+    transition: transform 230ms ease-in-out;
+    z-index: zindex.get(zindex.$app-button,'children', 'label');
+    @include Base.make-line-clamp(1);
+  }
+
+  .badges {
+    margin-inline-start: 4px;
+    line-height: 14px;
+  }
+
+  .divider {
+    background-color: rgb(255 255 255 / 12%);
+    height: 80%;
+    position: absolute;
+    inset-inline-end: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    z-index: zindex.get(zindex.$app-button,'children','divider');
+  }
+
+  @include button-disabled;
+
+  &:focus {
+    outline: 1px solid rgb(106 28 166 / 24%);
+  }
+
+  &::after {
+    background: linear-gradient(
+        270deg,
+        var(--accentLight2) 0%,
+        var(--accent) 100%
+      ),
+      #ffffff;
+    content: "";
+    height: 100%;
+    inset-inline-start: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 240ms ease-in-out, background 1s;
+    width: 100%;
+    z-index: zindex.get(zindex.$app-button,'children','after-selector');
+    background-position: right;
+    background-size: 100% 100%;
+  }
+
+  &:hover:not(:disabled)::after {
+    background-position: left;
+    background-size: 200% 200%;
+  }
+
+  &:hover:not(:disabled)::after,
+  &:focus:not(:disabled)::after,
+  &:active:not(:disabled)::after {
+    opacity: 1;
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  &.small {
+    height: 32px;
+    padding: Spacing.$spacing-06 Spacing.$spacing-16;
+    line-height: 20px;
+
+    .label {
+      align-items: center;
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      @include Base.make-line-clamp(1);
+    }
+  }
+
+  &.endToEnd {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  @include with-icon;
+}
+
+.dropDown {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  min-width: 110px;
+  padding-block-start: Spacing.$spacing-08;
+  padding-block-end: Spacing.$spacing-08;
+  padding-inline-start: Spacing.$spacing-24;
+  padding-inline-end: 0;
+  overflow: unset;
+  flex-direction: row-reverse;
+
+  .dropdownIcon {
+    padding: Spacing.$spacing-06 Spacing.$spacing-08;
+    fill: #ffffff;
+    width: 40px;
+    height: 40px;
+  }
+
+  &::after {
+    border-radius: inherit;
+  }
+
+  &:disabled {
+    .dropdownIcon {
+      fill: rgb(0 0 0 / 35%);
+    }
+  }
+  /* stylelint-disable-next-line no-descending-specificity */
+  .label {
+    padding-inline-end: Spacing.$spacing-08;
+  }
+}
+
+.hyperlink {
+  @include Base.make-dir-style-value(background, transparent, transparent);
+
+  border-radius: Base.$border-radius-button;
+  padding: Spacing.$spacing-08 Spacing.$spacing-12;
+  color: #2d92c0;
+  filter: none;
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  .label {
+    line-height: 20px;
+    position: relative;
+    @include Base.make-line-clamp(1);
+
+    &::before {
+      background-color: #2d92c0;
+      bottom: 0;
+      content: "";
+      height: 1px;
+      position: absolute;
+      transform: scaleX(0);
+      transition: transform 230ms ease-in-out;
+      width: 100%;
+    }
+  }
+
+  &:disabled {
+    @include Base.make-dir-style-value(background, transparent, transparent);
+  }
+
+  &:hover:not(:disabled),
+  &:focus:not(:disabled),
+  &:active:not(:disabled) {
+    .label::before {
+      transform: scaleX(1);
+    }
+  }
+
+  &:focus:not(:disabled),
+  &:active:not(:disabled) {
+    outline: unset;
+  }
+
+  &:hover:not(:disabled)::after,
+  &:focus:not(:disabled)::after,
+  &:active:not(:disabled)::after {
+    background: none;
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  &::after {
+    background: none;
+  }
+
+  .hoverElement {
+    background-color: rgb(45 146 192 / 8%);
+    opacity: 0.6;
+  }
+}

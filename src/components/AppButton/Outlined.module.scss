@@ -1,0 +1,55 @@
+/* stylelint-disable custom-property-pattern */
+/* stylelint-disable no-descending-specificity */
+/* stylelint-disable selector-class-pattern */
+
+@use "../../Styles/Font.scss";
+@use "../../Styles/Base.scss";
+@use "../../Styles/ThemeColorDefinitions" as Theme;
+@use "../../Styles/Spacing.module.scss" as Spacing;
+@import "./BaseButton.module";
+
+.outlined {
+    @include Base.make-dir-style-value(background,Base.$white-color,Base.$white-color);
+   
+     border: 1px solid Base.$border-color;
+     @include Theme.themeColor(background-color, Base.$white-color);
+     @include Theme.themeColor(color, Theme.$accent);
+   
+     filter: drop-shadow(0 4px 8px rgb(0 0 0 / 4%));
+     transition: border-color 230ms ease-in-out, color 230ms ease-in-out,
+       transform 230ms ease-in-out;
+   
+     &:disabled {
+       background: rgb(0 0 0 / 12%);
+       border-color: Base.$border-color;
+       color: rgb(0 0 0 / 35%);
+       cursor: not-allowed;
+       filter: none;
+     }
+   
+     &::after {
+       background: var(--accentHoverLight);
+     }
+   
+     &:focus:not(:disabled),
+     &:active:not(:disabled) {
+       border-color: var(--accent);
+       opacity: 1;
+       outline: unset;
+       background: var(--accentHoverLight);
+     }
+   
+     &:active:not(:disabled)::after {
+       background: #ffffff;
+     }
+   
+     &:focus:not(:disabled)::after {
+       background: none;
+     }
+   
+     &:not(:disabled) {
+       border-color: Base.$border-color;
+     }
+   
+     @include with-icon;
+   }

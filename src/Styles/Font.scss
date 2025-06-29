@@ -1,0 +1,240 @@
+$font-family-regular: "Custom-Regular";
+$font-family-bold: "Custom-Bold";
+$font-family-moderate: "Custom-Regular";
+$font-family-semi-bold: "Custom-SemiBold";
+
+/*#region Font for Desktops*/
+
+/*#region Font Styles - Regular*/
+
+@mixin fontTiny {
+  font-family: $font-family-regular;
+  font-size: 10px;
+}
+
+@mixin fontNormal {
+  font-family: $font-family-regular;
+  font-size: 14px;
+}
+
+@mixin fontSmall {
+  font-family: $font-family-regular;
+  font-size: 12px;
+}
+
+@mixin fontMedium {
+  font-family: $font-family-regular;
+  font-size: 16px;
+}
+
+@mixin fontLarge {
+  font-family: $font-family-regular;
+  font-size: 18px;
+}
+
+@mixin fontHuge {
+  font-family: $font-family-regular;
+  font-size: 24px;
+}
+
+@mixin fontMammoth {
+  font-family: $font-family-regular;
+  font-size: 30px;
+}
+
+/*#endregion Font Styles - Regular*/
+
+/*#region Font Styles - Bold*/
+
+@mixin fontBoldTiny {
+  font-family: $font-family-bold;
+  font-size: 10px;
+}
+
+@mixin fontBoldSmall {
+  font-family: $font-family-bold;
+  font-size: 12px;
+}
+
+@mixin fontBoldNormal {
+  font-family: $font-family-bold;
+  font-size: 14px;
+}
+
+@mixin fontBoldMedium {
+  font-family: $font-family-bold;
+  font-size: 16px;
+}
+
+@mixin fontBoldLarge {
+  font-family: $font-family-bold;
+  font-size: 18px;
+}
+
+@mixin fontBoldHuge {
+  font-family: $font-family-bold;
+  font-size: 24px;
+}
+
+@mixin fontBoldMammoth {
+  font-family: $font-family-bold;
+  font-size: 30px;
+}
+
+/*#endregion Font Styles - Bold*/
+
+/*#region Font Styles - Semibold*/
+
+@mixin fontSemiboldTiny {
+  font-family: $font-family-semi-bold;
+  font-size: 10px;
+}
+
+@mixin fontSemiboldSmall {
+  font-family: $font-family-semi-bold;
+  font-size: 12px;
+}
+
+@mixin fontSemiboldNormal {
+  font-family: $font-family-semi-bold;
+  font-size: 14px;
+}
+
+@mixin fontSemiboldMedium {
+  font-family: $font-family-semi-bold;
+  font-size: 16px;
+}
+
+@mixin fontSemiboldLarge {
+  font-family: $font-family-semi-bold;
+  font-size: 18px;
+}
+
+@mixin fontSemiboldHuge {
+  font-family: $font-family-semi-bold;
+  font-size: 24px;
+}
+
+@mixin fontSemiboldMammoth {
+  font-family: $font-family-semi-bold;
+  font-size: 30px;
+}
+
+/*#endregion Font Styles - Semibold*/
+
+/*#region Font Styles - Moderate*/
+
+@mixin fontModerateTiny {
+  font-family: $font-family-moderate;
+  font-size: 10px;
+}
+
+@mixin fontModerateSmall {
+  font-family: $font-family-moderate;
+  font-size: 12px;
+}
+
+@mixin fontModerateNormal {
+  font-family: $font-family-moderate;
+  font-size: 14px;
+}
+
+@mixin fontModerateMedium {
+  font-family: $font-family-moderate;
+  font-size: 16px;
+}
+
+@mixin fontModerateLarge {
+  font-family: $font-family-moderate;
+  font-size: 18px;
+}
+
+@mixin fontModerateHuge {
+  font-family: $font-family-moderate;
+  font-size: 24px;
+}
+
+@mixin fontModerateMammoth {
+  font-family: $font-family-moderate;
+  font-size: 30px;
+}
+
+/*#endregion Font Styles - Moderate*/
+
+/*#endregion Font for Desktops*/
+
+/*#region Font for Mobiles*/
+
+/*#region Font Styles - Regular*/
+
+@mixin mobile-fontTiny {
+  font-family: $font-family-regular;
+  font-size: 9px;
+}
+
+@mixin mobile-fontSmall {
+  @include fontTiny;
+}
+
+@mixin mobile-fontNormal {
+  @include fontSmall;
+}
+
+@mixin mobile-fontMedium {
+  @include fontNormal;
+}
+
+@mixin mobile-fontLarge {
+  @include fontNormal;
+}
+
+@mixin mobile-fontHuge {
+  @include fontLarge;
+}
+
+@mixin mobile-fontMammoth {
+  @include fontHuge;
+}
+
+/*#endregion Font Styles - Regular*/
+
+/*#region Font Styles - Bold*/
+
+@mixin mobile-fontBoldTiny {
+  font-family: $font-family-bold;
+  font-size: 8px;
+}
+
+@mixin mobile-fontBoldSmall {
+  @include fontBoldTiny;
+}
+
+@mixin mobile-fontBoldNormal {
+  @include fontBoldSmall;
+}
+
+@mixin mobile-fontBoldMedium {
+  @include fontBoldNormal;
+}
+
+@mixin mobile-fontBoldLarge {
+  @include fontBoldNormal;
+}
+
+@mixin mobile-fontBoldHuge {
+  @include fontBoldLarge;
+}
+
+/*#endregion Font Styles - Bold*/
+
+/*#endregion Font for Mobiles*/
+
+/*Others*/
+
+@mixin fontRegularWeight {
+  font-family: $font-family-regular;
+}
+
+@mixin fontBoldWeight {
+  font-family: $font-family-bold;
+}

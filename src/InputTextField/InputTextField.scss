@@ -1,0 +1,114 @@
+@import "../Styles/Font";
+@import "../Styles/Base";
+@import "../Styles/ThemeColorDefinitions";
+
+.form-item {
+  position: relative;
+  margin-bottom: 15px;
+  width: 280px;
+
+  input {
+    border-radius: 3.5px;
+    box-sizing: border-box;
+    color: $text-box-text-color;
+    display: block;
+    @include fontMedium;
+    width: 100%;
+    height: 54px;
+    background: transparent;
+    border: solid 1px $text-box-border-color;
+    transition: all 0.3s ease;
+    padding: 10px 15px;
+
+    &:disabled {
+      color: $dark-grey;
+    }
+
+    &:focus {
+      border-width: 2px;
+      @include themeColor(border-color, $accent);
+      outline: none;
+    }
+
+    &:focus + label,
+    &:valid + label,
+    &[value]:not([value=""]) + label {
+      @include fontSmall;
+      padding: 0px 4px;
+      top: -5px;
+    }
+    &:focus + label {
+      @include themeColor(color, $accent);
+    }
+  }
+
+  .textbox-btn {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 52px;
+    width: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    .app-icon {
+      fill: $text-box-label-color;
+      height: 15px;
+      width: 22px;
+    }
+    &:hover {
+      .app-icon {
+        @include themeColor(fill, $accent);
+      }
+    }
+  }
+
+  label {
+    @include fontMedium;
+    position: absolute;
+    cursor: text;
+    z-index: 2;
+    top: 15px;
+    left: 15px;
+    background: #fff;
+    padding: 0px;
+    color: $text-box-label-color;
+    transition: all 0.3s ease;
+  }
+
+  &.error {
+    input {
+      border-color: $error-color;
+      &:focus {
+        border-color: $error-color;
+      }
+      &:focus + label {
+        color: $error-color;
+      }
+    }
+    .app-icon {
+      fill: $error-color;
+    }
+    label {
+      color: $error-color;
+    }
+  }
+
+  &.disabled {
+    border-color: $dark-grey;
+  }
+
+  .help-text,
+  .error-text {
+    @include fontSmall;
+    color: $text-box-help-color;
+    display: inline-block;
+    line-height: 16px;
+    padding: 4px 15px;
+  }
+  .error-text {
+    color: $error-color;
+  }
+}

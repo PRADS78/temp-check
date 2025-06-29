@@ -1,0 +1,16 @@
+.ripple {
+  height: 20px;
+  inset-inline-start: 0;
+  position: absolute;
+  top: 50%;
+  transform: translate(0%, -50%);
+  width: 100%;
+  z-index: 10;
+
+  .rippleContainer {
+    height: 100%;
+    position: relative;
+    transform: translateZ(0);
+    width: 100%;
+  }
+}

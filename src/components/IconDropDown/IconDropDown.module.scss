@@ -1,0 +1,16 @@
+.options {
+  flex-shrink: 0;
+
+  svg {
+    fill: rgb(0 0 0 / 65%);
+  }
+}
+
+.selectActionOptions {
+  inset-inline-end: 0;
+  inset-inline-start: unset;
+}
+
+.menuPopper {
+  z-index: 1;
+}

@@ -1,0 +1,109 @@
+@use "../../../../../Styles/Font.scss";
+@use "../../../../../Styles/ThemeColorDefinitions.scss" as Theme;
+@use "../../Common.scss";
+@use "../../../../../Styles/Spacing.module.scss";
+
+.multiple {
+  ul {
+    list-style: none;
+
+    li {
+      color: Common.$text-color;
+      position: relative;
+      transition: background-color 240ms ease-in-out;
+      &.listItem {
+        margin-bottom: 4px;
+      }
+
+      &.highlightedItem {
+        border-radius: 6px;
+        background-color: rgb(0 0 0 / 4%);
+        color: rgba(0, 0, 0, 0.9);
+      }
+
+      &.selected {
+        background-color: rgba(106, 28, 166, 0.04);
+        color: rgba(0, 0, 0, 0.9);
+        border-radius: 6px;
+      }
+      @include Common.check-label;
+    }
+  }
+  .chipsList {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 8px;
+    column-gap: 4px;
+    justify-content: flex-start;
+
+    &.padded {
+      padding: Spacing.$spacing-04 0 Spacing.$spacing-08;
+    }
+
+    &.paddedGrouped {
+      padding: 8px;
+    }
+
+    li {
+      border: none;
+    }
+  }
+
+  .search {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    gap: 6px;
+    justify-content: flex-start;
+    padding: Common.$padding;
+    position: relative;
+
+    &::before {
+      @include Theme.themeColor(background-color, Theme.$accentMildLight);
+
+      bottom: 0;
+      content: "";
+      height: 2px;
+      left: 0;
+      position: absolute;
+      width: 100%;
+    }
+  }
+
+  .noItemsNotice {
+    border-bottom: 1px solid #dddddd;
+    color: Common.$text-color;
+    padding: Common.$padding;
+    text-align: center;
+  }
+
+  .compoundButtons {
+    align-items: center;
+    background-color: #ffffff;
+    bottom: 0;
+    display: flex;
+    height: 48px;
+    gap: 8px;
+    justify-content: flex-end;
+    position: sticky;
+    z-index: 10;
+    box-sizing: border-box;
+    padding: 8px;
+
+    .searchBtn {
+      box-shadow: 0px 4px 8px rgba(106, 28, 166, 0.16);
+      padding: 6px 12px;
+      filter: none;
+      &:disabled {
+        box-shadow: none;
+      }
+    }
+    .clearBtn {
+      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.04);
+      padding: 6px 12px;
+      &:disabled {
+        box-shadow: none;
+      }
+    }
+  }
+}

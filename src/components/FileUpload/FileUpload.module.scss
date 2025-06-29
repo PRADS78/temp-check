@@ -1,0 +1,43 @@
+@use "../../Styles/Font.scss";
+
+.innerContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.primaryText {
+  margin-top: 16px;
+  @include Font.fontBoldNormal;
+
+  // color: Base.$primary-text-color;
+  color: rgb(0 0 0 / 90%);
+
+  .browse {
+    color: rgb(106 28 166 / 100%);
+    cursor: pointer;
+  }
+}
+
+.secondaryText {
+  margin-top: 8px;
+  @include Font.fontSmall;
+
+  color: rgb(0 0 0 / 65%);
+}
+
+.input {
+  width: 100%;
+  height: 196px;
+  display: none;
+  z-index: 1;
+}
+
+.errorMessage {
+  @include Font.fontSemiboldNormal;
+
+  color: #da3832;
+  width: 100%;
+  text-align: center;
+  margin-top: 16px;
+}

@@ -1,0 +1,81 @@
+import { Meta, Title, Description, ArgsTable } from "@storybook/addon-docs";
+import DisprzLocalizer from "./DisprzLocalizer";
+
+<Meta
+  title="Disprz/DisprzLocalizer"
+  parameters={{
+    showToolbar: true,
+    toolbar: {
+      title: { hidden: true },
+      zoom: { hidden: true },
+      eject: { hidden: true },
+      copy: { hidden: true },
+      fullscreen: { hidden: true },
+      enableShortcuts: { hidden: true },
+    },
+  }}
+/>
+
+<Title>DisprzLocalizer</Title>
+
+<Description>
+  This components add localization capabilities to your Micro frontends.
+</Description>
+
+<h3>Usage</h3>
+<br />
+<h5>Adding DisprzLocalizer Provider</h5>
+
+```jsx
+import { DisprzLocalizer } from "@disprz/components";
+import EN from "./string/en.json";
+
+function App() {
+  const lang = "en";
+  return (
+    <DisprzLocalizer
+      key={lang} // Use the key prop to rerender when language changes
+      lang={lang} // You can get this from Skilltron
+      defaultTranslation={EN} // You can pass the english json local file here
+      mfe={"disprz-components"} // You can get this from package.json
+      clientIdentifier={"AmazonEU"}
+      terminologyInfoString={{
+        en: [
+          {
+            itemIdentifier: "term_skill_short",
+            itemName: "Skill",
+            singularForm: "Skill",
+            pluralForm: "Skills",
+            examples: ["Courses"],
+          },
+        ],
+      }} // You can get this from Skilltron
+    >
+      {/* Your App goes here  */}
+    </DisprzLocalizer>
+  );
+}
+```
+
+<h5>Using `useLocalizerContext`</h5>
+
+```jsx
+import { useLocalizerContext } from "@disprz/components";
+
+function MyComponent() {
+  const { getLanguageText } = useLocalizerContext();
+  return (
+    // ....
+    <span>{getLanguageText("hello.world")}</span>
+    // ....
+  );
+}
+```
+
+<subscript>
+  If you were using LocalizerContext from `@disprz/components`, we recommended
+  you to migrate to `useLocalizerContext`
+</subscript>
+
+<h3>Props for PortalDomProvider</h3>
+<ArgsTable of={DisprzLocalizer} />

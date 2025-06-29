@@ -1,0 +1,73 @@
+import {
+  Meta,
+  Title,
+  Subtitle,
+  Description,
+  ArgsTable,
+} from "@storybook/addon-docs";
+import { DropdownButton } from ".";
+import BaseButton from "./BaseButton.js";
+
+<Meta
+  title="Disprz/DisprzButtons/Migration"
+  parameters={{
+    showToolbar: true,
+    toolbar: {
+      title: { hidden: true },
+      zoom: { hidden: true },
+      eject: { hidden: true },
+      copy: { hidden: true },
+      fullscreen: { hidden: true },
+      enableShortcuts: { hidden: true },
+    },
+  }}
+/>
+
+<Title>Migration and Docs</Title>
+
+<Description>
+  As the type of button components increased we separated the buttons into
+  separate components. Example:
+</Description>
+
+**Older version of v3 components**
+
+We have a button with a prop **type** `outlined` here
+
+```js
+import { DisprzButton } from "@disprz/components";
+function RenderButton() {
+  return (
+    <DisprzButton ctrCls="outlined-button" label="Outlined" type="outlined" />
+  );
+}
+```
+
+**Newer version of v3 components**
+
+Here we have the same button as a separate component
+
+```js
+import { OutlinedButton } from "@disprz/components";
+function RenderButton() {
+  return (
+    <OutlinedButton ctrCls="outlined-button" label="Outlined" />;
+  );
+}
+```
+
+All the components are named after their type
+
+1. PrimaryButton
+2. OutlinedButton
+3. HyperlinkButton
+4. PlainButton
+5. DropdownButton
+
+<Subtitle>Common props for all the buttons</Subtitle>
+
+<ArgsTable of={BaseButton} />
+
+<Subtitle>Specific props for the DropdownButton</Subtitle>
+
+<ArgsTable of={DropdownButton} />

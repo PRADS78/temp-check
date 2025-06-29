@@ -1,0 +1,13 @@
+.ripple {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+
+  .rippleContainer {
+    height: 100%;
+    position: relative;
+    transform: translateZ(0);
+    width: 100%;
+  }
+}

@@ -1,0 +1,169 @@
+@import "../Styles/Font";
+@import "../Styles/Base";
+@import "../Styles/ThemeColorDefinitions";
+
+.blur-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background: #e7e4e4de;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 3;
+
+    .scheduling-modal {
+        display: flex;
+        align-items: center;
+        width: 60%;
+        height: 80%;
+        flex-direction: column;
+        background: #FFFFFF;
+
+        .modal-title-bar {
+            display: flex;
+            flex-direction: row;
+            align-items: center;            
+            justify-content: space-between;
+            width: 100%;
+            height: 56px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+            .modal-title {
+                display: flex;
+                padding-left: 3%;
+                @include fontBoldLarge;
+                color: #282C3F;
+            }
+
+            .modal-close {
+                display: flex;
+                padding-right: 1%;
+                cursor: pointer;
+                color: #282C3F;
+            }
+        }
+
+        .modal-content {
+            display: flex;
+            flex-direction: column;
+            padding: 3%;
+            width: 94%;
+            overflow-y: auto;
+            height: 75%;
+
+            .block-margin {
+                margin-top: 16px;
+            }
+
+            .block-header-wrapper {
+                display: flex;
+                flex-direction: row;
+                gap: 1%;
+
+                .block-header {
+                    display: flex;
+                    @include fontBoldNormal;
+                }
+                .block-header:after {
+                    content: ' *';
+                    color: red;
+                }
+                .block-description {
+                    display: flex;
+                    @include fontNormal;
+                }
+            }
+            .selection-block {
+                display: flex;
+                flex-direction: column;
+                background: #F1F1F1;
+                border-radius: 10px;
+                margin-top: 12px;
+                padding: 15px;
+
+                .selection-item {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 10px;
+
+                    .selection-name {
+                        display: flex;
+                        @include fontNormal;
+                    }
+
+                    .selection-name:after {
+                        content: ' *';
+                        color: red;
+                    }
+
+                    .radio-input {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 10px;
+                    }
+                }
+
+                .user-selection{
+
+                    display: flex;
+                    flex-direction: row;
+                    gap: 10px;
+                    align-items: center;
+
+                    .user-selection-button {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 20%;
+                    }
+    
+                    .user-selection-info {
+                        display: flex;
+                        text-decoration: underline;
+                        cursor: pointer;
+                        @include fontNormal;
+                    }
+                }
+            }
+        }
+
+        .scheduling-ctas{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            gap: 10px;
+
+            .cta-button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                width: 20%;
+            }
+
+            .delete-button {
+                color: red !important;
+            }
+        }
+    }
+}
+
+.udf-selection {
+    display: flex;
+    flex-direction: row;
+}
+
+.select-user-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 2;
+}

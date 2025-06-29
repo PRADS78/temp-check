@@ -1,0 +1,155 @@
+@use "../../../Styles/Base.scss";
+@use "../../../Styles/Font.scss";
+@use "../../../Styles/ThemeColorDefinitions.scss" as Theme;
+
+.customTimeInput {
+  border: none;
+  box-sizing: border-box;
+  position: relative;
+
+  button {
+    @include Font.fontModerateNormal;
+
+    background-color: rgb(0 0 0 / 6%);
+    border-radius: Base.$border-radius-button;
+    border: none;
+    box-sizing: inherit;
+    color: Theme.$date-picker-time-color;
+    display: block;
+    height: 36px;
+    outline: none;
+    padding: 0 5px;
+    position: relative;
+    margin: 0;
+    min-width: 73px;
+    text-align: center;
+    width: 100%;
+    z-index: 15;
+
+    &.customTimeInputActiveState{
+      border: 1px solid #6A1CA6;
+      background-color: #ffffff;
+      transition: background-color 0.5s ease;
+    }
+  }
+
+  .timePickerAccordion {
+    bottom: 45px;
+    border-radius: Base.$border-radius-button;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 1px 3px 1px rgb(0 0 0 / 15%);
+    box-sizing: border-box;
+    position: absolute;
+    inset-inline-end: 0;
+    z-index: 15;
+  }
+
+  .timePicker {
+    align-items: flex-end;
+    border-radius: Base.$border-radius-button;
+    display: flex;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    padding: 4px;
+    position: relative;
+    width: 100px;
+
+    .highlightBar {
+      background-color: rgb(0 0 0 / 6%);
+      height: 24px;
+      position: absolute;
+      top: 45px;
+      width: 100px;
+      inset-inline-start: 0;
+      z-index: 1;
+    }
+
+    .minuteSlider,
+    .hourSlider,
+    .meridiemSlider {
+      flex: 0 1 33%;
+      position: relative;
+      z-index: 5;
+    }
+
+    .hourSlider {
+      // alignment in mozilla firefox for the hour slider is off by 2px to the top
+      // hence bring it down by 2px
+      @-moz-document url-prefix("") {
+        top: 2px;
+      }
+
+      .hourOption {
+        color: Theme.$grey-text;
+        cursor: pointer;
+        height: 20px;
+        line-height: 1.5;
+        text-align: center;
+        transition: opacity 350ms ease-in-out;
+        padding-top: 1.7px;
+        
+        &.active {
+          color: rgb(0 0 0 / 90%);
+        }
+
+        &.timePickerHidden {
+          opacity: 0;
+        }
+      }
+    }
+
+    .minuteSlider {
+      .minuteOption {
+        box-sizing: inherit;
+        color: Theme.$date-picker-time-color;
+        cursor: pointer;
+        height: 20px;
+        line-height: 1.5;
+        text-align: center;
+        transition: opacity 350ms ease-in-out;
+
+        &.active {
+          color: var(--accent);
+        }
+
+        &.timePickerHidden {
+          opacity: 0;
+        }
+      }
+    }
+
+    .meridiemSlider {
+      div[class~=slick-slide] {
+        color: Theme.$grey-text;
+      }
+
+      div[class~=slick-current] {
+        color: rgb(0 0 0 / 90%);
+      }
+
+      .meridiemOption {
+        box-sizing: inherit;
+        cursor: pointer;
+        height: 20px;
+        line-height: 1.5;
+        text-align: center;
+        transition: opacity 350ms ease-in-out;
+        padding-top: 1.7px;
+
+        &.timePickerHidden {
+          opacity: 0;
+        }
+      }
+    }
+
+    .meridiemLowerCover {
+      background-color: #ffffff;
+      bottom: 3px;
+      height: 20px;
+      position: absolute;
+      inset-inline-end: 3px;
+      width: 28px;
+      z-index: 10;
+    }
+  }
+}

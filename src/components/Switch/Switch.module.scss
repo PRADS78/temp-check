@@ -1,0 +1,60 @@
+@use "../../Styles/Base.scss";
+@use "../../Styles/ThemeColorDefinitions.scss" as Theme;
+
+.switch {
+  border-radius: 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  height: 20px;
+  position: relative;
+  width: 36px;
+
+  .sphere {
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: Theme.$switch-box-shadow;
+    display: block;
+    height: 14px;
+    inset-inline-start: 10%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: inset-inline-start 230ms ease-in-out;
+    width: 14px;
+  }
+
+  .background {
+    background-color: Theme.$switch-background-color;
+    border-radius: inherit;
+    display: block;
+    height: inherit;
+    transition: background-color 230ms ease-in-out;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+
+  input {
+    position: absolute;
+    visibility: hidden;
+    z-index: -10;
+
+    &:checked ~ .sphere {
+      inset-inline-start: 50%;
+    }
+
+    &:checked ~ .background {
+      background-color: var(--accent);
+    }
+
+    &:disabled ~ .background {
+      background-color: Base.$disabled-bg-color;
+    }
+
+    &:disabled ~ .sphere {
+      background-color: Theme.$switch-disabled-sphere;
+    }
+  }
+}

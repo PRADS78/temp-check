@@ -1,0 +1,37 @@
+@import "../../Styles/Font";
+@import "../../Styles/Base";
+@import "../../Styles/ThemeColorDefinitions";
+
+.popper {
+  .menu {
+    @include fontModerateNormal;
+
+    border-radius: $border-radius-button;
+    box-shadow: $menu-box-shadow;
+    inset-inline-start: 0;
+    padding: 8px;
+    max-width: 220px;
+    background: $white-color;
+
+    ul.list {
+      color: inherit;
+      list-style: none;
+
+      li {
+        border-radius: 6px;
+        color: $text-box-text-color;
+        overflow: hidden;
+        padding: 8px 15px;
+        text-align: start;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        transition: background-color 230ms ease-in-out;
+        cursor: pointer;
+
+        &:hover {
+          @include themeColor(background-color, rgba(0, 0, 0, 0.04));
+        }
+      }
+    }
+  }
+}

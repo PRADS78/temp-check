@@ -1,0 +1,18 @@
+@use "../../Styles/Font.scss";
+
+.bannerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(234 135 1 / 100%);
+  background-color: #fcecd6;
+  padding: 8px 6px 8px 4px;
+  color: rgb(234 135 1 / 100%);
+  border-radius: 4px;
+  @include Font.fontSmall;
+
+  position: absolute;
+  z-index: 2;
+  inset-inline: 8px;
+  height: 48px; // need to revisit 
+}

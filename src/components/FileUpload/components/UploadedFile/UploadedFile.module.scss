@@ -1,0 +1,78 @@
+@use "../../../../Styles/Font.scss";
+
+.uploadedFileContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  width: 388px;
+  flex-direction: column;
+  gap: 12px;
+
+  .fileItemContainer {
+    height: 40px;
+    background: linear-gradient(
+      90deg,
+      rgb(0 0 0 / 6%) 0%,
+      rgb(0 0 0 / 2%) 100%
+    );
+    border: 1px solid rgb(0 0 0 / 24%);
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    margin-top: 8px;
+    padding: 8px;
+    position: relative;
+    cursor: default;
+
+    .fileIconContainer {
+      height: 100%;
+
+      /* stylelint-disable-next-line selector-class-pattern */
+      :global(.image_svg__image-bg), :global(.audio_svg__audio-bg), :global(.video_svg__video-bg), :global(.document_svg__document-bg)  {
+        fill: rgb(0 0 0 / 65%);
+      }
+
+      /* stylelint-disable-next-line selector-class-pattern */
+      :global(.image_svg__image-topFold), :global(.audio_svg__audio-topFold), :global(.video_svg__video-topFold), :global(.document_svg__document-topFold) {
+          fill: rgb(152 152 152 / 100%);
+      }
+    }
+
+    .contentContainer {
+      display: flex;
+      align-items: center;
+      margin-inline-start: 12px;
+      flex: 1;
+    }
+
+    .actionContainer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+
+      button {
+        width: 27px;
+        height: 27px;
+        background-color: transparent;
+      }
+
+      .trashIcon {
+        svg {
+          fill: rgb(0 0 0 / 65%);
+          width: 16.2px;
+          height: 16.2px;
+        }
+      }
+
+      .downloadIcon {
+        svg {
+          stroke: rgb(0 0 0 / 65%);
+          width: 16.2px;
+          height: 16.2px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+@use "../../Styles/ZIndex.module.scss" as zindex;
+
+.portalContainer {
+  z-index: zindex.get(zindex.$portal, "base");
+  position: relative;
+}

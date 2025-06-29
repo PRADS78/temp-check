@@ -1,0 +1,86 @@
+@import "../Styles/Font";
+@import "../Styles/Base";
+@import "../Styles/ThemeColorDefinitions";
+
+$tab-space: 3;
+$tab-radius: 18px;
+
+/* Tabs */
+.tabs {
+  display: block;
+  position: relative;
+}
+
+.tabs-list {
+  background-color: $ash-bg-color;
+  border-radius: 19px;
+  display: inline-flex;
+  margin: 0px;
+  padding: 0px;
+
+  &__item {
+    list-style: none;
+    @include fontSmall;
+    padding: #{$tab-space}px;
+  }
+  &__tab {
+    cursor: pointer;
+    display: block;
+    color: transparent;
+    padding: 8px 15px;
+    background: none;
+    position: relative;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:before,
+    &:after {
+      content: "";
+      border-radius: $tab-radius;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 0;
+    }
+    &:before {
+      color: $black-text-color;
+      content: attr(data-name);
+      height: auto;
+      top: 50%;
+      transform: translateY(-50%);
+      @include make-dir-style-attribute(left, right, 14px);
+      z-index: 2;
+    }
+    &:after {
+      background-color: transparent;
+    }
+    &.active {
+      &:before {
+        color: $white-color;
+      }
+      &:after {
+        @include themeColor(background-color, $accent);
+      }
+    }
+    &.active.animating:after {
+      background-color: transparent;
+    }
+  }
+}
+
+.tab-name {
+  position: absolute;
+  top: 10px;
+  z-index: 1;
+}
+
+.tabs-list__underline {
+  border-radius: $tab-radius;
+  position: absolute;
+  top: #{$tab-space}px;
+  left: 0px;
+  height: calc(100% - #{($tab-space * 2)+"px"});
+  @include themeColor(background-color, $accent);
+}

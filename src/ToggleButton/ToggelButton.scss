@@ -1,0 +1,92 @@
+@import "../Styles/Font";
+@import "../Styles/Base";
+@import "../Styles/ThemeColorDefinitions";
+
+$toogle-btn-width: 34px;
+$toogle-btn-height: 20px;
+$custom-radio-size: 20px;
+
+.toggle-btn {
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: $toogle-btn-width;
+    height: $toogle-btn-height;
+    margin: 15px 0;
+    input {
+      display: none;
+    }
+
+    .slider-box {
+      border-radius: 7px;
+      position: absolute;
+      cursor: pointer;
+      height: 14px;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: $switch-path-color;
+      transition: 0.4s;
+
+      &:before {
+        border-radius: 10px;
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        @include make-dir-style-attribute(left, right, 0px);
+        bottom: -3px;
+        background-color: $switch-black-color;
+        transition: all 0.15s ease;
+      }
+
+      &:after {
+        position: absolute;
+        content: "";
+        border-radius: 10px;
+        top: -4px;
+        @include make-dir-style-attribute(left, right, 0px);
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    input {
+      &:disabled + .slider-box {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+      &:checked + .slider-box {
+        @include themeColor(background-color, $accentVeryLight);
+        &:before {
+          @include themeColor(background-color, $accent);
+          // transform: translateX(14px);
+          @include make-dir-style-value(
+            transform,
+            translateX(14px),
+            translateX(-14px)
+          );
+        }
+        &:after {
+          animation: rippleToggle 0.2s linear forwards;
+        }
+      }
+      &:focus + .slider-box {
+        @include themeColor(background-color, $accentVeryLight);
+      }
+    }
+  }
+}
+
+@keyframes rippleToggle {
+  0% {
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0);
+  }
+  50% {
+    box-shadow: 0px 0px 0px 15px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    box-shadow: 0px 0px 0px 15px rgba(0, 0, 0, 0);
+  }
+}

@@ -1,0 +1,181 @@
+@use "../../Styles/Base.scss";
+@use "../../Styles/Font.scss";
+@use "../../Styles/ThemeColorDefinitions.scss" as Theme;
+@use "../../Styles/Spacing.module.scss";
+@use "../../Styles/ZIndex.module.scss" as zindex;
+
+$spacing-20: 20px;
+$spacing-18: 18px;
+$dialog-box-shadow: 0 40px 55px -11px rgb(0 0 0 / 12%);
+$dialog-box-content-color: rgb(0 0 0 / 65%);
+
+.dialogBox {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  inset-inline-start: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: zindex.get(zindex.$dialog-box, "base");
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .overlay {
+    background-color: rgb(0 0 0 / 50%);
+    height: 100vh;
+    position: fixed;
+    width: 100%;
+    z-index: zindex.get(zindex.$dialog-box, "children", "overlay");
+    backdrop-filter: blur(2px);
+  }
+
+  .component {
+    background-color: #ffffff;
+    box-shadow: $dialog-box-shadow;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 310px;
+    position: relative;
+    z-index: zindex.get(zindex.$dialog-box, "children", "component");
+
+    .title {
+      @include Base.make-dir-style-value(
+        background,
+        (linear-gradient(90deg, rgb(0 0 0 / 6%) 0%, rgb(0 0 0 / 2%) 100%)),
+        (linear-gradient(-90deg, rgb(0 0 0 / 6%) 0%, rgb(0 0 0 / 2%) 100%))
+      );
+
+      border-start-start-radius: 16px;
+      border-start-end-radius: 16px;
+      color: rgb(0 0 0 / 90%);
+      height: 56px;
+      padding: $spacing-18 $spacing-20;
+      @include Font.fontSemiboldLarge;
+    }
+
+    .closeButton {
+      display: flex;
+      height: 28px;
+      width: 28px;
+      position: absolute;
+      inset-inline-end: -31px;
+      top: 0;
+      box-shadow: 0 40px 55px -11px rgb(0 0 0 / 12%);
+      background-color: white;
+      border-radius: 50%;
+
+      &::after {
+        background: linear-gradient(0deg, rgb(0 0 0 / 6%), rgb(0 0 0 / 6%)),
+          #ffffff;
+        border-radius: 50%;
+        content: "";
+        height: 100%;
+        opacity: 0;
+        position: absolute;
+        transition: opacity 240ms ease-in-out;
+        width: 100%;
+        z-index: 1;
+      }
+
+      &:hover {
+        &::after {
+          opacity: 1;
+        }
+      }
+
+      svg {
+        fill: black;
+        height: 24px;
+        width: 24px;
+        z-index: 2;
+      }
+    }
+
+    .actionButtons {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+      padding: 0 $spacing-20 $spacing-20;
+
+      .loadingButton {
+        border: 1px solid rgb(0 0 0 / 6%);
+        background-color: rgb(0 0 0 / 12%);
+        border-radius: Base.$border-radius-button;
+        cursor: not-allowed;
+        height: 34px;
+        outline: none;
+        padding: 0;
+        width: 74.05px;
+      }
+    }
+  }
+}
+
+.body {
+  @include Font.fontModerateNormal;
+
+  color: $dialog-box-content-color;
+  line-height: 20px;
+  max-height: 160px;
+  overflow: auto;
+  padding: Spacing.$spacing-16 $spacing-20;
+  word-break: break-word;
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: #bdbdbd;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #757575;
+  }
+
+  /* firefox */
+  /* stylelint-disable-next-line no-duplicate-selectors */
+  & {
+    scrollbar-color: #bdbdbd transparent;
+    scrollbar-width: thin;
+  }
+}
+
+.dialogEnter {
+  opacity: 0;
+}
+
+.dialogEnterActive {
+  opacity: 1;
+  transition: opacity 300ms ease-in-out;
+}
+
+.dialogEnterDone {
+  opacity: 1;
+}
+
+.dialogExit {
+  opacity: 1;
+}
+
+.dialogExitActive {
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+
+.dialogExitDone {
+  opacity: 0;
+}

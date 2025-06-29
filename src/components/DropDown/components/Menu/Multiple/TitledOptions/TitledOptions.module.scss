@@ -1,0 +1,7 @@
+@use '../../../../../../Styles/Font.scss';
+@use '../../../../../../Styles/ThemeColorDefinitions.scss' as Theme;
+@use "../../../Common.scss";
+
+.titledOptions {
+  @include Common.titled-options;
+}

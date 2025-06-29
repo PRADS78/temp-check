@@ -1,0 +1,40 @@
+@use "../../Styles/Font.scss";
+
+.imageSelectorContainer {
+  border: 0;
+  background: #f0f0f0;
+  border-radius: 12px;
+  padding: 16px;
+
+  .titleText {
+    color: #4d4d4d;
+    padding: 0 0 16px 8px;
+    @include Font.fontBoldMedium;
+  }
+
+  .imageContainer {
+    display: flex;
+    box-sizing: border-box;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .licenseAgreement {
+    padding: 16px 0 0 16px;
+    @include Font.fontSmall;
+
+    color: #4d4d4d;
+
+    a {
+      color: #4d4d4d;
+    }
+  }
+}
+
+.dropZone {
+  min-width: 300px;
+  height: 168px;
+  min-height: 168px;
+  border-radius: 16px;
+}

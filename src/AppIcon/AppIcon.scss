@@ -1,0 +1,10 @@
+@import "../Styles/Base";
+@import "../Styles/ThemeColorDefinitions";
+.app-icon {
+  &.v2{
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  fill: $icon-ash-color;
+  }
+}

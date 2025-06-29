@@ -1,0 +1,304 @@
+@use "sass:map" as map;
+
+$border-radius-button: 8px;
+$border-radius-date-picker: 16px;
+$border-radius-floating-action: 8px;
+$border-radius-input: 8px;
+$common-input-group-radius: 5px;
+$drop-down-height: 40px;
+$menu-box-shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 2px 6px 2px rgb(0 0 0 / 15%);
+$dialog-box-shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 1px 3px 1px rgb(0 0 0 / 15%);
+$textcolor: #424242;
+$light-forecolor-1: white;
+$light-background: #ebebeb;
+$app-button-height: 36;
+$border-blue: #2383d0;
+$light-ash-color: #fafafa;
+$border-ash-color: #cccccc;
+$disabled-icon-color: rgb(0 0 0 / 30%);
+$password-visibility-color: rgb(0 0 0 / 90%);
+$primary-blue: #2383d0;
+$primary-purple: #6a1ca6;
+$white-color: #ffffff;
+$green-color: #00a652;
+$red-color: #ed1c24;
+$border-color: hsl(0, 0%, 85%);
+$disabled-bg-color: hsl(0, 0%, 94%);
+$disabled-color:hsl(0, 0%, 85%);
+
+// Device size mixins - Edit these carefully
+
+@mixin media-xs-devices {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin media-xs-devices-landscape {
+  @media (max-width: 767px) and (orientation: landscape) {
+    @content;
+  }
+}
+
+@mixin media-sm-devices {
+  @media (min-width: 768px) and (max-width: 991px) {
+    @content;
+  }
+}
+
+@mixin media-md-devices {
+  @media (min-width: 992px) and (max-width: 1199px) {
+    @content;
+  }
+}
+
+@mixin media-lg-devices {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin media-lg-devices-down {
+  @media (max-width: 1440px) {
+    @content;
+  }
+}
+
+/*
+@mixin media-lg-devices-only {
+  @media (min-width: 1200px) and (max-width:1440px) {
+    @content;
+  }
+}
+
+@mixin media-ulg-devices {
+  @media (min-width: 1441px) { // ultra-large devices
+    @content;
+  }
+}
+*/
+
+@mixin media-sm-devices-up {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin media-md-devices-up {
+  @media (min-width: 992px) {
+    @content;
+  }
+}
+
+@mixin media-sm-devices-down {
+  @media (max-width: 991px) {
+    @content;
+  }
+}
+
+@mixin media-md-devices-down {
+  @media (max-width: 1199px) {
+    @content;
+  }
+}
+
+@mixin portrait-with-keyboard {
+  // Possible approximation for Android chrome with keyboard up in portrait mode
+  // May be used for future reference -> mediaQuery - device-aspect-ratio: 1/0.9 instead of Height and Width
+  // Setting height of 450px to look well on Android devices with higher pixel density.
+  @media screen and (max-height: 450px) and (max-width: 450px) {
+    @content;
+  }
+}
+
+@mixin landscape-tablet-with-keyboard {
+  // Possible approximation for Android chrome with keyboard up in portrait mode
+  @media screen and (max-height: 350px) and (min-width: 768px) and (max-width: 1199px) {
+    @content;
+  }
+}
+
+@mixin touch-devices {
+  @include media-md-devices-down {
+    @content;
+  }
+}
+
+@mixin not-touch-devices {
+  @include media-lg-devices {
+    @content;
+  }
+}
+
+@mixin hover-and-active($classSelector) {
+  @include not-touch-devices {
+    #{unquote($classSelector)}:hover {
+      @content;
+    }
+  }
+  #{unquote($classSelector)}:active {
+    @content;
+  }
+}
+
+/* Media Print query CSS */
+
+@mixin media-print {
+  @media print {
+    @content;
+  }
+}
+
+// Based on the idea presented here:
+// https://hacks.mozilla.org/2015/09/building-rtl-aware-web-apps-and-websites-part-1/
+@mixin dir-ltr {
+  html[dir="ltr"] & {
+    @content;
+  }
+}
+
+@mixin dir-rtl {
+  html[dir="rtl"] & {
+    @content;
+  }
+}
+
+@mixin dir-ltr-container {
+  html div[dir='ltr'] & {
+    @content;
+  }
+}
+
+@mixin dir-rtl-container {
+  html div[dir='rtl'] & {
+    @content;
+  }
+}
+
+@mixin inputCtrl {
+  border: none;
+  border-bottom: solid 1px lightgrey;
+  padding: 5px 0 0;
+  border-radius: 0;
+  appearance: none;
+  background-color: white;
+  height: 35px;
+  outline: none;
+  transition: border-color 0.4s ease-in-out;
+}
+
+@mixin make-dir-style-value(
+  $styleAttribute,
+  $ltrAttributeValue,
+  $rtlAttributeValue
+) {
+  @include dir-ltr {
+    #{$styleAttribute}: #{$ltrAttributeValue};
+  }
+  @include dir-rtl {
+    #{$styleAttribute}: #{$rtlAttributeValue};
+  }
+  @include dir-ltr-container {
+    #{$styleAttribute}: #{$ltrAttributeValue};
+  }
+  @include dir-rtl-container {
+    #{$styleAttribute}: #{$rtlAttributeValue};
+  }
+}
+
+@mixin make-dir-style-attribute(
+  $ltrStyleAttribute,
+  $rtlStyleAttribute,
+  $attributeValue
+) {
+  @include dir-ltr {
+    #{$ltrStyleAttribute}: #{$attributeValue};
+  }
+  @include dir-rtl {
+    #{$rtlStyleAttribute}: #{$attributeValue};
+  }
+  @include dir-ltr-container {
+    #{$ltrStyleAttribute}: #{$attributeValue};
+  }
+  @include dir-rtl-container {
+    #{$rtlStyleAttribute}: #{$attributeValue};
+  }
+}
+
+@mixin make-bootstrap-grid-styles-rtl($colStyle) {
+  @for $i from 1 through 12 {
+    .col-#{$colStyle}-#{$i} {
+      float: right;
+    }
+    .col-#{$colStyle}-offset-#{$i} {
+      margin-left: initial;
+      margin-right: #{(100 * $i / 12) + "%"};
+    }
+  }
+}
+
+@mixin make-line-clamp($lineCount) {
+  display: -webkit-inline-box;
+  -webkit-line-clamp: #{$lineCount};
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@mixin input-placeholder {
+  ::input-placeholder {
+    /* Chrome/Opera/Safari */
+    @content;
+  }
+
+  ::placeholder {
+    /* Firefox 19+ */
+    @content;
+  }
+}
+
+@mixin disable-element {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+@mixin media-ipad-device {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin hide-scrollbar {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+// functions
+
+@mixin overflow-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+}
+
+@mixin prefix-provider($property, $value) {
+  -webkit-#{$property}: $value;
+  -moz-#{$property}: $value;
+  -ms-#{$property}: $value;
+  -o-#{$property}: $value;
+  #{$property}: $value;
+}
+
+input::placeholder {
+  color: $disabled-icon-color;
+}
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map.get($map, $key);
+  }
+  @return $map;
+}

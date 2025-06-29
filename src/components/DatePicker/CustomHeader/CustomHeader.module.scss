@@ -1,0 +1,101 @@
+@use "../../../Styles/Base.scss";
+@use "../../../Styles/Direction.scss";
+@use "../../../Styles/Font.scss";
+@use "../../../Styles/ThemeColorDefinitions.scss" as Theme;
+@use "../../../Styles/Spacing.module.scss";
+
+.customHeader {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+
+  .disprzArrowIcons{
+    svg {
+      fill: rgb(0 0 0 / 65%);
+    }
+  }
+
+  button.navigationButton {
+    background-color: transparent;
+    border: none;
+    height: 24px;
+    outline: none;
+    padding: 0;
+    transition: transform 330ms ease-in-out;
+    width: 24px;
+
+    svg {
+      fill: rgb(0 0 0 / 65%);
+      height: 24px;
+      width: 24px;
+    }
+  }
+
+  .monthYear {
+    @include Font.fontModerateNormal; 
+
+    align-items: center;
+    display: flex;
+    gap: 4px;
+    justify-content: space-between;
+    position: relative;
+
+    .month {
+      color: Theme.$grey-text;
+    }
+
+    &:nth-child(2){
+      color: rgb(0 0 0 / 65%);
+    }
+
+    .yearDropDownAccordion {
+      border-radius: 4px;
+      box-shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 1px 3px 1px rgb(0 0 0 / 15%);
+      inset-inline-end: -11px;
+      position: absolute;
+      inset-block-start: 20px;
+      z-index: 16;
+    }
+
+    .dropDown {
+      align-items: center;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+
+      .content {
+        background-color: #ffffff;
+        box-sizing: inherit;
+        cursor: pointer;
+        list-style: none;
+        padding: 8px 0;
+        width: 49px;
+
+        li {
+          background-color: transparent;
+          padding: 0 3px;
+          position: relative;
+
+          &:not(:first-of-type) {
+            margin-top: 5px;
+          }
+
+          &::after {
+            background-color: Theme.$grey-background;
+            content: "";
+            height: 100%;
+            inset-inline-start: 0;
+            position: absolute;
+            top: 0;
+            width: 0;
+          }
+
+          &:hover::after {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

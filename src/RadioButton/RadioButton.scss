@@ -1,0 +1,78 @@
+@import "../Styles/Font";
+@import "../Styles/Base";
+@import "../Styles/ThemeColorDefinitions";
+
+$custom-radio-size: 20px;
+$custom-radio-checked-size: 10px;
+$custom-radio-ripple-size: 15px;
+
+@keyframes rippleRadio {
+  0% {
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0);
+  }
+  50% {
+    box-shadow: 0px 0px 0px $custom-radio-ripple-size rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    box-shadow: 0px 0px 0px $custom-radio-ripple-size rgba(0, 0, 0, 0);
+  }
+}
+
+.custom-radio {
+  margin: 16px 0;
+
+  &.custom-radio-inline {
+    display: inline-block;
+  }
+
+  input[type="radio"] {
+    display: none;
+    &:checked + label:before {
+      @include themeColor(border-color, $accent);
+      animation: rippleRadio 0.2s linear forwards;
+    }
+    &:checked + label:after {
+      transform: scale(1);
+    }
+  }
+
+  label {
+    @include fontNormal;
+    display: inline-block;
+    line-height: 1.5;
+    min-height: $custom-radio-size;
+    position: relative;
+    padding: 0 ($custom-radio-size + 10px);
+    margin-bottom: 0;
+    cursor: pointer;
+    vertical-align: bottom;
+    &:before,
+    &:after {
+      box-sizing: border-box;
+      position: absolute;
+      content: "";
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      transition-property: transform, border-color;
+    }
+    &:before {
+      @include make-dir-style-attribute(left, right, 0px);
+      top: 0;
+      width: $custom-radio-size;
+      height: $custom-radio-size;
+      border: 2px solid $input-ash-color;
+    }
+    &:after {
+      top: ($custom-radio-size - $custom-radio-checked-size)/2;
+      @include make-dir-style-attribute(
+        left,
+        right,
+        ($custom-radio-size - $custom-radio-checked-size)/2
+      );
+      width: $custom-radio-checked-size;
+      height: $custom-radio-checked-size;
+      transform: scale(0);
+      @include themeColor(background-color, $accent);
+    }
+  }
+}

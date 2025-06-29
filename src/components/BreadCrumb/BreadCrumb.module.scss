@@ -1,0 +1,46 @@
+@use "../../Styles/Font";
+@use "../../Styles/ThemeColorDefinitions";
+
+.breadcrumb {
+  display: inline-flex;
+  list-style-type: none;
+  width: 100%;
+  gap: 4px;
+  align-items: center;
+}
+
+.disprzHomeIcon {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 2px;
+
+  svg {
+    fill: #8c8c8c;
+  }
+}
+
+.disprzArrowIcon {
+  cursor: default;
+  border: 2px;
+
+  svg {
+    fill: #585561;
+  }
+}
+
+.label {
+  @include Font.fontNormal;
+
+  cursor: pointer;
+  color: #8c8c8c;
+}
+
+.labelBold {
+  @include Font.fontBoldNormal;
+
+  color: #262626;
+}
+
+.label:hover {
+  @include ThemeColorDefinitions.themeColor(color, accent);
+}

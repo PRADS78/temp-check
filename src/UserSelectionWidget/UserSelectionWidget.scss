@@ -1,0 +1,671 @@
+@import "../Styles/Font";
+@import "../Styles/Base";
+@import "../Styles/ThemeColorDefinitions";
+
+.sb-show-main {
+  @include fontNormal;
+
+  .user-search-widget-ctr.v2 {
+    height: calc(100vh - 50px);
+    width: calc(100vw - 50px);
+  }
+}
+
+.app-button.icon-only.outlined {
+  border-width: 0;
+}
+
+.user-search-widget-ctr {
+  &.v2{
+  * {
+    box-sizing: border-box;
+  }
+
+  .heading-ctr {
+    padding: 10px 20px;
+    display: flex;
+    color: $textcolor;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 55px;
+
+    .total-users {
+      width: 250px;
+      @include fontBoldMedium;
+    }
+  }
+
+  .user-search-control-wrapper {
+    padding: 10px 0;
+    align-items: flex-end;
+    display: flex;
+    width: 100%;
+
+    .user-search-control {
+      // width: 100%;
+      flex: 1;
+
+      .form-container {
+        .search-form {
+          .search-link-wrapper {
+            justify-content: flex-end;
+
+            .search-form-wrapper {
+              width: 50%;
+              @include make-dir-style-attribute(margin-right, margin-left, 10px);
+            }
+          }
+        }
+      }
+    }
+
+    &.align-to-right {
+      @include make-dir-style-attribute(margin-left, margin-right, auto);
+      @include make-dir-style-attribute(margin-right, margin-left, 0);
+    }
+  }
+
+  .additional-allocated-wrapper {
+    display: flex;
+
+    &.allocated-all {
+      @include make-dir-style-attribute(padding-right, padding-left, 25px);
+    }
+
+    .app-button {
+      min-width: auto;
+
+      .app-icon {
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+
+  height: calc(100% - 20px);
+  box-shadow: 0 15px 48px -16px #adadad;
+  display: flex;
+  margin: 10px;
+  flex-direction: column;
+  background-color: $light-forecolor-1;
+  color: #333333;
+  border: 1px solid #0000001a;
+  border-radius: 12px;
+
+  .paginator-ctr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px; // included and not rtlised as intercom is present only in the right even on rtl
+    .paginator-btns {
+      padding: 10px 12px;
+      border-radius: 120px;
+      cursor: pointer;
+      @include themeColor(background-color, $accent);
+      @include fontBoldSmall;
+
+      color: $light-forecolor-1;
+      transition: all 0.15s;
+
+      &.disabled {
+        cursor: not-allowed;
+        color: $textcolor !important;
+        background-color: $light-background !important;
+        @include make-dir-style-attribute(margin-right, margin-left, 5px);
+        @include hover-and-active("&") {
+          color: $textcolor !important;
+        }
+      }
+      @include hover-and-active("&") {
+        @include themeColor(background-color, $accent);
+
+        color: #ffffff !important;
+      }
+    }
+
+    .pagination-minimize {
+      padding: 6px 10px;
+    }
+
+    .paginator-cell {
+      transition: all 0.15s;
+      height: calc(100% - 4px);
+      margin: 2px;
+      border-radius: 60px;
+      padding: 6px 10px;
+      cursor: pointer;
+      @include fontBoldSmall;
+      @include hover-and-active("&") {
+        @include themeColor(background-color, $accent);
+
+        color: #ffffff;
+      }
+
+      &.active {
+        color: #ffffff;
+        @include themeColor(background-color, $accent);
+      }
+    }
+  }
+
+  .foot-ctr {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-top: 1.5px solid #eaeaea;
+
+    .app-button {
+      margin-top: 15px;
+    }
+
+    .user-count-ctr {
+      .clear-selection {
+        @include fontSmall;
+
+        margin: 0 10px;
+        text-decoration: underline;
+        transition: color 0.25s;
+        @include hover-and-active("&") {
+          color: #999999;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .user-search-pagination {
+      @include make-dir-style-attribute(margin-left, margin-right, auto);
+    }
+  }
+
+  .user-listing-ctr {
+    overflow: auto;
+    max-height: calc(100% - 150px);
+    height: calc(100% - 20px) !important;
+    padding: 10px 0;
+    margin-top: 5px;
+    border: 1.5px solid #eaeaea;
+    border-top: none;
+    border-bottom: none;
+
+    .header-ctr {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background-color: $light-ash-color;
+      width: fit-content; // need to replace fontModerateNormal
+      width: max-content;
+      padding: 2px 0;
+      display: flex;
+      min-width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      @include fontModerateNormal;
+
+      margin: 0 auto;
+      border-bottom: 1.5px solid #0000001f;
+      text-transform: uppercase;
+
+      .header-text {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        cursor: pointer;
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        &.sort-disabled {
+          cursor: not-allowed;
+        }
+
+        .sortable-header-text {
+          @include make-dir-style-value(float, left, right);
+
+          overflow: hidden;
+          line-height: 15px;
+          word-wrap: break-word;
+          color: #000000a6;
+        }
+
+        .sortable-icon {
+          @include make-dir-style-value(float, left, right);
+
+          height: 25px;
+
+          .sort-asc,
+          .sort-desc,
+          .sort-asc-disabled {
+            width: 25px;
+            height: 25px;
+          }
+
+          .sort-asc,
+          .sort-asc-disabled {
+            transform: rotate(-90deg);
+          }
+
+          .sort-desc {
+            transform: rotate(90deg);
+          }
+
+          .sort-asc-disabled {
+            fill: #adb8b8;
+            opacity: 0.5;
+          }
+
+          .sort-asc,
+          .sort-desc {
+            fill: $accent;
+          }
+        }
+      }
+    }
+
+    .all-selected-users-ctr {
+      width: 100%;
+      z-index: 0;
+      display: flex;
+      color: #ffffff;
+      @include themeColor(background-color, $accent);
+
+      justify-content: center;
+      padding: 3px 0;
+      @include fontSmall;
+
+      top: 45px;
+      position: sticky;
+      @include make-dir-style-attribute(left, right, 0 !important);
+
+      .message-text {
+        margin: 0 10px;
+      }
+
+      .clickable {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+
+    .rendering-rows-ctr {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .rows-ctr {
+      width: fit-content; // need to replace
+      width: max-content;
+
+      // max-height: calc(100% - 37px); enable to have fixed header
+      overflow: auto;
+      min-width: 100%;
+      margin: 0 auto;
+
+      .listing-row {
+        display: flex;
+        min-width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1.5px solid #efefef;
+        position: relative;
+        @include fontModerateNormal;
+
+        &::before {
+          content: " ";
+          @include themeColor(background-color, $accent);
+
+          height: 100%;
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 5px;
+          opacity: 0;
+          transition: all 0.2s ease-in-out;
+        }
+
+        &:hover {
+          background-color: rgb(0 0 0 / 6%) !important;
+
+          &::before {
+            opacity: 1;
+          }
+        }
+
+        &.disabled-row {
+          opacity: 0.6;
+          pointer-events: none;
+        }
+
+        @include hover-and-active("&:not(.not-selectable)") {
+          cursor: pointer;
+        }
+        @include hover-and-active("&:not(.not-selectable)") {
+          background-color: rgb(0 0 0 / 2%) !important;
+        }
+      }
+    }
+
+    .cell {
+      min-width: 150px;
+      max-width: 150px;
+      word-wrap: break-word;
+      @include make-dir-style-attribute(margin-left, margin-right, 10px);
+
+      padding: 0 5px;
+      color:rgb(0 0 0 / 100%);
+      @include make-dir-style-value(text-align, left, right);
+
+      &.checkbox-ctr {
+        min-width: 60px;
+      }
+
+      &.large-cell-column {
+        min-width: 180px;
+        max-width: 180px;
+      }
+    }
+  }
+
+  .more-options-dropdown {
+    min-width: 50px;
+    @include fontBoldMammoth;
+
+    height: 41px;
+    margin-left: 10px;
+
+    .Select-placeholder {
+      cursor: pointer;
+      line-height: 27px;
+      text-align: center;
+      color: $accent;
+      text-overflow: initial; // To avoid ellipsis on top of the "..." text
+    }
+
+    .Select-arrow-zone {
+      display: none;
+    }
+
+    .Select-control {
+      width: 50px;
+      height: 38px;
+      padding-right: 10px;
+      background-color: transparent;
+      border: none;
+
+      .Select-multi-value-wrapper {
+        width: 100%;
+      }
+    }
+
+    .Select-input {
+      display: none;
+      padding: 0;
+      outline-color: transparent;
+    }
+
+    .Select-value {
+      padding-left: 0;
+      width: 100%;
+
+      .app-icon {
+        transform: rotate(90deg);
+        fill: white;
+      }
+
+      .Select-value-label {
+        .user-context-item {
+          position: relative;
+          left: 5px;
+          top: 5px;
+
+          .item-text {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .Select-menu-outer {
+      width: 170px;
+      z-index: 100;
+      right: 0;
+      position: absolute;
+
+      .Select-option {
+        padding: 0;
+        color: $accent;
+        @include fontBoldSmall;
+
+        &:last-child {
+          .user-context-item {
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+          }
+        }
+
+        &:first-child {
+          .user-context-item {
+            border-top-right-radius: 5px;
+            border-top-left-radius: 5px;
+          }
+        }
+
+        .user-context-item {
+          display: flex;
+          align-items: center;
+          padding-top: 3px;
+          padding-bottom: 3px;
+          @include make-dir-style-attribute(padding-left, padding-right, 5px);
+          @include make-dir-style-attribute(padding-right, padding-left, 8px);
+        }
+
+        .disabled {
+          opacity: 0.5;
+          cursor: default;
+        }
+
+        .make-user-active-option {
+          display: flex;
+          align-items: center;
+          height: 36px;
+
+          .app-icon {
+            width: 22px;
+            height: 22px;
+            margin: 0 4px;
+            border: 1px solid;
+            border-radius: 50%;
+            padding: 3px;
+          }
+        }
+      }
+
+      .Select-option.is-selected {
+        display: none;
+      }
+    }
+
+    &.is-open {
+      &::after {
+        content: "";
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(41 44 70 / 60%);
+        @include make-dir-style-attribute(left, right, 0);
+
+        top: 0;
+        z-index: 4;
+      }
+    }
+
+    .Select-menu-outer {
+      border-radius: 5px;
+
+      .Select-option {
+        @include hover-and-active("&") {
+          .user-context-item {
+            @include themeColor(background-color, $accent);
+
+            color: $light-forecolor-1 !important;
+
+            .app-icon {
+              fill: $light-forecolor-1;
+            }
+
+            &.disabled {
+              background-color: transparent !important;
+              @include themeColor(color, $accent);
+
+              .app-icon {
+                @include themeColor(fill, $accent);
+              }
+            }
+          }
+        }
+
+        &.is-focused {
+          background-color: transparent !important;
+        }
+      }
+    }
+  }
+
+  .button-container {
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .page-container {
+    background-color: #ffffff;
+    border: 1.5px solid #efefef;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+}
+}
+
+.search-form {
+  .search-container {
+    margin-top: 0;
+  }
+
+  .search-link-wrapper {
+    padding: 0 15px;
+
+    .search-container {
+      display: flex;
+      justify-content: space-between;
+
+      input {
+        width: calc(100% - 75px);
+      }
+    }
+
+    .advance-search-link {
+      display: flex;
+      padding: 5px 0;
+      @include fontBoldNormal;
+      @include themeColor(color, $accent);
+
+      justify-content: flex-end;
+      cursor: pointer;
+    }
+  }
+
+  width: 100%;
+
+  .search-container {
+    padding-top: 10px;
+
+    input.search-input {
+      width: 90%;
+    }
+  }
+}
+
+.user-search-widget-ctr {
+  .heading-ctr {
+    position: relative;
+
+    .user-search-control {
+      position: initial;
+    }
+
+    .header-buttons {
+      margin: 19px 0 12px 8px;
+
+      .dot-icon {
+        .dot-icon-more {
+          height: 18px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .more-option {
+      display:none;
+      transition: all 0.25s;
+      transform-origin: top;
+      background-color: #ffffff;
+      align-items: center;
+      position: absolute;
+      z-index: 200;
+
+      //display: flex;
+      // flex-wrap: wrap;
+      flex-direction: column;
+      width: 25%;
+      top: 62px;
+      right: 40px;
+      box-shadow: 0 8px 10px #00000024, 0 3px 14px #0000001f, 0 5px 5px #00000033;
+      border-radius: 2px;
+
+      //opacity: 0;
+      &-show {
+        opacity: 1;
+        height: auto;
+        display: flex;
+      }
+
+      .user-context-item {
+        display: flex;
+        @include fontModerateNormal;
+
+        height: 50px;
+        align-items: center;
+        width: 100%;
+        border-bottom: 1px solid #efefef;
+        padding: 16px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #fafafa;
+        }
+      }
+    }
+  }
+}
+
+.selected-row {
+  margin: 20px;
+  @include make-dir-style-attribute(padding-left, padding-right, 10px);
+  @include fontModerateMedium;
+
+  .message-text {
+    color: #000000a6;
+    margin-right: 10px;
+  }
+
+  .clickable {
+    @include themeColor(color, $accent);
+
+    cursor: pointer;
+  }
+}

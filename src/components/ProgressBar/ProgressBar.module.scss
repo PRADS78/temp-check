@@ -1,0 +1,20 @@
+@use "../../Styles/ThemeColorDefinitions" as Theme;
+
+.progressBar {
+  width: 100%;
+  height: 4px;
+  background-color: rgb(0 0 0 / 12%);
+  border-radius: 10px;
+  overflow: hidden;
+
+  .filled {
+    height: 100%;
+    background-color: var(--accent);
+    border-radius: inherit;
+    transition: width 250ms ease-in-out, background-color 250ms ease-in-out;
+  }
+  
+  &.bigLine{
+    height: 8px;
+  }
+}

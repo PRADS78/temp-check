@@ -1,0 +1,41 @@
+@use "./Common.modules.scss" as Common;
+
+.container {
+  background-color: white;
+  margin-bottom: Common.$global-filter-margin-bottom;
+
+  .globalFilterContainer {
+    height: 100%;
+    width: calc(100% - 16px);
+    background-color: white;
+    margin: 0 8px;
+    padding: 0 8px;
+    border: 1px solid rgb(0 0 0 / 24%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+
+    .minus {
+      margin-inline-end: 15px;
+
+      svg {
+        fill: var(--accent);
+      }
+    }
+
+    .filterInnerContainer {
+      margin-inline-end: 8px;
+      overflow: unset;
+    }
+  }
+
+  &.hide {
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}

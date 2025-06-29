@@ -1,0 +1,95 @@
+@import "../Styles/Font";
+@import "../Styles/Base";
+@import "../styles/ThemeColorDefinitions.scss";
+
+.disprz-dg-ctr {
+  &.v2{
+  &.local-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+    background: rgba(0, 0, 0, 0.5);
+    .dialog-component {
+      background: white;
+      border-radius: 4px;
+      // padding: 15px;
+      min-width: 320px;
+      max-width: 600px;
+      color: black;
+      position: relative;
+      .title {
+        border-bottom: solid 1px $border-ash-D-color;
+        padding: 10px;
+        text-align: center;
+        @include fontModerateMedium;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+      .app-button {
+        &.close {
+          border: none;
+          position: absolute;
+          @include make-dir-style-attribute(right, left, -40px);
+          top: 2px;
+          background: none !important;
+          box-shadow: none !important;
+          .app-icon {
+            margin: 0px;
+            height: 30px;
+            width: 30px;
+          }
+          &:hover {
+            background: none !important;
+            box-shadow: none !important;
+          }
+        }
+      }
+      .dialog-body {
+        padding: 20px 24px;
+        @include fontNormal;
+      }
+      .footer {
+        padding: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+  &.entering {
+    animation-name: fadeIn;
+    animation-duration: 250ms;
+  }
+
+  &.leaving {
+    animation-name: fadeOut;
+    animation-duration: 250ms;
+  }
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+}
+}

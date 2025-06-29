@@ -1,0 +1,28 @@
+@use "../../../../Styles/Font.scss";
+
+.selection {
+  @include Font.fontModerateNormal;
+
+  flex: 1 1 auto;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
+  white-space: nowrap;
+
+  &.small {
+    max-width: 95px;
+  }
+
+  &.large {
+    max-width: auto;
+  }
+
+  &.active {
+    color: var(--accent);
+  }
+
+  &.disabled {
+    color: rgb(0 0 0 / 35%);
+  }
+}

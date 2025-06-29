@@ -1,0 +1,47 @@
+@use "../../Styles/Spacing.module.scss" as Spacing;
+@use "../../Styles/ZIndex.module.scss" as zindex;
+
+.divider {
+  background-color: rgb(255 255 255 / 12%);
+  height: 80%;
+  position: absolute;
+  inset-inline-end: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  z-index: zindex.get(zindex.$app-button,'children','divider');
+}
+
+.dropDown {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  min-width: 110px;
+  padding-block-start: Spacing.$spacing-08;
+  padding-block-end: Spacing.$spacing-08;
+  padding-inline-start: Spacing.$spacing-24;
+  padding-inline-end: 0;
+  overflow: unset;
+  flex-direction: row-reverse;
+
+  .dropdownIcon {
+    padding: Spacing.$spacing-06 Spacing.$spacing-08;
+    fill: #ffffff;
+    width: 40px;
+    height: 40px;
+  }
+
+  &::after {
+    border-radius: inherit;
+  }
+
+  &:disabled {
+    .dropdownIcon {
+      fill: rgb(0 0 0 / 35%);
+    }
+  }
+
+  .label {
+    padding-inline-end: Spacing.$spacing-08;
+  }
+}

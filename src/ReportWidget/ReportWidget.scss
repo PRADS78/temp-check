@@ -1,0 +1,126 @@
+@import "../Styles/Font";
+@import "../Styles/Base";
+@import "../Styles/ThemeColorDefinitions";
+
+.sb-show-main {
+  @include fontNormal;
+  .report-analytics-view.v2 {
+    height: calc(100vh - 120px) !important;
+    width: calc(100vw - 200px);
+
+    @media (max-width: 767px) {
+      height: 100vh !important;
+      width: 95vw;
+    }
+  }
+}
+
+.report-analytics-view {
+  &.v2 {
+    height: calc(100% - 15px) !important;
+    width: calc(100% - 10px);
+
+    .user-search-control .search-form .search-container {
+      border: none;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    .disprz-Select__menu-list {
+      max-height: 200px;
+    }
+    height: 100%;
+    &.has-time-duration-filter {
+      .report-wrapper {
+        .search-widget {
+          height: calc(100% - 135px);
+          @media (max-width: 767px) {
+            height: calc(100% - 80px)
+          }
+          &.empty-widget-view {
+            height: calc(100% - 73px);
+          }
+        }
+        .empty-data-view-ctr {
+          height: calc(100% - 150px);
+        }
+      }
+    }
+    .error-dialog {
+      .dialog-body {
+        text-align: center;
+      }
+    }
+    .report-wrapper {
+      height: 100%;
+      position: relative;
+      .time-tabs-ctr {
+        width: 100%;
+      }
+      .report-filter-wrapper {
+        padding: 20px 0px;
+        align-items: flex-end;
+        display: flex;
+        width: 100%;
+        .Date-wrapper {
+          @include make-dir-style-attribute(margin-right, margin-left, 10px);
+        }
+        .td-wrapper {
+          min-width: 150px;
+          z-index: 2;
+          align-items: flex-end;
+          display: flex;
+          .dropdown {
+            min-width: 150px;
+            margin-right: 10px;
+          }
+          .custom-period-wrapper {
+            display: flex;
+            align-items: flex-end;
+          }
+          .datepicker-select-container {
+            .disprz-Select__control {
+              margin-left: 0;
+            }
+            .input-label-item {
+              @include fontNormal;
+              margin-bottom: 5px;
+            }
+          }
+          .datepicker-container {
+            margin-right: 10px;
+            .input-label-item {
+              margin-bottom: 5px;
+            }
+            .datetime-picker-input {
+              border-radius: 6px;
+              border: 1px solid #b7b7b7;
+              @include fontNormal;
+              outline: none;
+              height: 38px;
+              text-indent: 5px;
+            }
+          }
+        }
+        .user-search-control {
+          // width: 100%;
+          flex: 1;
+          .form-container {
+            .search-form {
+              .search-link-wrapper {
+                justify-content: flex-end;
+                .search-form-wrapper {
+                  width: 50%;
+                }
+              }
+            }
+          }
+        }
+
+        @media (max-width: 767px) {
+          display: none;
+        }
+      }
+    }
+  }
+}

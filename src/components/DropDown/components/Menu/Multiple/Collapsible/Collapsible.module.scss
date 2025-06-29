@@ -1,0 +1,67 @@
+@use "../../../../../../Styles/Font.scss";
+@use "../../../../../../Styles/ThemeColorDefinitions.scss" as Theme;
+@use "../../../Common.scss";
+
+.collapsible {
+  .trigger {
+    @include Common.collapsible-trigger;
+
+    &.titleGroup {
+      padding-inline-start: 2px !important;
+    }
+
+    box-sizing: border-box;
+    height: 48px;
+    width: auto;
+    margin-bottom: 4px;
+
+    .selectGroup {
+      @include Common.check-label;
+
+      label {
+        height: auto;
+        padding: 12px 16px;
+
+        input {
+          &:checked ~ span {
+            color: rgb(0 0 0 / 65%);
+            @include Font.fontSemiboldNormal;
+          }
+        }
+
+        .title {
+          @include Font.fontSemiboldNormal;
+
+          color: rgb(0 0 0 / 90%);
+        }
+      }
+
+      &.selected {
+        background-color: rgb(106 28 166 / 4%);
+        color: rgb(0 0 0 / 90%);
+      }
+    }
+  }
+
+  ul.titledOptionsList {
+    @include Common.titled-options-list;
+    @include Font.fontModerateNormal;
+
+    color: rgb(0 0 0 / 65%);
+    list-style: none;
+
+    li.titledOptionsListItem {
+      @include Common.check-label;
+
+      border-block-end: none;
+      padding: 0;
+      margin-bottom: 4px;
+    }
+
+    li {
+      &:last-child label {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

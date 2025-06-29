@@ -1,0 +1,121 @@
+@use "../../Styles/Base.scss";
+
+$sharp-arrow-size: 8px;
+
+.popperContainer {
+  pointer-events: none;
+  visibility: visible;
+
+  &.canShowArrow {
+    .sharpType {
+      &.arrow,
+      &.arrow::before {
+        position: absolute;
+        width: $sharp-arrow-size;
+        height: $sharp-arrow-size;
+        background: hsl(0deg 0% 15% / 100%);
+      }
+
+      &.arrow {
+        visibility: hidden;
+      }
+
+      &.arrow.open {
+        &::before {
+          visibility: visible;
+          content: "";
+          transform: rotate(45deg);
+        }
+      }
+    }
+
+    &[data-popper-placement^="top"] > .arrow.sharpType {
+      bottom: -4px;
+    }
+
+    &[data-popper-placement^="bottom"] > .arrow.sharpType {
+      top: -4px;
+    }
+
+    @include Base.dir-ltr {
+      &[data-popper-placement^="left"] > .arrow.sharpType {
+        inset-inline-end: -4px;
+      }
+
+      &[data-popper-placement^="right"] > .arrow.sharpType {
+        inset-inline-start: -4px;
+      }
+    }
+
+    @include Base.dir-rtl {
+      &[data-popper-placement^="left"] > .arrow.sharpType {
+        inset-inline-start: -4px;
+      }
+
+      &[data-popper-placement^="right"] > .arrow.sharpType {
+        inset-inline-end: -4px;
+      }
+    }
+
+    .smoothType {
+      &.arrow {
+        display: flex;
+        visibility: hidden;
+        pointer-events: none;
+        opacity: 0;
+
+        &.open {
+          visibility: visible;
+          pointer-events: auto;
+          opacity: 1;
+        }
+      }
+    }
+
+    &[data-popper-placement^="top"] > .arrow.smoothType {
+      bottom: -8px;
+    }
+
+    &[data-popper-placement^="bottom"] > .arrow.smoothType {
+      top: -8px;
+    }
+
+    @include Base.dir-ltr {
+      &[data-popper-placement^="left"] > .arrow.smoothType {
+        inset-inline-end: -8px;
+      }
+
+      &[data-popper-placement^="right"] > .arrow.smoothType {
+        inset-inline-start: -8px;
+      }
+    }
+
+    @include Base.dir-rtl {
+      &[data-popper-placement^="left"] > .arrow.smoothType {
+        inset-inline-start: -8px;
+      }
+
+      &[data-popper-placement^="right"] > .arrow.smoothType {
+        inset-inline-end: -8px;
+      }
+    }
+  }
+
+  .innerContainer {
+    visibility: hidden;
+    pointer-events: none;
+    opacity: 0;
+
+    &.open {
+      visibility: visible;
+      pointer-events: auto;
+      opacity: 1;
+    }
+  }
+}
+
+.popperContainer[data-popper-reference-hidden="true"] {
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+}

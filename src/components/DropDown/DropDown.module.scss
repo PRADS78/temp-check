@@ -1,0 +1,21 @@
+@use "../../Styles/Font";
+@use "../../Styles/Base";
+@use "../../Styles/Spacing.module.scss";
+
+.dropDown {
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid Base.$border-color;
+  border-radius: Base.$border-radius-button;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  gap: 8px;
+  height: Base.$drop-down-height;
+  justify-content: space-between;
+  padding: 10px 8px 10px 12px;
+  position: relative;
+  transition: border-color 90ms ease-in-out, width 230ms ease-in-out,
+    box-shadow 90ms ease-in-out;
+  width: 100%;
+}

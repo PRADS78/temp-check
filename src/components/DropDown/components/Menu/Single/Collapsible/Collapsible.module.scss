@@ -1,0 +1,21 @@
+@use "../../../../../../Styles/Font.scss";
+@use "../../../../../../Styles/ThemeColorDefinitions.scss" as Theme;
+@use "../../../Common.scss";
+
+.collapsible {
+  .trigger {
+    @include Common.collapsible-trigger;
+
+    box-sizing: border-box;
+    height: 48px;
+    margin-bottom: 4px;
+
+    span {
+      color: rgb(0 0 0 / 90%);
+    }
+  }
+
+  ul.titledOptionsList {
+    @include Common.titled-options-list;
+  }
+}

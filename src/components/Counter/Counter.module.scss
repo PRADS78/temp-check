@@ -1,0 +1,113 @@
+@use "../../Styles/Font.scss";
+@use "../../Styles/Base.scss";
+
+.counter {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+  height: 40px;
+  width: 120px;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  .inputContainer {
+    align-items: center;
+    border: 1px solid Base.$border-color;
+    display: flex;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+
+    input {
+      @include Font.fontSemiboldNormal;
+
+      border: none;
+      height: 90%;
+      outline: none;
+      padding: 3px;
+      text-align: center;
+      width: 90%;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        appearance: none;
+        margin: 0;
+      }
+
+      &[type="number"] {
+        appearance: textfield; /* Firefox */
+      }
+
+      &:disabled {
+        background-color: #ffffff;
+        color: rgb(0 0 0 / 35%);
+      }
+    }
+
+    &.error {
+      border-color: hsl(2deg 69% 53% / 100%);
+
+      input {
+        color: hsl(2deg 69% 53% / 100%);
+      }
+    }
+  }
+
+  button[class~="app-icon-ctr"] {
+    align-items: center;
+    /* stylelint-disable-next-line custom-property-pattern */
+    background-color: var(--accentVeryMildLight);
+    border: none;
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    font-size: 24px;
+    outline: none;
+    padding: 0;
+    transition: background-color 240ms ease-in-out, color 240ms ease-in-out;
+    user-select: none;
+    width: 40px;
+
+    svg {
+      fill: var(--accent);
+      height: 20px;
+      width: 20px;
+    }
+
+    &:active,
+    &:hover {
+      background-color: var(--accent);
+
+      svg {
+        fill: white;
+      }
+    }
+
+    &:disabled {
+      background-color: Base.$disabled-bg-color;
+      cursor: not-allowed;
+
+      svg {
+        fill: rgb(0 0 0 / 35%);
+      }
+    }
+
+    &.decrease {
+      border-start-start-radius: 8px;
+      border-end-start-radius: 8px;
+    }
+
+    &.increase {
+      border-start-end-radius: 8px;
+      border-end-end-radius: 8px;
+    }
+
+    &::before {
+      content: unset;
+    }
+  }
+}

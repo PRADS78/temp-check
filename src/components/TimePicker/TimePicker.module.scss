@@ -1,0 +1,493 @@
+/* stylelint-disable selector-class-pattern */
+/* stylelint-disable custom-property-pattern */
+@use "../../Styles/Base.scss";
+@use "../../Styles/Font.scss";
+@use "../../Styles/ThemeColorDefinitions.scss" as Theme;
+@use "../../Styles/Spacing.module.scss";
+@use "../../Styles/Direction.scss";
+
+$outer-padding: Spacing.$spacing-16;
+$box-width: 56px;
+$colon-gap: 20px;
+$meridian-margin: 8px;
+$accordion-height: 171px;
+$accordion-width: 171px;
+$time-picker-width: 260px;
+
+.timePicker {
+  box-sizing: border-box;
+  position: relative;
+
+  // width: 220px;
+  min-width: $time-picker-width;
+
+  .inputGroup {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .timeButtons {
+      align-items: center;
+
+      // border: 1px solid var(--accentMildLight);
+      border-radius: Base.$border-radius-button;
+      display: flex;
+      gap: 5px;
+      height: inherit;
+      justify-content: space-between;
+
+      .hourSelect,
+      .minSelect {
+        background-color: #ffffff;
+        border: 1px solid blue;
+        border-radius: Base.$border-radius-button;
+        box-shadow: none;
+        list-style: none;
+        max-height: 0;
+        overflow: auto;
+        position: absolute;
+        top: 40px;
+        transition: box-shadow 230ms ease-in-out, max-height 230ms ease-in-out;
+        width: 45px;
+        z-index: 1;
+
+        // Works only in Firefox - 06/2023
+        scrollbar-color: #bdbdbd transparent;
+        scrollbar-width: thin;
+
+        &.expanded {
+          box-shadow: Base.$dialog-box-shadow;
+          max-height: 180px;
+        }
+
+        /* width */
+        &::-webkit-scrollbar {
+          display: initial;
+          width: 4px;
+        }
+
+        /* Track */
+        &::-webkit-scrollbar-track {
+          background-color: transparent;
+        }
+
+        /* Scrollbar */
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+          border-radius: 3px;
+          background: #9e9e9e;
+        }
+
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+          background: #757575;
+        }
+
+        li {
+          color: rgb(0 0 0 / 65%);
+          cursor: pointer;
+          padding: 5px;
+          text-align: center;
+          transition: background-color 230ms ease-in-out;
+
+          &:hover {
+            background-color: rgb(0 0 0 / 6%);
+          }
+        }
+      }
+
+      .minSelect {
+        inset-inline-start: 40px;
+      }
+
+      button {
+        background-color: transparent;
+        border: 2px solid transparent;
+        border-radius: Base.$border-radius-button;
+        box-sizing: border-box;
+        color: black;
+        height: 100%;
+        outline: none;
+        transition: border-color 230ms ease-in-out;
+        width: 36px;
+
+        // &:focus-within {
+        //   // border-color: var(--accent);
+        // }
+      }
+    }
+
+    .label {
+      @include Font.fontModerateMedium;
+    }
+
+    .inputIconGroup {
+      align-items: center;
+      border: 1px solid Base.$border-color;
+      border-radius: Base.$border-radius-button;
+      box-shadow: none;
+      cursor: pointer;
+      display: flex;
+      height: 40px;
+      justify-content: space-between;
+      padding: Spacing.$spacing-08;
+      width: 100%;
+      transition: border-color 230ms ease-in-out, box-shadow 230ms ease-in-out;
+
+      &.highLighted {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 2px rgb(106 28 166 / 8%),
+          0 2px 2px -2px rgb(0 0 0 / 12%);
+      }
+
+      input {
+        border: none;
+        box-sizing: border-box;
+        color: rgb(0 0 0 / 65%);
+        cursor: pointer;
+        display: block;
+        outline: none;
+        transition: border-color 230ms ease-in-out;
+        text-transform: uppercase;
+      }
+
+      .iconContainer {
+        align-items: center;
+        display: flex;
+
+        svg {
+          fill: rgb(0 0 0 / 65%);
+        }
+      }
+    }
+  }
+
+  // &.twentyFourHourMode {
+  //   [class~="react-timekeeper__top-bar"] {
+  //     align-items: center;
+  //     display: flex;
+  //     justify-content: center;
+  //   }
+
+  //   [class~="react-timekeeper__tb-hour-wrapper"] {
+  //     width: 56px;
+  //     height: 56px;
+  //   }
+
+  //   .timeKeeperContainer {
+  //     .colons {
+  //       inset-inline-start: 50%;
+  //       transform: translateX(-50%);
+  //     }
+  //   }
+  // }
+}
+
+.timeKeeperAccordion {
+  --main-font-family: "Custom-Regular";
+  --top-text-color: rgb(0 0 0 / 65%);
+  --top-selected-color: var(--accent);
+  --top-meridiem-color: var(--accent);
+  --clock-wrapper-bg: white;
+  --clock-bg: white;
+  --hand-line-color: var(--accent);
+  --hand-circle-center: var(--accent);
+  --hand-circle-outer: var(--accent);
+  --hand-minute-circle: white;
+  --numbers-text-color: rgb(0 0 0 / 65%);
+  --numbers-text-color-disabled: red;
+  --numbers-font-size-reg: 12px;
+  --meridiem-bg-color: var(--accentVeryMildLight);
+  --meridiem-selected-bg-color: var(--accentVeryMildLight);
+  --meridiem-selected-text-color: var(--accent);
+  --meridiem-text-color: rgb(0 0 0 / 65%);
+  --dropdown-hover-bg: var(--accent);
+  --dropdown-text-color: blue;
+  --dropdown-text-color-disabled: red;
+  --dropdown-border: none;
+
+  // --dropdown-shadow: Base.$dialog-box-shadow;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    font-weight: unset;
+  }
+
+  border-radius: 8px;
+  box-shadow: Base.$dialog-box-shadow;
+  box-sizing: border-box;
+  width: $time-picker-width;
+
+  .timeKeeperContainer {
+    box-sizing: border-box;
+    padding: 0;
+    position: relative;
+    text-align: end;
+
+    // width: 205px;
+    width: 260px;
+
+    .colons {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      justify-content: center;
+      z-index: 1;
+      inset-inline-start: 42.5%;
+      top: 11.3%;
+
+      div {
+        background-color: black;
+        border-radius: 50%;
+        height: 4px;
+        width: 4px;
+      }
+    }
+
+    .doneButtons {
+      display: flex;
+      gap: 4px;
+      justify-content: flex-end;
+      padding: 0 16px 16px;
+      text-align: end;
+
+      .cancelButton {
+        min-width: 70px;
+      }
+
+      .okButton {
+        min-width: 38px;
+      }
+
+      .footerButton {
+        @include Font.fontSemiboldNormal;
+
+        background-color: transparent;
+        border: none;
+        box-sizing: border-box;
+        outline: none;
+        padding: 10px 0;
+        text-transform: uppercase;
+
+        &.cancelButton {
+          color: Theme.$text-color;
+          position: relative;
+        }
+
+        &.okButton {
+          color: var(--accent);
+        }
+      }
+    }
+
+    :global(.react-timekeeper__clock-wrapper) {
+      padding: 0;
+
+      :global(.react-timekeeper__clock) {
+        border: 2px solid var(--accent);
+        box-sizing: border-box;
+        box-shadow: 0 0 0 2px rgb(106 28 166 / 8%),
+          0 2px 2px -2px rgb(0 0 0 / 12%);
+
+        // width: 173px;
+        // height: 173px;
+
+        :global(svg.react-timekeeper__clock-hand) {
+          @include Direction.make-dir-style-value(
+            transform,
+            translateX(0),
+            translateX(4px)
+          );
+
+          // height: $accordion-height;
+          // width: $accordion-width;
+
+          :global(line.react-timekeeper__clock-hand) {
+            stroke-width: 2px;
+            stroke-linecap: round;
+          }
+
+          :global(circle.react-timekeeper__hand-circle-outer) {
+            stroke-width: 2px;
+            stroke: white;
+          }
+
+          :global(circle.react-timekeeper__hand-circle-center) {
+            r: 5;
+          }
+        }
+
+        :global {
+          .react-timekeeper__clock-hours,
+          .react-timekeeper__clock-minutes {
+            @include Direction.make-dir-style-value(
+              transform,
+              translateX(0),
+              translateX(34px)
+            );
+          }
+        }
+
+        :global(.react-timekeeper__clock-hours) {
+          .activeHour {
+            color: #ffffff;
+          }
+
+          span {
+            @include Font.fontSemiboldNormal;
+          }
+
+          // height: $accordion-height;
+
+          // span  {
+          //   $angle: 30;
+          //   $rot: 0;
+          //   $circle-size: 173;
+
+          //   display: flex;
+
+          //    @for $i from 1 through 12 {
+          //     &:nth-of-type(#{$i}) {
+          //       transform:
+          //         rotate($rot * 1deg)
+          //         /* stylelint-disable-next-line length-zero-no-unit */
+          //         translate($circle-size / 2 + 0.1px)
+          //         rotate($rot * -1deg) !important;
+          //     }
+
+          //     $rot: $rot + $angle;
+
+          //     align-self: auto;
+          //   }
+          // }
+        }
+
+        :global(.react-timekeeper__clock-minutes) {
+          .activeMinute {
+            color: #ffffff;
+          }
+        }
+      }
+
+      // styling for the meridiemWrapper
+      // the meridiemWrapper class is obscured in production
+      // hence the vague selector
+      & > div:nth-of-type(2) {
+        align-items: center;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        height: 56px;
+        justify-content: space-between;
+        inset-inline-end: 40px;
+        padding: 0;
+        position: absolute;
+        top: 43.2px;
+        width: 33px;
+
+        :global(.react-timekeeper-button-reset) {
+          align-items: center;
+          border-radius: 6px;
+          box-sizing: border-box;
+          display: flex;
+          height: 26px;
+          justify-content: center;
+          transition: color 350ms ease-in-out;
+          width: 33px;
+          padding: 6px;
+          @include Font.fontNormal;
+
+          &[class*="active"] {
+            // color: var(--accent);
+            @include Font.fontSemiboldNormal;
+          }
+        }
+      }
+    }
+
+    :global(.react-timekeeper) {
+      box-shadow: none;
+      width: 100%;
+      border-radius: 8px;
+
+      :global(.react-timekeeper__top-bar) {
+        align-items: center;
+        display: grid;
+        grid-template-columns: $box-width $colon-gap $box-width;
+        justify-content: center;
+        padding: Spacing.$spacing-24 Spacing.$spacing-16 Spacing.$spacing-16;
+        width: 225px;
+        border-radius: 8px;
+
+        :global(.react-timekeeper__tb-minute-wrapper) {
+          padding-inline-start: 0;
+          width: 56px;
+          height: 56px;
+          margin-inline-start: 0;
+        }
+
+        :global(.react-timekeeper__tb-hour-wrapper) {
+          width: 56px;
+          height: 56px;
+        }
+
+        :global(.react-timekeeper__time-dropdown) {
+          display: none;
+        }
+
+        :global {
+          .react-timekeeper__tb-hour,
+          .react-timekeeper__tb-minute {
+            @include Font.fontSemiboldLarge;
+
+            align-items: center;
+            animation: none;
+            border: 1px solid Base.$border-color;
+            border-radius: 12px;
+            box-sizing: border-box;
+
+            // color: Theme.$text-color;
+            display: flex;
+            font-weight: unset;
+            justify-content: center;
+            height: 56px;
+            transition: border-color 230ms ease-in-out, color 230ms ease-in-out;
+            width: 56px;
+
+            &[class*="active"] {
+              border-color: var(--accent);
+              border-width: 2px;
+              box-shadow: 0 0 0 2px rgb(106 28 166 / 8%),
+                0 2px 2px -2px rgb(0 0 0 / 12%);
+              font-weight: unset;
+            }
+          }
+        }
+
+        :global(.react-timekeeper__tb-colon) {
+          visibility: hidden;
+          opacity: 0;
+          width: 0;
+          margin: 0;
+        }
+
+        :global(.react-timekeeper__tb-meridiem) {
+          visibility: hidden;
+          z-index: -1;
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.timePicker.withoutLabel {
+  .timeKeeperAccordion {
+    top: 40px;
+  }
+}

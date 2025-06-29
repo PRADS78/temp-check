@@ -1,0 +1,164 @@
+@import "../styles/Font";
+@import "../Styles/Base";
+
+$animationSpeed: 250ms;
+.toast-ctr {
+  &.v2 {
+    padding: 10px;
+    max-width: 400px;
+    min-width: 300px;
+    position: fixed;
+    z-index: 100000;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+    &.bot-right {
+      bottom: 30px;
+      right: 10px;
+    }
+    &.bot-left {
+      bottom: 30px;
+      left: 10px;
+    }
+    &.top-left {
+      top: 30px;
+      left: 10px;
+    }
+    &.top-right {
+      top: 30px;
+      right: 10px;
+    }
+    &.top-center {
+      top: 30px;
+      left: calc(50% - 200px);
+    }
+    &.bot-center {
+      bottom: 30px;
+      left: calc(50% - 200px);
+    }
+    &.success {
+      background-color: rgba(176, 227, 200, 1);
+      border: 1.5px solid #3ab876;
+      
+    }
+    &.warn {
+      background-color:  rgba(251, 219, 157, 1);
+      border: 1.5px solid #f6a609;
+    }
+    &.fail {
+      background-color: rgba(240, 175, 173, 1);
+      border: 1.5px solid #da3832;
+    }
+    &.info {
+      background-color: rgba(195, 215, 252, 1);
+      border: 1px solid #699bf7;
+    }
+    &.netural {
+      box-shadow: 0px 0.8px 1.5px #0000001a, 0px 6px 12px #00000033;
+      background: linear-gradient(0deg, #ffffff14, #ffffff14), #333333e0;
+      color: $white-color;
+      path {
+        fill: $white-color;
+        fill-opacity: 1;
+      }
+    }
+    .icon-toast-cls {
+      width: 22px;
+      height: 22px;
+      @include make-dir-style-value(margin-left, 0, 12px);
+    }
+    .toast-header-close {
+      position: absolute;
+      right: 2px;
+      top: 14px;
+    }
+    .toast-header {
+      display: flex;
+      align-items: center;
+      .toast-header-title {
+        font-weight: 700;
+        padding-bottom: 2px;
+      }
+      &-title {
+        @include fontModerateMedium;
+        margin-left: 10px;
+        display: flex;
+        flex-grow: 1;
+      }
+      &-close {
+        cursor: pointer;
+      }
+      .app-button {
+        &.icon-only {
+          &.toast-close-btn {
+            background: none !important;
+            box-shadow: none !important;
+            height: 16px;
+            width: 16px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            margin: 0;
+            .app-icon {
+              height: 12px;
+              width: 12px;
+            }
+            &:hover {
+              background: none !important;
+              box-shadow: none !important;
+            }
+          }
+        }
+      }
+    }
+    .netural-content {
+      display: flex;
+      align-items: center;
+      align-items: flex-start;
+      .toast-content {
+        width: 100%;
+        padding-left: 10px;
+      }
+    }
+    .toast-content {
+      padding: 5px;
+      @include fontNormal;
+      margin-right: 15px;
+      padding-left: 32px;
+    }
+    .footer {
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      .app-button {
+        min-height: 30px !important;
+        min-width: 150px;
+      }
+    }
+    &.entering {
+      animation-name: fadeIn;
+    }
+
+    &.leaving {
+      animation-name: fadeOut;
+      animation-duration: $animationSpeed;
+    }
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,127 @@
+@use "../../../Styles/Base.scss";
+@use "../../../Styles/Font.scss";
+
+.pagination {
+  display: grid;
+  height: 56px;
+  align-items: flex-end;
+  position: absolute;
+  width: 100%;
+  inset-inline-start: 0;
+  background-color: white;
+  z-index: 2;
+  padding: 0 18.5px;
+  grid-template-columns: auto auto 1fr;
+  column-gap: 24px;
+  transition: box-shadow 0.5s;
+  bottom: 16px; // 16px padding is used in tableCtr also
+
+  .selectedUsers {
+    margin-bottom: 7px;
+  }
+
+  &.addShadow {
+    box-shadow: 0 -2px 2px rgb(0 0 0 / 16%);
+  }
+
+  &.removeShadow {
+    box-shadow: none;
+  }
+
+  &.withScrollBar {
+    position: unset;
+    padding: 0;
+    box-shadow: none;
+    margin-bottom: 16px;
+  }
+
+  .paging {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+
+    .pageItemsDropDown {
+      .itemsPerPageDropDown {
+        border: 1px solid rgb(0 0 0 / 12%);
+
+        .number {
+          color: rgb(0 0 0 / 35%);
+          padding-inline-start: 4px;
+          vertical-align: middle;
+          @include Font.fontSemiboldNormal;
+        }
+      }
+    }
+
+    .pageIndicator {
+      align-items: center;
+      color: rgb(0 0 0 / 90%);
+      display: flex;
+    }
+  }
+
+  .navigation {
+    display: flex;
+    justify-content: flex-start;
+    gap: 16px;
+    justify-self: end;
+
+    .pageNavigation {
+      align-items: center;
+      border: 1px solid rgb(0 0 0 / 12%);
+      border-radius: Base.$border-radius-button;
+      display: flex;
+      justify-content: space-between;
+      padding-inline-end: 8px;
+      min-width: 140px;
+      height: 40px;
+
+      .dropDownContainer {
+        .pageNavigationDropDown {
+          border: none;
+          height: 38px;
+          box-shadow: none;
+
+          .selectedPageNumber {
+            color: rgb(0 0 0 / 35%);
+          }
+
+          .allPageNumbers {
+            text-align: center;
+            width: 100%;
+            display: inline-block;
+          }
+        }
+      }
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+
+      .navigationButton {
+        min-width: 40px;
+        width: 40px;
+        padding: 0;
+        justify-content: center;
+      }
+
+      .arrow {
+        @include Base.dir-rtl {
+          transform: scaleX(-1)
+        }
+        /* stylelint-disable-next-line selector-class-pattern */
+        &:global(.app-icon) {
+          height: 24px;
+          width: 24px;
+          margin-inline-end: 0;
+        }
+      }
+    }
+  }
+}
+
+.menuText {
+  text-align: center;
+}

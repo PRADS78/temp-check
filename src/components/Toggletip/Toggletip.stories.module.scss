@@ -1,0 +1,18 @@
+@use "../../Styles/Font.scss";
+
+.infoIcon {
+  svg {
+    fill: black;
+  }
+}
+
+.pieChart {
+  width: 100%;
+  aspect-ratio: 1;
+  margin-top: 8px;
+  @include Font.fontNormal;
+
+  svg {
+    overflow: visible;
+  }
+}

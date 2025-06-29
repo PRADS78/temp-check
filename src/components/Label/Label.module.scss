@@ -1,0 +1,30 @@
+@use "../../Styles/Font.scss";
+@use "../../Styles/Spacing.module.scss";
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  line-height: 20px;
+  padding-bottom: 4px;
+
+  .text {
+    @include Font.fontBoldNormal;
+
+    padding-inline-start: 4px;
+  }
+
+  .asterisk {
+    @include Font.fontBoldNormal;
+
+    color: #e53935;
+  }
+
+  .iconContainer {
+    svg {
+      width: 16px;
+      height: 16px;
+      fill: rgb(0 0 0 / 65%);
+    }
+  }
+}

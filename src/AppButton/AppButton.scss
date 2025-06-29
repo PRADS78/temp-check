@@ -1,0 +1,232 @@
+@import "../Styles/Font";
+@import "../Styles/Base";
+@import "../Styles/ThemeColorDefinitions";
+
+$local-border-radius-button: 4px;
+
+.app-button {
+  &.v2{
+    @include fontModerateNormal;
+
+    cursor: pointer;
+    min-height: 36px;
+    line-height: 1;
+    border: none;
+    border-radius: $local-border-radius-button;
+    padding: 10px 15px;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.2s linear;
+
+    &.primary,
+    &.icon-contained {
+      @include themeColor(background-color, $accent);
+
+      color: #ffffff;
+
+      &.btn-disabled {
+        background-color: #e0e0e0 !important;
+        color: #9b9b9b;
+
+        svg {
+          fill: #9b9b9b !important;
+        }
+      }
+
+      &:hover {
+        @include themeColor(background-color, $accentLight);
+      }
+
+      &:focus {
+        @include themeColor(background-color, $accentLight);
+      }
+    }
+
+    &.primary {
+      .app-icon {
+        fill: $white-color;
+      }
+    }
+
+    &.plain {
+      background-color: $white-color;
+      @include themeColor(color, $accent);
+
+      .app-icon {
+        @include themeColor(fill, $accent);
+      }
+    }
+
+    &.btn-disabled {
+      color: #9b9b9b !important;
+
+      svg {
+        fill: #9b9b9b !important;
+      }
+    }
+
+    &.outlined {
+      @include themeColor(background-color, $white-color);
+      @include themeColor(color, $accent);
+
+      border: 1px solid rgb(0 0 0 / 12%);
+
+      .app-icon {
+        // @include themeColor(fill, $accent);
+      }
+
+      &:hover {
+        @include themeColor(background-color, $accentSuperLight);
+      }
+
+      &:focus {
+        @include themeColor(background-color, $accentSuperLight);
+      }
+    }
+
+    &.icon-only {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 36px;
+      width: 36px;
+
+      &.outlined {
+        border-width: 1px;
+        border-style: solid;
+        @include themeColor(border-color, $accent);
+      }
+
+      .app-icon {
+        margin: 0 !important;
+        float: none;
+      }
+    }
+
+    &::after {
+      background-color: $dark-grey;
+      content: "";
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 120px;
+      height: 120px;
+      margin-left: -60px;
+      margin-top: -60px;
+      border-radius: 50%;
+      opacity: 0.3;
+      transform: scale(0);
+    }
+
+    &:not(:active)::after {
+      animation: rippleButton 1s ease-out;
+    }
+
+    &::after {
+      visibility: hidden;
+    }
+
+    &:focus::after {
+      visibility: visible;
+    }
+
+    .app-icon {
+      width: 14px;
+      height: 14px;
+      @include make-dir-style-attribute(margin-right, margin-left, 15px);
+      @include make-dir-style-value(float, left, right);
+    }
+
+    &.btn-disabled {
+      opacity: 0.5;
+    }
+
+    &.btn-readonly,
+    &.btn-disabled {
+      cursor: not-allowed;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &.btn-disabled,
+    &.btn-readonly {
+      @include hover-and-active("&") {
+        background-color: transparent;
+      }
+    }
+
+    &:not(.icon-only) + &:not(.icon-only) {
+      // Have gap between buttons when they are side-by-side
+      @include make-dir-style-attribute(margin-left, margin-right, 10px);
+    }
+  }
+}
+
+//default-color for icon-correct && icon-wrong
+
+.app-icon {
+  svg {
+    #icon-correct {
+      fill: $green-color !important;
+    }
+
+    #icon-wrong {
+      fill: $red-color !important;
+    }
+  }
+
+  .result {
+    fill: $action-color !important;
+  }
+}
+
+.app-button.icon-only {
+  border: solid 0 lightgray;
+  border-radius: 50%;
+  padding: 0;
+}
+
+@mixin app-button-before {
+  width: 36px;
+  height: 36px;
+  background-repeat: no-repeat;
+  float: left;
+}
+
+.icon-correct > .app-icon:not(.not-themed) {
+  fill: $green-color !important;
+}
+
+.icon-cross > .app-icon:not(.not-themed) {
+  fill: $red-color !important;
+}
+
+// RTL Button icons transformation
+.app-icon[data-icon="icon-back"],
+.app-icon[data-icon="icon-previous"],
+.app-icon[data-icon="icon-next"],
+.app-icon[data-icon="icon-continue"],
+.app-icon[data-icon="icon-start"],
+.app-icon[data-icon="icon-join"] {
+  @include dir-rtl {
+    transform: rotateZ(180deg);
+  }
+}
+
+@keyframes rippleButton {
+  0% {
+    transform: scale(0);
+  }
+
+  20% {
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}

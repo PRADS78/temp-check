@@ -1,0 +1,84 @@
+@use "../../Styles/Base.scss";
+@use "../../Styles/Font.scss";
+@mixin label {
+  @include Font.fontBoldNormal;
+
+  background-color: #ffffff;
+  border: 1px solid Base.$border-color;
+  border-radius: Base.$border-radius-button;
+  box-sizing: border-box;
+  color: Base.$disabled-icon-color;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  min-width: 280px;
+  position: relative;
+  transition: border-color 230ms ease-in-out;
+
+  input {
+    @include Font.fontModerateNormal;
+
+    border: none;
+    color: Base.$password-visibility-color;
+    outline: none;
+    padding: 0;
+    padding-inline: 12px;
+    width: 100%;
+    line-height: 17px;
+
+    &:focus ~ .textFieldLabel{
+      @include Font.fontBoldSmall;
+
+      color: #000000;
+      inset-block-start: -8px;
+    }
+
+    &:not(:placeholder-shown) ~ .topBorder {
+      .anteGap,
+      .postGap {
+        background-color: #c2c2c2;
+      }
+    }
+
+    &:focus ~ .topBorder {
+      .anteGap,
+      .postGap {
+        background-color: var(--accent);
+      }
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      appearance: none;
+      margin: 0;
+    }
+
+    &[type="number"] {
+      appearance: textfield; /* Firefox */
+    }
+
+    &::placeholder {
+      color: Base.$disabled-icon-color;
+    } 
+  }
+
+  &.isDisabled {
+    background-color: Base.$disabled-bg-color;
+    border-color: Base.$border-color;
+
+    input,
+    span.textFieldLabel {
+      background-color: transparent;
+      cursor: not-allowed;
+      @include Font.fontRegularWeight;
+    }
+  }
+
+  &:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgb(106 28 166 / 8%), 0 2px 2px -2px rgb(0 0 0 / 12%);
+  }
+
+
+  
+}

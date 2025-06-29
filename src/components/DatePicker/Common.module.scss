@@ -1,0 +1,148 @@
+@use "../../Styles/Base.scss";
+@use "../../Styles/Font.scss";
+@use "../../Styles/ThemeColorDefinitions.scss" as Theme;
+@use "../../Styles/Spacing.module.scss";
+
+@mixin input-group {
+  align-items: center;
+  border: 1px solid Base.$border-color;;
+  border-radius: Base.$border-radius-input;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  height: 40px;
+  justify-content: space-between;
+  padding: Spacing.$spacing-08;
+  transition: border-color 240ms ease-in-out;
+  background-color: white;
+
+  .blinker {
+    animation: 500ms ease-in 0s infinite alternate blink;
+    background-color: rgb(0 0 0 / 65%);
+    height: 15px;
+    left: 6px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+
+    @keyframes blink {
+      0% {
+        opacity: 0;
+      }
+  
+      100% {
+        opacity: 1;
+      }
+    }
+    
+  }
+  
+ 
+
+  input,
+  .firstMultiSelected {
+    @include Font.fontModerateNormal;
+
+    align-items: center;
+    border: none;
+    color: Base.$password-visibility-color;
+    cursor: inherit;
+    display: flex;
+    margin: 0;
+    min-width: 170px;
+    outline: none;
+    padding: 0;
+    background-color: white;
+    
+  }
+
+  .firstMultiSelected {
+    min-width: 115px;
+
+    &.placeholderMode {
+      color: rgba(0 0 0 / 35%);
+    }
+
+    .clearFirst {
+      align-items: center;
+      background: rgb(0 0 0 / 6%);
+      border: none;
+      border-radius: Base.$border-radius-button;
+      display: flex;
+      fill: rgb(0 0 0 / 65%);
+      gap: 7px;
+      padding: 4px 6px;
+      
+      .iconContainer {
+        height: 16px;
+        width: 16px;
+        svg{
+          fill: rgb(0 0 0 / 65%);
+        }
+      }
+    }
+  }
+
+  .ellipsisContainer {
+    align-items: center;
+    display: flex;
+    font-size: 20px;
+    gap: 3px;
+
+    .ellipse {
+      background-color: rgb(0 0 0 / 65%);
+      border-radius: 50%;
+      height: 3px;
+      width: 3px;
+    }
+  }
+
+  .selectedCounter {
+    @include Font.fontModerateSmall;
+
+    align-items: center;
+    background-color: var(--accent);
+    border-radius: 50%;
+    color: #ffffff;
+    display: flex;
+    height: 22px;
+    justify-content: center;
+    width: 22px;
+  }
+
+  .clearAll {
+    background-color: transparent;
+    border: none;
+    outline: none;
+
+    svg {
+      fill: rgb(0 0 0 / 65%);
+      height: 12px;
+      width: 12px;
+    }
+  }
+
+  .iconContainer {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+    &::after {
+      border-radius: 50%;
+      content: "";
+      background-color: transparent;
+      height: 34px;
+      position: absolute;
+      transition: background-color 240ms ease-in-out;
+      width: 34px;
+    }
+
+    svg {
+      height: 24px;
+      width: 24px;
+      transition: fill 240ms ease-in-out;
+    }
+  }
+}

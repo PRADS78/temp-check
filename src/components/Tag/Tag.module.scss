@@ -1,0 +1,104 @@
+@use "../../Styles/Font.scss";
+@use "../../Styles/Spacing.module.scss";
+@use "../../Styles/Base.scss";
+
+@mixin tag-style($backgroundColor, $borderColor, $textColor) {
+  &.filled {
+    background-color: $backgroundColor;
+
+    .text {
+      color: $textColor;
+    }
+  }
+
+  &.outlined {
+    background-color: $backgroundColor;
+    border: 1px solid $borderColor;
+
+    .text {
+      color: $textColor;
+    }
+  }
+}
+
+.tag {
+  align-items: center;
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+  padding-inline: 8px;
+  height: 24px;
+  min-width: 24px;
+  width: fit-content;
+
+  &.text {
+    @include Font.fontModerateSmall;
+    @include Base.make-line-clamp(1);
+
+    text-overflow: ellipsis;
+    height: 14px;
+    line-height: 15px;
+  }
+
+  &:global(.success) {
+    @include tag-style(#e7f6ee, rgb(66 185 84 / 50%), #42b954);
+  }
+
+  &:global(.warning) {
+    @include tag-style(#fef4e1, rgb(246 166 9 / 50%), #f6a609);
+  }
+
+  &:global(.default) {
+    @include tag-style(rgb(0 0 0 / 5%), rgb(73 70 71 / 50%), #494647);
+  }
+
+  &:global(.danger) {
+    @include tag-style(#fee1e1, rgb(218 56 50 / 50%), #ee2a32);
+  }
+
+  &:global(.survey) {
+    @include tag-style(#ffc50b, none, rgba(0, 0, 0, 0.65));
+  }
+
+  &:global(.selfPacedModule) {
+    @include tag-style(#80d8bc, none, #000000);
+  }
+
+  &:global(.classroomModule) {
+    @include tag-style(#a2a7f4, none, #000000);
+  }
+
+  &:global(.moocModule) {
+    @include tag-style(#cdacef, none, #000000);
+  }
+
+  &:global(.liveModule) {
+    @include tag-style(#f4a8b2, none, #000000);
+  }
+
+  &:global(.artefact) {
+    @include tag-style(#95efe7, none, #000000);
+  }
+
+  &:global(.evaluations) {
+    @include tag-style(#abd4ef, none, #000000);
+  }
+
+  &:global(.personalizedJourney) {
+    @include tag-style(#d3f49d, none, #000000);
+  }
+
+  &:global(.standardJourney) {
+    @include tag-style(#2f94bd, none, #ffffff);
+  }
+
+  &:global(.module) {
+    @include tag-style(#f46e1e, none, #ffffff);
+  }
+
+  &:global(.primary) {
+    @include tag-style(var(--accent), none, #ffffff);
+  }
+}

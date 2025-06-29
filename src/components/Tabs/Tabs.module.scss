@@ -1,0 +1,277 @@
+@use "../../Styles/Base.scss";
+@use "../../Styles/Font.scss";
+@use "../../Styles/ThemeColorDefinitions.scss" as Theme;
+@use "../../Styles/Direction.scss";
+
+.tabs {
+  box-sizing: border-box;
+  position: relative;
+
+  .iconShadowContainer {
+    overflow-y: hidden;
+    block-size: 46px;
+    inline-size: 80px;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .placeRight {
+    inset-inline-end: -3px;
+  }
+
+  .leftIconShadow,
+  .rightIconShadow {
+    block-size: 46px;
+    inline-size: 25px;
+  }
+
+  .leftIconShadow {
+    inline-size: 45px;
+    @include Direction.make-dir-style-value(
+      box-shadow,
+      11px 3px 14px 4px #ffffff,
+      -11px 3px 14px 4px #ffffff
+    );
+  }
+
+  .rightIconShadow {
+    @include Direction.make-dir-style-value(
+      box-shadow,
+      -11px 3px 14px 4px #ffffff,
+      11px 3px 14px 4px #ffffff
+    );
+
+    inline-size: 45px;
+    position: absolute;
+    inset-inline-end: 2px;
+  }
+
+  .zeroOpacity {
+    opacity: 0;
+  }
+
+  .leftScroll {
+    svg {
+      @include Direction.make-dir-style-value(
+        transform,
+        rotate(90deg),
+        rotate(-90deg)
+      );
+    }
+  }
+
+  .rightScroll {
+    svg {
+      @include Direction.make-dir-style-value(
+        transform,
+        rotate(-90deg),
+        rotate(90deg)
+      );
+    }
+  }
+
+  .labels {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+    background-color: #ffffff;
+    border-block-end: 1px solid #d8d8d8;
+    block-size: 48px;
+    overflow: hidden;
+
+    &.withShadow {
+      border-radius: 8px 8px 0 0;
+      box-shadow: 0 2px 12px rgb(0 0 0 / 8%);
+    }
+
+    .leftScroll,
+    .rightScroll {
+      align-items: center;
+      background-color: transparent;
+      border: none;
+      display: flex;
+      box-sizing: border-box;
+      flex: 37px 1 37px;
+      justify-content: center;
+      block-size: 37px;
+      outline: none;
+      position: relative;
+      min-inline-size: 37px;
+      transition: opacity 230ms ease-in-out;
+      box-shadow: 0 1px 2px rgb(0 0 0 / 30%);
+      border-radius: 100px;
+      z-index: 2;
+      transform: scale(1);
+
+      svg {
+        block-size: 21px;
+        inline-size: 21px;
+      }
+
+      &:active {
+        transform: scale(0.8);
+      }
+
+      &:hover {
+        background: linear-gradient(0deg, rgb(0 0 0 / 6%), rgb(0 0 0 / 6%)),
+          linear-gradient(0deg, #ffffff, #ffffff);
+      }
+
+      &:disabled {
+        cursor: initial;
+        opacity: 0;
+
+        svg {
+          fill: Theme.$tabs-disabled-scroll-button-color;
+        }
+      }
+    }
+
+    .scrollableContainer {
+      @include Base.hide-scrollbar;
+
+      box-sizing: border-box;
+      overflow: auto;
+      position: relative;
+      block-size: 100%;
+
+      .labelContainer {
+        display: flex;
+        justify-content: flex-start;
+        list-style: none;
+        max-inline-size: 100%;
+        background-color: white;
+        block-size: 100%;
+
+        li {
+          @include Font.fontSemiboldMedium;
+
+          align-items: center;
+          box-sizing: border-box;
+          cursor: pointer;
+          display: flex;
+          flex: 1 0 auto;
+          gap: 6px;
+          justify-content: center;
+          min-inline-size: 90px;
+          padding: 15px 24px;
+          position: relative;
+          user-select: none;
+          color: #4d4d4d;
+
+          &:not(.disabled).activeTab {
+            color: var(--accent);
+          }
+
+          &.disabled {
+            cursor: not-allowed;
+            color: #8c8c8c;
+          }
+
+          svg {
+            block-size: 25px;
+            stroke-width: 5px;
+            transform: rotate(-90deg);
+            inline-size: 25px;
+          }
+
+          &:not(.disabled)::after {
+            background-color: transparent;
+            content: "";
+            block-size: 100%;
+            inset-inline-start: 50%;
+            position: absolute;
+            inset-block-start: 50%;
+            transition: background-color 400ms ease-in-out,
+              transform 400ms ease-in-out 50ms;
+            @include Base.make-dir-style-value(
+              transform,
+              translate(-50%, -50%) scaleY(0),
+              translate(50%, -50%) scaleY(0)
+            );
+
+            transform-origin: center;
+            inline-size: 100%;
+          }
+
+          &:hover:not(.disabled) {
+            color: var(--accent);
+          }
+
+          &:hover:not(.disabled)::after {
+            @include Base.make-dir-style-value(
+              transform,
+              translate(-50%, -50%) scaleY(1),
+              translate(50%, -50%) scaleY(1)
+            );
+
+            transform: translate(50%, -50%) scaleY(1);
+          }
+        }
+
+        .badgeContainer {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+      }
+
+      .activeTabIndicator {
+        background-color: var(--accent);
+        bottom: 0;
+        block-size: 3px;
+        inset-inline-start: 0;
+        position: absolute;
+        transition: inset-inline-start 300ms ease-out, width 230ms ease-out;
+        border-radius: 8px;
+
+        &.indicatorDisabled {
+          background-color: #d8d8d8;
+        }
+      }
+
+      &.labelsExpanded {
+        inline-size: 100%;
+
+        .labelContainer {
+          block-size: 46px;
+        }
+      }
+    }
+  }
+
+  .panels {
+    @include Base.hide-scrollbar;
+
+    overflow: hidden;
+    background-color: #ffffff;
+
+    &.withShadow {
+      box-shadow: 0 3.35px 10.05px rgb(0 0 0 / 6%);
+      border-radius: 0 0 6.7px 6.7px;
+    }
+
+    .panelsContainer {
+      box-sizing: border-box;
+      display: flex;
+      justify-content: flex-start;
+      position: relative;
+      transition: inset-inline-start 300ms ease-out;
+
+      .panel {
+        box-sizing: border-box;
+        flex: 1 0 100%;
+        padding: 10px;
+        inline-size: 100%;
+
+        &.paddingToFitContext {
+          padding: 0;
+          padding-inline: 25px;
+          padding-block: 10px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+@use "../../../../../../Styles/Base.scss";
+@use "../../../Common.scss";
+
+.titledOptions {
+  @include Common.titled-options;
+
+  border-radius: Base.$border-radius-button;
+  overflow: hidden;
+}

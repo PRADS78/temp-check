@@ -1,0 +1,25 @@
+.arrowIcon {
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  padding: 0;
+
+  svg {
+    fill: rgb(0 0 0 / 65%);
+  }
+
+  &.active {
+    svg {
+      fill: var(--accent);
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+
+    svg {
+      fill: rgb(0 0 0 / 35%);
+    }
+  }
+}

@@ -1,0 +1,50 @@
+.ringLoader {
+    display: inline-block;
+    position: relative;
+    width: 34px;
+    height: 34px;
+
+    .ring {
+        align-items: center;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        width: inherit;
+        height: inherit;
+
+        div {
+            border: 4px solid #BDBDBD;
+            border-color: #BDBDBD transparent transparent;
+            border-radius: 50%;
+            box-sizing: border-box;
+            display: block;
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            animation: rotate 1400ms ease-in-out infinite;
+
+            &:nth-of-type(2) {
+                animation-delay: 200ms;
+            }
+
+            &:nth-of-type(3) {
+                animation-delay: 250ms;
+            }
+
+            &:nth-of-type(4) {
+                animation-delay: 300ms;
+            }
+        }
+    }
+
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+}

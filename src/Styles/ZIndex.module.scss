@@ -1,0 +1,104 @@
+@use "./Base.scss" as base;
+
+/**
+  * Get z-index value
+  * @param {String} $component - Component name
+  * @param {String} $keys... - Keys to get
+  */
+@function get($map, $keys...) {
+  @return base.map-deep-get($map, $keys...);
+}
+
+/**
+  * Get z-index value
+  * @param {Number} $stack-order - Stack order of the component
+  * @param {Number} $multiplier - Multiplier of the component
+  * @param {Number} $inverse-priority - Inverse priority of the component
+  */
+@function get-z-index-for-stack($stack-order, $multiplier, $inverse-priority: 0) {
+  @return $stack-order * $multiplier - $inverse-priority;
+}
+
+// Multipliers
+$level-1-multiplier: 100;
+$level-2-multiplier: 1;
+
+// Components stack-order (higher to lower)
+$snackbar-stack-order: 10;
+$portal-stack-order: 9;
+$coach-mark-stack-order: 8;
+$dialog-box-stack-order: 7;
+$alertdialog-stack-order: 6;
+$menu-popper-stack-order: 2;
+$table-stack-order: 1;
+$button-stack-order: 1;
+$checkbox-stack-order: 1;
+
+// TODO: Components list
+// AlertDialog
+// Snackbar
+// Table
+// Time picker (Popper)
+// Dropdown (Popper)
+
+// Snackbar
+$snackbar: (
+  "base": get-z-index-for-stack($snackbar-stack-order, $level-1-multiplier),
+);
+
+// Portal
+$portal: (
+  "base": get-z-index-for-stack($portal-stack-order, $level-1-multiplier),
+);
+
+// Coach mark
+$coach-mark: (
+  "reference-highlight": get-z-index-for-stack($coach-mark-stack-order, $level-1-multiplier),
+  "active-reference": get-z-index-for-stack($coach-mark-stack-order, $level-1-multiplier, 1),
+  "overlay": get-z-index-for-stack($coach-mark-stack-order, $level-1-multiplier, 2),
+  // Not used
+  "inactive-reference": get-z-index-for-stack($coach-mark-stack-order, $level-1-multiplier, 3),
+);
+
+// Dialog Box
+$dialog-box: (
+  "base": get-z-index-for-stack($dialog-box-stack-order, $level-1-multiplier),
+  "children": (
+    "component": get-z-index-for-stack($dialog-box-stack-order, $level-2-multiplier),
+    "overlay": get-z-index-for-stack($dialog-box-stack-order, $level-2-multiplier, 1),
+  ),
+);
+
+// Filter
+$filter: (
+  "localized-banner": get-z-index-for-stack($portal-stack-order, $level-1-multiplier, -1)
+);
+
+// Table
+$table: (
+  "table": (
+    "thead": get-z-index-for-stack($table-stack-order, $level-2-multiplier , -1),
+    "tbody": get-z-index-for-stack($table-stack-order, $level-2-multiplier),
+    "row-checkbox": get-z-index-for-stack($table-stack-order, $level-2-multiplier, 1),
+  )
+);
+
+// Menu Popper
+$menu-popper: (
+  "base": get-z-index-for-stack($menu-popper-stack-order, $level-2-multiplier),
+);
+
+// AppButton
+$app-button: (
+  "base": get-z-index-for-stack($button-stack-order, $level-2-multiplier),
+  "children": (
+    "label": get-z-index-for-stack($button-stack-order, $level-2-multiplier, -1),
+    "divider": get-z-index-for-stack($button-stack-order, $level-2-multiplier, -1),
+    "after-selector": get-z-index-for-stack(0, $level-2-multiplier , 1))
+);
+
+// Checkbox 
+$checkbox: (
+  "box": get-z-index-for-stack($checkbox-stack-order,$level-2-multiplier),
+  "input": get-z-index-for-stack($checkbox-stack-order, $level-2-multiplier , 3)
+);
