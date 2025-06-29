@@ -336,18 +336,18 @@ const FieldEditor = ({
       {isSelected && (
         <div className={styles.fieldControls}>
           <div className={styles.leftControls}>
-            <button
+            <PlainButton
+              text="📋"
               onClick={() => onClone(field.id)}
-              className={styles.controlButton}
-            >
-              📋
-            </button>
-            <button
+              uniqueId={`clone_${field.id}_${Date.now()}`}
+              ctrCls={styles.controlButton}
+            />
+            <PlainButton
+              text="🗑️"
               onClick={() => onDelete(field.id)}
-              className={styles.controlButton}
-            >
-              🗑️
-            </button>
+              uniqueId={`delete_${field.id}_${Date.now()}`}
+              ctrCls={styles.controlButton}
+            />
           </div>
           <div className={styles.rightControls}>
             <label className={styles.toggle}>
