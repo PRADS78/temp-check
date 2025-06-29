@@ -193,9 +193,12 @@ const FieldEditor = ({
                 </div>
               ))}
             </div>
-            <button onClick={handleAddOption} className={styles.addOption}>
-              + Add Option
-            </button>
+            <PlainButton
+              text="+ Add Option"
+              onClick={handleAddOption}
+              uniqueId={`add_option_${field.id}_${Date.now()}`}
+              ctrCls={styles.addOption}
+            />
             <div className={styles.selectionType}>
               <label className={styles.checkboxOption}>
                 <input
