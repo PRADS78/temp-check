@@ -123,11 +123,11 @@ const FieldEditor = ({
       case FIELD_TYPES.LONG_TEXT:
         return (
           <div className={styles.fieldContent}>
-            <textarea
+            <DisprzTextArea
+              uniqueId={`placeholder_${field.id}_${Date.now()}`}
               value={localField.placeholder || ""}
               onChange={(e) => handleFieldChange("placeholder", e.target.value)}
               placeholder="Placeholder text"
-              className={styles.textareaInput}
               rows={3}
             />
           </div>
