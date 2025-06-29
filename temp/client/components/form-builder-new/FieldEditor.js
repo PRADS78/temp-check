@@ -172,13 +172,14 @@ const FieldEditor = ({
                   onDrop={(e) => onDrop(e, field.id, index)}
                 >
                   <span className={styles.optionNumber}>{index + 1}.</span>
-                  <input
-                    type="text"
+                  <DisprzTextField
+                    uniqueId={`option_${option.id}_${Date.now()}`}
+                    type={TextFieldTypes.TEXT}
                     value={option.label}
                     onChange={(e) =>
                       handleOptionChange(option.id, e.target.value)
                     }
-                    className={styles.optionInput}
+                    borderGapColor="transparent"
                   />
                   {localField.options.length > 1 && (
                     <button
