@@ -1,0 +1,263 @@
+.formRenderer {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+  &.preview {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.previewBanner {
+  background: #6366f1;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.form {
+  padding: 0;
+}
+
+.formHeader {
+  background: #6366f1;
+  color: white;
+  padding: 24px 32px;
+  text-align: left;
+}
+
+.formTitle {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.formDescription {
+  font-size: 16px;
+  margin: 0;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+.fieldGroup {
+  border-bottom: 1px solid #f3f4f6;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.sectionHeader {
+  background: #f8fafc;
+  padding: 20px 32px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.sectionBadge {
+  background: #6366f1;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.sectionTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.sectionDescription {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.fieldsContainer {
+  padding: 32px;
+}
+
+.submitContainer {
+  padding: 24px 32px;
+  background: #f8fafc;
+  border-top: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.submitButton {
+  background: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px;
+
+  &:hover:not(:disabled) {
+    background: #5046e5;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    background: #d1d5db;
+    color: #9ca3af;
+    cursor: not-allowed;
+  }
+}
+
+.previewNote {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  color: #0369a1;
+  padding: 12px 32px;
+  font-size: 14px;
+  text-align: center;
+  margin: 0;
+}
+
+.successMessage {
+  text-align: center;
+  padding: 60px 32px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.successIcon {
+  width: 80px;
+  height: 80px;
+  background: #10b981;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  font-weight: bold;
+  margin: 0 auto 24px;
+}
+
+.successMessage h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 12px 0;
+}
+
+.successMessage p {
+  font-size: 16px;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.6;
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .formRenderer {
+    margin: 0 16px;
+    border-radius: 6px;
+  }
+
+  .formHeader {
+    padding: 20px 24px;
+  }
+
+  .formTitle {
+    font-size: 20px;
+  }
+
+  .formDescription {
+    font-size: 14px;
+  }
+
+  .sectionHeader {
+    padding: 16px 24px;
+  }
+
+  .sectionTitle {
+    font-size: 18px;
+  }
+
+  .fieldsContainer {
+    padding: 24px;
+  }
+
+  .submitContainer {
+    padding: 20px 24px;
+  }
+
+  .submitButton {
+    width: 100%;
+    padding: 14px 32px;
+  }
+
+  .previewNote {
+    padding: 12px 24px;
+    font-size: 13px;
+  }
+
+  .successMessage {
+    padding: 40px 24px;
+    margin: 0 16px;
+  }
+
+  .successIcon {
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+  }
+
+  .successMessage h2 {
+    font-size: 20px;
+  }
+
+  .successMessage p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .formRenderer {
+    margin: 0 8px;
+  }
+
+  .formHeader {
+    padding: 16px 20px;
+  }
+
+  .sectionHeader {
+    padding: 12px 20px;
+  }
+
+  .fieldsContainer {
+    padding: 20px;
+  }
+
+  .submitContainer {
+    padding: 16px 20px;
+  }
+}
