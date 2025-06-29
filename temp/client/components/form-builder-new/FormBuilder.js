@@ -1,5 +1,11 @@
 import { useState } from "react";
 import { createFormSchema } from "../../lib/form-schema";
+import {
+  PrimaryButton,
+  OutlinedButton,
+  DisprzTabs,
+} from "../../../../src/remote";
+import { ButtonTypes } from "../../../../src/Enums";
 import Sidebar from "./Sidebar";
 import Canvas from "./Canvas";
 import FormRenderer from "../form-renderer/FormRenderer";
