@@ -71,19 +71,22 @@ const SectionEditor = ({ section, onUpdate, onDelete }) => {
       <div className={styles.sectionContent}>
         {isEditing ? (
           <>
-            <input
-              type="text"
+            <DisprzTextField
+              uniqueId={`section_title_${section.id}_${Date.now()}`}
+              type={TextFieldTypes.TEXT}
               value={localSection.title}
               onChange={(e) => handleFieldChange("title", e.target.value)}
-              className={styles.titleInput}
               placeholder="Section Title"
+              borderGapColor="transparent"
+              ctrCls={styles.titleInput}
             />
-            <textarea
+            <DisprzTextArea
+              uniqueId={`section_desc_${section.id}_${Date.now()}`}
               value={localSection.description}
               onChange={(e) => handleFieldChange("description", e.target.value)}
-              className={styles.descriptionInput}
               placeholder="Section Description (optional)"
               rows={2}
+              ctrCls={styles.descriptionInput}
             />
           </>
         ) : (
