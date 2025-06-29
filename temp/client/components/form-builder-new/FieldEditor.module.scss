@@ -315,49 +315,16 @@
   }
 }
 
-.toggle {
+.toggleWrapper {
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 14px;
   color: #374151;
-  cursor: pointer;
-  position: relative;
-
-  input[type="checkbox"] {
-    display: none;
-  }
-
-  span:first-child {
-    user-select: none;
-  }
 }
 
-.toggleSlider {
-  width: 40px;
-  height: 20px;
-  background: #d1d5db;
-  border-radius: 10px;
-  position: relative;
-  transition: background 0.2s ease;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 16px;
-    height: 16px;
-    background: white;
-    border-radius: 50%;
-    transition: transform 0.2s ease;
-  }
-
-  input:checked + & {
-    background: #6366f1;
-
-    &::before {
-      transform: translateX(20px);
-    }
-  }
+.toggleLabel {
+  user-select: none;
+  font-size: 14px;
+  color: #374151;
 }
