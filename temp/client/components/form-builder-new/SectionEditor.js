@@ -36,27 +36,33 @@ const SectionEditor = ({ section, onUpdate, onDelete }) => {
         <div className={styles.sectionActions}>
           {isEditing ? (
             <>
-              <button onClick={handleSave} className={styles.saveButton}>
-                ✓
-              </button>
-              <button onClick={handleCancel} className={styles.cancelButton}>
-                ✕
-              </button>
+              <PlainButton
+                text="✓"
+                onClick={handleSave}
+                uniqueId={`save_section_${section.id}`}
+                ctrCls={styles.saveButton}
+              />
+              <PlainButton
+                text="✕"
+                onClick={handleCancel}
+                uniqueId={`cancel_section_${section.id}`}
+                ctrCls={styles.cancelButton}
+              />
             </>
           ) : (
             <>
-              <button
+              <PlainButton
+                text="✏️"
                 onClick={() => setIsEditing(true)}
-                className={styles.editButton}
-              >
-                ✏️
-              </button>
-              <button
+                uniqueId={`edit_section_${section.id}`}
+                ctrCls={styles.editButton}
+              />
+              <PlainButton
+                text="🗑️"
                 onClick={() => onDelete(section.id)}
-                className={styles.deleteButton}
-              >
-                🗑️
-              </button>
+                uniqueId={`delete_section_${section.id}`}
+                ctrCls={styles.deleteButton}
+              />
             </>
           )}
         </div>
