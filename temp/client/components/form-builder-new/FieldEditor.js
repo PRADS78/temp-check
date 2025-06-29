@@ -218,8 +218,9 @@ const FieldEditor = ({
             <div className={styles.numberSettings}>
               <div className={styles.inputGroup}>
                 <label>Min Value</label>
-                <input
-                  type="number"
+                <DisprzTextField
+                  uniqueId={`min_value_${field.id}_${Date.now()}`}
+                  type={TextFieldTypes.NUMBER}
                   value={localField.min || ""}
                   onChange={(e) =>
                     handleFieldChange(
@@ -227,13 +228,14 @@ const FieldEditor = ({
                       e.target.value ? Number(e.target.value) : null,
                     )
                   }
-                  className={styles.numberInput}
+                  borderGapColor="transparent"
                 />
               </div>
               <div className={styles.inputGroup}>
                 <label>Max Value</label>
-                <input
-                  type="number"
+                <DisprzTextField
+                  uniqueId={`max_value_${field.id}_${Date.now()}`}
+                  type={TextFieldTypes.NUMBER}
                   value={localField.max || ""}
                   onChange={(e) =>
                     handleFieldChange(
@@ -241,7 +243,7 @@ const FieldEditor = ({
                       e.target.value ? Number(e.target.value) : null,
                     )
                   }
-                  className={styles.numberInput}
+                  borderGapColor="transparent"
                 />
               </div>
             </div>
