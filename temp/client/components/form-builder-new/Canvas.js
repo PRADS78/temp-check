@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDragAndDrop } from "../../hooks/useDragAndDrop";
 import { createField, createSection } from "../../lib/form-schema";
+import { PlainButton } from "../../../../src/remote";
 import FieldEditor from "./FieldEditor";
 import SectionEditor from "./SectionEditor";
 import styles from "./Canvas.module.scss";
