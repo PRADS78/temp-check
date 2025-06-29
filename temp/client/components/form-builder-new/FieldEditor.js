@@ -290,12 +290,14 @@ const FieldEditor = ({
       <div className={styles.fieldBody}>
         <div className={styles.labelSection}>
           {isSelected ? (
-            <input
-              type="text"
+            <DisprzTextField
+              uniqueId={`label_${field.id}_${Date.now()}`}
+              type={TextFieldTypes.TEXT}
               value={localField.label}
               onChange={(e) => handleFieldChange("label", e.target.value)}
-              className={styles.labelInput}
               placeholder="Question label"
+              borderGapColor="transparent"
+              ctrCls={styles.labelInput}
             />
           ) : (
             <div className={styles.labelDisplay}>{localField.label}</div>
@@ -305,14 +307,16 @@ const FieldEditor = ({
         {localField.showDescription && (
           <div className={styles.descriptionSection}>
             {isSelected ? (
-              <input
-                type="text"
+              <DisprzTextField
+                uniqueId={`description_${field.id}_${Date.now()}`}
+                type={TextFieldTypes.TEXT}
                 value={localField.description}
                 onChange={(e) =>
                   handleFieldChange("description", e.target.value)
                 }
-                className={styles.descriptionInput}
                 placeholder="Description"
+                borderGapColor="transparent"
+                ctrCls={styles.descriptionInput}
               />
             ) : (
               <div className={styles.descriptionDisplay}>
