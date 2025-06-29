@@ -15,6 +15,12 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react({
       include: "**/*.{jsx,tsx,js,ts}",
+      jsxImportSource: "@emotion/react",
+      babel: {
+        plugins: [
+          ["@babel/plugin-transform-react-jsx", { runtime: "automatic" }],
+        ],
+      },
     }),
     expressPlugin(),
   ],
