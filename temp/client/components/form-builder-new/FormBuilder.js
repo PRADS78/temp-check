@@ -29,6 +29,19 @@ const FormBuilder = () => {
     console.log("Form Schema:", formSchema);
   };
 
+  const tabItems = [
+    {
+      id: "configuration",
+      label: "Form Configuration",
+      content: null,
+    },
+    {
+      id: "layout",
+      label: "Form Layout",
+      content: null,
+    },
+  ];
+
   return (
     <div className={styles.formBuilder}>
       {/* Header */}
@@ -49,10 +62,18 @@ const FormBuilder = () => {
         </div>
 
         <div className={styles.headerActions}>
-          <button onClick={handlePreviewForm} className={styles.previewButton}>
-            Preview Form
-          </button>
-          <button className={styles.saveButton}>Save Form</button>
+          <OutlinedButton
+            text="Preview Form"
+            type={ButtonTypes.MEDIUM}
+            onClick={handlePreviewForm}
+            uniqueId={Date.now()}
+          />
+          <PrimaryButton
+            text="Save Form"
+            type={ButtonTypes.MEDIUM}
+            onClick={() => console.log("Save form")}
+            uniqueId={Date.now() + 1}
+          />
         </div>
       </div>
 
