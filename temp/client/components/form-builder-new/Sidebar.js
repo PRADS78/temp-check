@@ -55,10 +55,11 @@ const Sidebar = () => {
         {activeTab === "udf" && (
           <>
             <div className={styles.searchContainer}>
-              <input
-                type="text"
+              <DisprzSearchBar
+                uniqueId={Date.now()}
                 placeholder="Search UDF"
-                className={styles.searchInput}
+                onChange={(value) => console.log("Search:", value)}
+                value=""
               />
             </div>
             <div className={styles.fieldsList}>
