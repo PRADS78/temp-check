@@ -200,16 +200,14 @@ const FieldEditor = ({
               ctrCls={styles.addOption}
             />
             <div className={styles.selectionType}>
-              <label className={styles.checkboxOption}>
-                <input
-                  type="checkbox"
-                  checked={localField.allowMultiple || false}
-                  onChange={(e) =>
-                    handleFieldChange("allowMultiple", e.target.checked)
-                  }
-                />
-                <span>Multi Select</span>
-              </label>
+              <DisprzCheckbox
+                uniqueId={`multi_select_${field.id}_${Date.now()}`}
+                label="Multi Select"
+                checked={localField.allowMultiple || false}
+                onChange={(checked) =>
+                  handleFieldChange("allowMultiple", checked)
+                }
+              />
             </div>
           </div>
         );
