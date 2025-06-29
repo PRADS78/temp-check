@@ -1,0 +1,89 @@
+.fieldContainer {
+  margin-bottom: 24px;
+}
+
+.fieldLabel {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.required {
+  color: #ef4444;
+  font-size: 14px;
+}
+
+.fieldDescription {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.fieldInput {
+  margin-bottom: 8px;
+}
+
+.fieldError {
+  font-size: 14px;
+  color: #ef4444;
+  margin-top: 4px;
+}
+
+.fileUploadWrapper {
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 32px;
+  text-align: center;
+  background: #f9fafb;
+}
+
+.fileUploadPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #6b7280;
+
+  span {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  small {
+    font-size: 12px;
+    opacity: 0.8;
+  }
+}
+
+.unsupportedField {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  padding: 12px;
+  color: #dc2626;
+  font-size: 14px;
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .fieldContainer {
+    margin-bottom: 20px;
+  }
+
+  .fieldLabel {
+    font-size: 15px;
+  }
+
+  .fieldDescription {
+    font-size: 13px;
+  }
+
+  .fileUploadWrapper {
+    padding: 24px 16px;
+  }
+}
