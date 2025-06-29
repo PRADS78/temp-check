@@ -140,18 +140,17 @@ const FieldEditor = ({
               <div className={styles.sectionLabel}>Date Format</div>
               <div className={styles.radioGroup}>
                 {Object.entries(DATE_FORMATS).map(([key, format]) => (
-                  <label key={key} className={styles.radioOption}>
-                    <input
-                      type="radio"
-                      name={`dateFormat_${field.id}`}
-                      value={format}
-                      checked={localField.dateFormat === format}
-                      onChange={(e) =>
-                        handleFieldChange("dateFormat", e.target.value)
-                      }
-                    />
-                    <span>{format}</span>
-                  </label>
+                  <DisprzRadioButton
+                    key={key}
+                    uniqueId={`date_format_${key}_${field.id}`}
+                    label={format}
+                    name={`dateFormat_${field.id}`}
+                    value={format}
+                    checked={localField.dateFormat === format}
+                    onChange={(e) =>
+                      handleFieldChange("dateFormat", e.target.value)
+                    }
+                  />
                 ))}
               </div>
             </div>
