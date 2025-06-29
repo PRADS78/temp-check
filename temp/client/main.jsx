@@ -3,10 +3,10 @@ import "./global.css";
 import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import FormBuilder from "./pages/FormBuilder";
-import FormPreview from "./pages/FormPreview";
-import NotFound from "./pages/NotFound";
+import Index from "./pages/Index.jsx";
+import FormBuilder from "./pages/FormBuilder.jsx";
+import FormPreview from "./pages/FormPreview.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 const queryClient = new QueryClient();
 
