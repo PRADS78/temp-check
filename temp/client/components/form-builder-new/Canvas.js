@@ -221,15 +221,14 @@ const Canvas = ({
 
       {/* Add Section Button */}
       <div className={styles.addSectionContainer}>
-        <button
-          className={styles.addSectionButton}
+        <PlainButton
+          text="📋 Add Section"
           onClick={handleAddSection}
+          uniqueId={`add_section_${Date.now()}`}
+          ctrCls={styles.addSectionButton}
           onMouseEnter={() => setShowSectionTooltip(true)}
           onMouseLeave={() => setShowSectionTooltip(false)}
-        >
-          <span className={styles.addSectionIcon}>📋</span>
-          <span>Add Section</span>
-        </button>
+        />
 
         {showSectionTooltip && (
           <div className={styles.tooltip}>
