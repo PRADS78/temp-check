@@ -106,12 +106,13 @@ const FieldEditor = ({
       case FIELD_TYPES.SHORT_TEXT:
         return (
           <div className={styles.fieldContent}>
-            <input
-              type="text"
+            <DisprzTextField
+              uniqueId={`placeholder_${field.id}_${Date.now()}`}
+              type={TextFieldTypes.TEXT}
               value={localField.placeholder || ""}
               onChange={(e) => handleFieldChange("placeholder", e.target.value)}
               placeholder="Placeholder text"
-              className={styles.placeholderInput}
+              borderGapColor="transparent"
             />
             <div className={styles.characterLimit}>
               {localField.maxLength || 100} Character Limit
